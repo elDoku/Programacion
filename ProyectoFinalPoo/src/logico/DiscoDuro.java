@@ -11,6 +11,7 @@ public class DiscoDuro extends Componente {
 	
 	
 	
+	
 	public DiscoDuro(String tipo, float precio, int cantidad, String serial, String marca, String modelo,
 			float capacidad, String tipoConexion) {
 		super(tipo, precio, cantidad, serial);

@@ -14,6 +14,7 @@ public class MotherBoard extends Componente {
 	
 	
 	
+	
 	public MotherBoard(String tipo, float precio, int cantidad, String serial, String marca, String modelo,
 			String micro, String discoDuro, String ram) {
 		super(tipo, precio, cantidad, serial);

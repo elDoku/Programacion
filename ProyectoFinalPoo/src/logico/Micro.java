@@ -10,6 +10,7 @@ public class Micro extends Componente {
 	
 	
 	
+	
 	public Micro(String tipo, float precio, int cantidad, String serial, String marca, String modelo,
 			String tipoConexion, String memoriaRam, String procesamiento) {
 		super(tipo, precio, cantidad, serial);
