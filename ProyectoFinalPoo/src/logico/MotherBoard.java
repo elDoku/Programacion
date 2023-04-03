@@ -9,6 +9,7 @@ public class MotherBoard extends Componente {
 	private  String modelo;
 	private  String micro;
 	private  String DiscoDuro;
+	
 	private  String Ram;
 	
 	
