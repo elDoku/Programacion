@@ -2,6 +2,7 @@ package logico;
 
 import java.util.ArrayList;
 
+
 public class Factura {
 	private ArrayList<Combo> misCombos; 
 	private ArrayList<Componente> misComponentes;
@@ -39,5 +40,13 @@ public class Factura {
 		this.codigo = codigo;
 	}
 	
-	
+	public float PrecioFactura(){
+    	float precio = 0;
+    	for (Componente componente : misComponentes) {
+			precio += componente.getPrecio();
+		}
+    	
+    	return precio;
+    	
+    }
 }

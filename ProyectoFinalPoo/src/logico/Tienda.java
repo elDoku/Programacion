@@ -2,19 +2,32 @@ package logico;
 
 import java.util.ArrayList;
 
+
+
 public class Tienda {
 	private ArrayList<Combo> misCombos;
 	private ArrayList<Componente> misComponentes;
 	private ArrayList<Factura> misFacturas;
 	private ArrayList<Cliente> misClientes;
-	public Tienda(ArrayList<Combo> misCombos, ArrayList<Componente> misComponentes, ArrayList<Factura> misFacturas,
-			ArrayList<Cliente> misClientes) {
+	public static int codigo = 1;
+	public static Tienda tienda = null;
+	
+	public Tienda() {
 		super();
 		this.misCombos = new ArrayList<>();
 		this.misComponentes = new ArrayList<>();
 		this.misFacturas = new ArrayList<>();
 		this.misClientes = new ArrayList<>();
 	}
+	
+	public static Tienda getInstance() {
+		if (tienda == null) {
+			tienda = new Tienda();
+		}
+		return tienda;
+	}
+
+	
 	public ArrayList<Combo> getMisCombos() {
 		return misCombos;
 	}
@@ -41,5 +54,79 @@ public class Tienda {
 	}
 	
 	
-	
+	public void insertarComponente(Componente componente) {
+		misComponentes.add(componente);
+		codigo++;
+		// la cantidad de quesos podria verse como el codigo
+	}
+
+	public void insertarCliente(Cliente cliente) {
+		misClientes.add(cliente);
+	}
+
+	public void insertarFactura(Factura factura) {
+		misFacturas.add(factura);
+		codigo++;
+
+	}
+
+	public void verificarDisponibles(ArrayList<Componente> losComponentes) {
+		ArrayList<Componente> nuevos = new ArrayList<>();
+		nuevos.addAll(misComponentes);
+		for (Componente componente : nuevos) {
+			if (losComponentes.contains(componente)) {
+				misComponentes.remove(componente);
+			}
+		}
+
+	}
+
+//	public ArrayList<Componente> mayorEsferico() {
+//		ArrayList<> queso = new ArrayList<>();
+//
+//		float volumen = 0;
+//		for (Factura factura : misfacturas) {
+//			for (Queso aux : factura.getMisQuesos()) {
+//				if (aux instanceof QuesoEsferico && aux.Volumen() > volumen) {
+//					volumen = aux.Volumen();
+//					queso.removeAll(queso);
+//					queso.add(aux);
+//				}
+//				if (aux instanceof QuesoEsferico && aux.Volumen() == volumen) {
+//					queso.add(aux);
+//				}
+//			}
+//		}
+//		return queso;
+//	}
+
+//	public int cantEsferico() {
+//		int cant = 0;
+//		for (Queso aux : misQuesos) {
+//			if (aux instanceof QuesoEsferico) {
+//				cant++;
+//			}
+//		}
+//		return cant;
+//	}
+
+	public Cliente buscarClienteByCedula(String cedula) {
+		Cliente auxCliente = null;
+		for (Cliente cliente : misClientes) {
+			if (cliente.getCedula().equalsIgnoreCase(cedula)) {
+				auxCliente = cliente;
+			}
+		}
+		return auxCliente;
+	}
+
+	public Componente buscarQuesoByCodigo(String codigo) {
+		Componente aux = null;
+		for (Componente componente : misComponentes) {
+			if (componente.getSerial().equalsIgnoreCase(codigo)) {
+				aux = componente;
+			}
+		}
+		return aux;
+	}
 }
