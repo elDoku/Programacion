@@ -2,6 +2,12 @@ package logico;
 
 import java.util.ArrayList;
 
+import javax.swing.JList;
+
+import logical.Cliente;
+import logical.Queso;
+import logical.QuesoCilindricoH;
+
 
 
 public class Tienda {
@@ -129,4 +135,35 @@ public class Tienda {
 		}
 		return aux;
 	}
+	public float totalFactura(JList<String> lista) {
+		int i = 0;
+
+		float total = 0;
+
+		for (i = 0; i >= 0 && i < lista.getModel().getSize(); i++) {
+			String str = lista.getModel().getElementAt(i);
+			String cod = str.substring(0, 4);
+			for (Componente componente : misComponentes) {
+//				if (componente instanceof QuesoCilindricoH) {
+//					cod = str.substring(0, 5);
+//				}
+				if (componente.getSerial().equalsIgnoreCase(cod)) {
+					total += componente.getPrecio();
+				}
+
+			}
+
+		}
+		return total;
+	}
+	public void modificarQueso(Componente componente) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void modificarCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+
+	}
+	
 }
