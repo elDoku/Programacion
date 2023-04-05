@@ -9,7 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-
+import logico.Componente;
+import logico.DiscoDuro;
+import logico.Micro;
+import logico.MotherBoard;
+import logico.Tienda;
 
 import javax.swing.UIManager;
 import java.awt.Color;
@@ -25,7 +29,14 @@ import java.awt.event.ActionEvent;
 public class regComponente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private JTextField modelo;
+	private JTextField marca;
+	private JTextField tipoConexion;
+	private JTextField procesamiento;
+	private JTextField MemoriaRam;
 	private JTextField textcodigo;
+	private JTextField micro;
+	private JTextField tipo;
 	private JSpinner spnPrecio;
 	private JSpinner spncosto;
 	private JRadioButton rdbQuesoCilindroH;
@@ -235,14 +246,14 @@ public class regComponente extends JDialog {
 				JButton okButton = new JButton("Registrar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Queso aux = null;
+						Componente aux = null;
 						String codigo = textcodigo.getText();
 						float precio = Float.valueOf(spnPrecio.getValue().toString());
 						float costo = Float.valueOf(spncosto.getValue().toString());
 						if (rdbQuesoEsfrico.isSelected()) {
 							int radio = Integer.valueOf(spnRadio.getValue().toString());
-							aux = new QuesoEsferico(codigo, precio, costo, radio);
-							Tienda.getInstance().insertarQueso(aux);
+							aux = new DiscoDuro(marca, modelo, capacida, tipoConexion);
+							Tienda.getInstance().insertarComponente(aux);
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();
@@ -250,8 +261,8 @@ public class regComponente extends JDialog {
 						if (rdbQuesoCilindro.isSelected()) {
 							int radioE = Integer.valueOf(spnRadioExt.getValue().toString());
 							float longitud = Float.valueOf(spnLongitud.getValue().toString());
-							aux = new QuesoCilindrico(codigo, precio, costo, radioE, longitud);
-							Tienda.getInstance().insertarQueso(aux);
+							aux = new Micro();
+							Tienda.getInstance().insertarComponente(aux);
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();
@@ -266,8 +277,8 @@ public class regComponente extends JDialog {
 										"Informacion", JOptionPane.INFORMATION_MESSAGE);
 
 							} else {
-								aux = new QuesoCilindricoH(codigo, precio, costo, radioECH, longitudCH, radioICH);
-								Tienda.getInstance().insertarQueso(aux);
+								aux = new MotherBoard(marca, modelo, micro, DiscoDuro);
+								Tienda.getInstance().insertarComponente(aux);
 								JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 										JOptionPane.INFORMATION_MESSAGE);
 								clean();
