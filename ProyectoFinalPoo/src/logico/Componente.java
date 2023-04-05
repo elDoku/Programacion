@@ -5,13 +5,21 @@ public abstract class Componente {
 	protected float precio;
 	protected int cantidad;
 	protected String serial;
-	public Componente(String tipo, float precio, int cantidad, String serial) {
+	protected String marca;
+	protected String modelo;
+
+
+	
+	public Componente(String tipo, float precio, int cantidad, String serial, String marca, String modelo) {
 		super();
 		this.tipo = tipo;
 		this.precio = precio;
 		this.cantidad = 0;
 		this.serial = serial;
+		this.marca = marca;
+		this.modelo = modelo;
 	}
+	
 	public String getTipo() {
 		return tipo;
 	}
