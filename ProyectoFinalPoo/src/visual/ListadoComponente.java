@@ -62,7 +62,7 @@ public class ListadoComponente extends JDialog {
 	 */
 	public ListadoComponente() {
 		setTitle("Componentes");
-		setBounds(100, 100, 581, 345);
+		setBounds(100, 100, 635, 401);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -99,7 +99,7 @@ public class ListadoComponente extends JDialog {
 				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
-					String[] headers = {"Tipo","Marca","Modelo","Cantidad","Precio"};
+					String[] headers = {"Serial","Tipo","Marca","Modelo","Cantidad","Precio"};
 					model = new DefaultTableModel();
 					model.setColumnIdentifiers(headers);
 					table = new JTable();
@@ -111,7 +111,7 @@ public class ListadoComponente extends JDialog {
 								btnDelete.setEnabled(true);
 								btnUpdate.setEnabled(true);
 								String codigo = table.getValueAt(index, 0).toString();
-								//selected = TiendaQueso.getInstance().buscarQuesoByCodigo(codigo); 
+								selected = Tienda.getInstance().buscarQuesoByCodigo(codigo); 
 							}
 						}
 					});
@@ -131,8 +131,8 @@ public class ListadoComponente extends JDialog {
 				btnDelete.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(selected!=null){
-							//TiendaQueso.getInstance().getMisQuesos().remove(selected);
-							//loadQuesos(0);
+							Tienda.getInstance().getMisComponentes().remove(selected);
+							loadComponentes(0);
 							btnDelete.setEnabled(false);
 							comboBox.setSelectedItem("<Todos>");
 						}
@@ -178,23 +178,24 @@ public class ListadoComponente extends JDialog {
 		if(index == 0){
 			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
 				
+				rows[0] = aux.getSerial();
 				if(aux instanceof Ram){
-					rows[0] = "Ram";	
+					rows[1] = "Ram";	
 				}
 				if(aux instanceof DiscoDuro){
-					rows[0] = "DiscoDuro";	
+					rows[1] = "DiscoDuro";	
 				}
 				if(aux instanceof Micro){
-					rows[0] = "Micro";
+					rows[1] = "Micro";
 				}
 				if(aux instanceof MotherBoard){
-					rows[0] = "MotherBoard";
+					rows[1] = "MotherBoard";
 				}
 				
-					rows[1] = aux.getMarca();
-					rows[2] = aux.getModelo();
-					//rows[3] = aux.getCantidad();
-					rows[4] = aux.getPrecio();
+					rows[2] = aux.getMarca();
+					rows[3] = aux.getModelo();
+					//rows[4] = aux.getCantidad();
+					rows[5] = aux.getPrecio();
 					model.addRow(rows);
 				
 			}
@@ -203,11 +204,12 @@ public class ListadoComponente extends JDialog {
 		if(index == 1){
 			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
 				if(aux instanceof Ram){
-					rows[0] = "Ram";	
-					rows[1] = aux.getMarca();
-					rows[2] = aux.getModelo();
-					//rows[3] = aux.getCantidad();
-					rows[4] = aux.getPrecio();
+					rows[0] = aux.getSerial();
+					rows[1] = "Ram";	
+					rows[2] = aux.getMarca();
+					rows[3] = aux.getModelo();
+					//rows[4] = aux.getCantidad();
+					rows[5] = aux.getPrecio();
 
 					model.addRow(rows);
 				}
@@ -216,11 +218,13 @@ public class ListadoComponente extends JDialog {
 		if(index == 3){
 			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
 				if(aux instanceof DiscoDuro){
-					rows[0] = "DiscoDuro";	
-					rows[1] = aux.getMarca();
-					rows[2] = aux.getModelo();
-					//rows[3] = aux.getCantidad();
-					rows[4] = aux.getPrecio();
+					
+					rows[0] = aux.getSerial();
+					rows[1] = "DiscoDuro";	
+					rows[2] = aux.getMarca();
+					rows[3] = aux.getModelo();
+					//rows[4] = aux.getCantidad();
+					rows[5] = aux.getPrecio();
 					model.addRow(rows);
 				}
 			}	
@@ -228,11 +232,13 @@ public class ListadoComponente extends JDialog {
 		if(index==2){
 			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
 				if((aux instanceof Micro) ){
-					rows[0] = "Micro";	
-					rows[1] = aux.getMarca();
-					rows[2] = aux.getModelo();
-					//rows[3] = aux.getCantidad();
-					rows[4] = aux.getPrecio();
+					
+					rows[0] = aux.getSerial();
+					rows[1] = "Micro";	
+					rows[2] = aux.getMarca();
+					rows[3] = aux.getModelo();
+					//rows[4] = aux.getCantidad();
+					rows[5] = aux.getPrecio();
 					model.addRow(rows);
 				}
 			}	
@@ -240,11 +246,13 @@ public class ListadoComponente extends JDialog {
 		if(index==4){
 			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
 				if((aux instanceof MotherBoard) ){
-					rows[0] = "Board";	
-					rows[1] = aux.getMarca();
-					rows[2] = aux.getModelo();
-					//rows[3] = aux.getCantidad();
-					rows[4] = aux.getPrecio();
+					
+					rows[0] = aux.getSerial();
+					rows[1] = "Board";	
+					rows[2] = aux.getMarca();
+					rows[3] = aux.getModelo();
+					//rows[4] = aux.getCantidad();
+					rows[5] = aux.getPrecio();
 					model.addRow(rows);
 				}
 			}
