@@ -6,8 +6,6 @@ public class DiscoDuro extends Componente {
 	private  String modelo;
 	private float capacidad;
 	private String tipoConexion;
-	//ho
-	
 	
 	
 	

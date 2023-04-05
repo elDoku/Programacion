@@ -66,9 +66,9 @@ public class Principal extends JFrame {
 		JMenuItem mntmListadoDeQuesos = new JMenuItem("Listado de Quesos");
 		mntmListadoDeQuesos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListadoQueso list = new ListadoQueso();
-				list.setModal(true);
-				list.setVisible(true);
+				//ListadoComponente list = new ListadoComponente();
+				//list.setModal(true);
+				//list.setVisible(true);
 			}
 		});
 		mnQuesos.add(mntmListadoDeQuesos);
