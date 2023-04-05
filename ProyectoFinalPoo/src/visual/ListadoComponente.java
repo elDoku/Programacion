@@ -13,6 +13,10 @@ import javax.swing.table.DefaultTableModel;
 
 
 import logico.Componente;
+import logico.DiscoDuro;
+import logico.Micro;
+import logico.MotherBoard;
+import logico.Ram;
 import logico.Tienda;
 
 import javax.swing.JLabel;
@@ -57,7 +61,7 @@ public class ListadoComponente extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListadoComponente() {
-		setTitle("Lista de Quesos");
+		setTitle("Componentes");
 		setBounds(100, 100, 581, 345);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -78,7 +82,7 @@ public class ListadoComponente extends JDialog {
 				comboBox = new JComboBox();
 				comboBox.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//loadQuesos(comboBox.getSelectedIndex());
+						loadComponentes(comboBox.getSelectedIndex());
 					}
 				});
 				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Esf\u00E9rico", "Cil\u00EDndrico", "Cil\u00EDdrico Hueco"}));
@@ -95,7 +99,7 @@ public class ListadoComponente extends JDialog {
 				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
-					String[] headers = {"Código","Volumen","Precio","Tipo"};
+					String[] headers = {"Tipo","Marca","Modelo","Cantidad","Precio"};
 					model = new DefaultTableModel();
 					model.setColumnIdentifiers(headers);
 					table = new JTable();
@@ -165,7 +169,7 @@ public class ListadoComponente extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
-		//loadQuesos(0);
+		loadComponentes(0);
 	}
 
 	public static void loadComponentes(int index) {
@@ -174,57 +178,78 @@ public class ListadoComponente extends JDialog {
 		if(index == 0){
 			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
 				
-					rows[0] = aux
-					rows[1] = aux.Volumen();
-					rows[2] = aux.precioT();
-					if(aux instanceof QuesoEsferico){
-						rows[3] = "Esférico";	
-					}
-					if(aux instanceof QuesoCilindricoH){
-						rows[3] = "Cilíndrico Hueco";	
-					}
-					if(aux instanceof QuesoCilindrico && !(aux instanceof QuesoCilindricoH)){
-						rows[3] = "Cilíndrico";
-					}
+				if(aux instanceof Ram){
+					rows[0] = "Ram";	
+				}
+				if(aux instanceof DiscoDuro){
+					rows[0] = "DiscoDuro";	
+				}
+				if(aux instanceof Micro){
+					rows[0] = "Micro";
+				}
+				if(aux instanceof MotherBoard){
+					rows[0] = "MotherBoard";
+				}
+				
+					rows[1] = aux.getMarca();
+					rows[2] = aux.getModelo();
+					//rows[3] = aux.getCantidad();
+					rows[4] = aux.getPrecio();
 					model.addRow(rows);
 				
 			}
 		}
 
 		if(index == 1){
-			for (Queso aux : TiendaQueso.getInstance().getMisQuesos()) {
-				if(aux instanceof QuesoEsferico && aux.getEstado() == 'D'){
-					rows[0] = aux.getCodigo();
-					rows[1] = aux.Volumen();
-					rows[2] = aux.precioT();
-					rows[3] = "Esférico";	
+			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
+				if(aux instanceof Ram){
+					rows[0] = "Ram";	
+					rows[1] = aux.getMarca();
+					rows[2] = aux.getModelo();
+					//rows[3] = aux.getCantidad();
+					rows[4] = aux.getPrecio();
+
 					model.addRow(rows);
 				}
 			}	
 		}
 		if(index == 3){
-			for (Queso aux : TiendaQueso.getInstance().getMisQuesos()) {
-				if(aux instanceof QuesoCilindricoH && aux.getEstado()=='D'){
-					rows[0] = aux.getCodigo();
-					rows[1] = aux.Volumen();
-					rows[2] = aux.precioT();
-					rows[3] = "Cilíndrico Hueco";	
+			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
+				if(aux instanceof DiscoDuro){
+					rows[0] = "DiscoDuro";	
+					rows[1] = aux.getMarca();
+					rows[2] = aux.getModelo();
+					//rows[3] = aux.getCantidad();
+					rows[4] = aux.getPrecio();
 					model.addRow(rows);
 				}
 			}	
 		}
 		if(index==2){
-			for (Queso aux : TiendaQueso.getInstance().getMisQuesos()) {
-				if(!(aux instanceof QuesoCilindricoH) && !(aux instanceof QuesoEsferico) && aux.getEstado()=='D'){
-					rows[0] = aux.getCodigo();
-					rows[1] = aux.Volumen();
-					rows[2] = aux.precioT();
-					rows[3] = "Cilíndrico";
+			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
+				if((aux instanceof Micro) ){
+					rows[0] = "Micro";	
+					rows[1] = aux.getMarca();
+					rows[2] = aux.getModelo();
+					//rows[3] = aux.getCantidad();
+					rows[4] = aux.getPrecio();
 					model.addRow(rows);
 				}
-
 			}	
 		}
+		if(index==4){
+			for (Componente aux : Tienda.getInstance().getMisComponentes()) {
+				if((aux instanceof MotherBoard) ){
+					rows[0] = "Board";	
+					rows[1] = aux.getMarca();
+					rows[2] = aux.getModelo();
+					//rows[3] = aux.getCantidad();
+					rows[4] = aux.getPrecio();
+					model.addRow(rows);
+				}
+			}
+			}
+		
 	}
 	
 
