@@ -34,23 +34,29 @@ public class regComponente extends JDialog {
 	private JTextField tipoConexion;
 	private JTextField procesamiento;
 	private JTextField MemoriaRam;
+	private JTextField DiscoDuro;
 	private JTextField textcodigo;
 	private JTextField micro;
 	private JTextField tipo;
 	private JSpinner spnPrecio;
-	private JSpinner spncosto;
-	private JRadioButton rdbQuesoCilindroH;
-	private JRadioButton rdbQuesoCilindro;
-	private JRadioButton rdbQuesoEsfrico;
+	private JSpinner spnCantidad;
+	private JRadioButton rdbRam;
+	private JRadioButton rdbMotherBoard;
+	private JRadioButton rdbMicro;
+	private JRadioButton rdbDiscoDuro;
 	private JSpinner spnRadio;
 	private JSpinner spnRadioExt;
-	private JPanel pnlQCilind;
-	private JPanel pnlQEsf;
-	private JPanel pnlQCilindH;
+	private JPanel pnlDiscoDuro;
+	private JPanel pnlMicro;
+	private JPanel pnlMotherBoard;
+	private JPanel pnlRam;
 	private JSpinner spnRadioExtCH;
 	private JSpinner spnRdioIntCH;
 	private JSpinner spnLongCH;
 	private JSpinner spnLongitud;
+	private JSpinner spnCapacidad;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -83,7 +89,7 @@ public class regComponente extends JDialog {
 			contentPanel.add(panel);
 			panel.setLayout(null);
 
-			JLabel lblCdigo = new JLabel("C\u00F3digo:");
+			JLabel lblCdigo = new JLabel("Serial:");
 			lblCdigo.setBounds(10, 24, 53, 14);
 			panel.add(lblCdigo);
 
@@ -93,23 +99,24 @@ public class regComponente extends JDialog {
 			panel.add(textcodigo);
 			textcodigo.setColumns(10);
 
-			JLabel lblPrecioBase = new JLabel("Precio Base:");
-			lblPrecioBase.setBounds(10, 82, 72, 14);
-			panel.add(lblPrecioBase);
+			JLabel lblPrecio = new JLabel("Precio:");
+			lblPrecio.setBounds(10, 82, 72, 14);
+			panel.add(lblPrecio);
 
 			spnPrecio = new JSpinner();
 			spnPrecio.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
 			spnPrecio.setBounds(10, 107, 161, 20);
 			panel.add(spnPrecio);
+			
 
-			JLabel lblCostoUnitario = new JLabel("Costo Unitario:");
-			lblCostoUnitario.setBounds(213, 82, 93, 14);
-			panel.add(lblCostoUnitario);
+			JLabel lblCantidad = new JLabel("Cantidad:");
+			lblCantidad.setBounds(10, 82, 72, 14);
+			panel.add(lblCantidad);
 
-			spncosto = new JSpinner();
-			spncosto.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
-			spncosto.setBounds(213, 107, 161, 20);
-			panel.add(spncosto);
+			spnCantidad.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
+			spnCantidad.setBounds(10, 107, 161, 39);
+			panel.add(spnPrecio);
+
 		}
 
 		JPanel panel = new JPanel();
@@ -119,123 +126,130 @@ public class regComponente extends JDialog {
 		contentPanel.add(panel);
 		panel.setLayout(null);
 
-		rdbQuesoEsfrico = new JRadioButton("Queso Esf\u00E9rico");
-		rdbQuesoEsfrico.addActionListener(new ActionListener() {
+		rdbDiscoDuro = new JRadioButton("Disco Duro");
+		rdbDiscoDuro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				rdbQuesoCilindro.setSelected(false);
-				rdbQuesoCilindroH.setSelected(false);
-				rdbQuesoEsfrico.setSelected(true);
-				pnlQCilind.setVisible(false);
-				pnlQEsf.setVisible(true);
+				rdbRam.setSelected(false);
+				rdbMotherBoard.setSelected(false);
+				rdbMicro.setSelected(false);
+				rdbDiscoDuro.setSelected(true);
 				updateCodigo();
 			}
 		});
-		rdbQuesoEsfrico.setSelected(true);
-		rdbQuesoEsfrico.setBounds(7, 25, 118, 23);
-		panel.add(rdbQuesoEsfrico);
+		rdbDiscoDuro.setSelected(true);
+		rdbDiscoDuro.setBounds(7, 25, 118, 23);
+		panel.add(rdbDiscoDuro);
 
-		rdbQuesoCilindro = new JRadioButton("Queso Cilindro");
-		rdbQuesoCilindro.addActionListener(new ActionListener() {
+		rdbMicro = new JRadioButton("Micro");
+		rdbMicro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				rdbQuesoCilindro.setSelected(true);
-				rdbQuesoEsfrico.setSelected(false);
-				rdbQuesoCilindroH.setSelected(false);
-				pnlQCilind.setVisible(true);
-				pnlQEsf.setVisible(false);
+				rdbRam.setSelected(false);
+				rdbMotherBoard.setSelected(false);
+				rdbMicro.setSelected(true);
+				rdbDiscoDuro.setSelected(false);
 				updateCodigo();
 			}
 		});
-		rdbQuesoCilindro.setBounds(132, 25, 109, 23);
-		panel.add(rdbQuesoCilindro);
+		rdbMicro.setBounds(132, 25, 109, 23);
+		panel.add(rdbMicro);
 
-		rdbQuesoCilindroH = new JRadioButton("Queso Cilindro H.");
-		rdbQuesoCilindroH.addActionListener(new ActionListener() {
+		rdbMotherBoard = new JRadioButton("Mother Board");
+		rdbMotherBoard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				rdbQuesoCilindroH.setSelected(true);
-				rdbQuesoCilindro.setSelected(false);
-				rdbQuesoEsfrico.setSelected(false);
-				pnlQCilindH.setVisible(true);
-				pnlQEsf.setVisible(false);
-				pnlQCilind.setVisible(false);
+				rdbRam.setSelected(false);
+				rdbMotherBoard.setSelected(true);
+				rdbMicro.setSelected(false);
+				rdbDiscoDuro.setSelected(false);
 				updateCodigo();
 			}
 		});
-		rdbQuesoCilindroH.setBounds(248, 25, 127, 23);
-		panel.add(rdbQuesoCilindroH);
+		rdbMotherBoard.setBounds(248, 25, 127, 23);
+		panel.add(rdbMotherBoard);
 
-		pnlQEsf = new JPanel();
-		pnlQEsf.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlQEsf.setBounds(5, 229, 384, 66);
-		contentPanel.add(pnlQEsf);
-		pnlQEsf.setLayout(null);
+		rdbRam = new JRadioButton("Ram");
+		rdbRam.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbRam.setSelected(true);
+				rdbMotherBoard.setSelected(false);
+				rdbMicro.setSelected(false);
+				rdbDiscoDuro.setSelected(false);
+				updateCodigo();
+			}
+		});
+		rdbRam.setBounds(248, 25, 127, 23);
+		panel.add(rdbRam);
+
+		pnlDiscoDuro = new JPanel();
+		pnlDiscoDuro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlDiscoDuro.setBounds(5, 229, 384, 66);
+		pnlDiscoDuro.add(pnlDiscoDuro);
+		pnlDiscoDuro.setLayout(null);
 
 		JLabel lblRedio = new JLabel("Radio:");
 		lblRedio.setBounds(10, 11, 46, 14);
-		pnlQEsf.add(lblRedio);
+		pnlDiscoDuro.add(lblRedio);
 
 		spnRadio = new JSpinner();
 		spnRadio.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spnRadio.setBounds(10, 35, 161, 20);
-		pnlQEsf.add(spnRadio);
+		pnlDiscoDuro.add(spnRadio);
 
-		pnlQCilind = new JPanel();
-		pnlQCilind.setVisible(false);
-		pnlQCilind.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlQCilind.setBounds(5, 229, 384, 66);
-		contentPanel.add(pnlQCilind);
-		pnlQCilind.setLayout(null);
+		pnlMicro.setVisible(false);
+		pnlMicro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlMicro.setBounds(5, 229, 384, 66);
+		contentPanel.add(pnlMicro);
+		pnlMicro.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Radio Exterior:");
 		lblNewLabel.setBounds(10, 11, 90, 14);
-		pnlQCilind.add(lblNewLabel);
+		pnlMicro.add(lblNewLabel);
 
 		spnRadioExt = new JSpinner();
 		spnRadioExt.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spnRadioExt.setBounds(10, 35, 161, 20);
-		pnlQCilind.add(spnRadioExt);
+		pnlMicro.add(spnRadioExt);
 
 		JLabel lblNewLabel_1 = new JLabel("Longitud:");
 		lblNewLabel_1.setBounds(213, 11, 110, 14);
-		pnlQCilind.add(lblNewLabel_1);
+		pnlMicro.add(lblNewLabel_1);
 
 		spnLongitud = new JSpinner();
 		spnLongitud.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
 		spnLongitud.setBounds(213, 35, 161, 20);
-		pnlQCilind.add(spnLongitud);
+		pnlMicro.add(spnLongitud);
 
-		pnlQCilindH = new JPanel();
-		pnlQCilindH.setVisible(false);
-		pnlQCilindH.setLayout(null);
-		pnlQCilindH.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlQCilindH.setBounds(5, 229, 384, 66);
-		contentPanel.add(pnlQCilindH);
+		pnlMotherBoard.setVisible(false);
+		pnlMotherBoard.setLayout(null);
+		pnlMotherBoard.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlMotherBoard.setBounds(5, 229, 384, 66);
+		contentPanel.add(pnlMotherBoard);
 
 		JLabel label = new JLabel("Radio Exterior:");
 		label.setBounds(10, 11, 90, 14);
-		pnlQCilindH.add(label);
+		pnlMotherBoard.add(label);
 
 		spnRadioExtCH = new JSpinner();
 		spnRadioExtCH.setModel(new SpinnerNumberModel(new Integer(2), new Integer(1), null, new Integer(1)));
 		spnRadioExtCH.setBounds(10, 35, 100, 20);
-		pnlQCilindH.add(spnRadioExtCH);
+		pnlMotherBoard.add(spnRadioExtCH);
 
 		JLabel label_1 = new JLabel("Longitud:");
 		label_1.setBounds(150, 11, 110, 14);
-		pnlQCilindH.add(label_1);
+		pnlMotherBoard.add(label_1);
 
-		spnLongCH = new JSpinner();
 		spnLongCH.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
 		spnLongCH.setBounds(150, 35, 100, 20);
-		pnlQCilindH.add(spnLongCH);
+		pnlMotherBoard.add(spnLongCH);
 
 		JLabel lblRadioInterior = new JLabel("Radio Interior:");
 		lblRadioInterior.setBounds(275, 11, 90, 14);
-		pnlQCilindH.add(lblRadioInterior);
+		pnlMotherBoard.add(lblRadioInterior);
 
 		spnRdioIntCH = new JSpinner();
 		spnRdioIntCH.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
 		spnRdioIntCH.setBounds(275, 35, 100, 20);
-		pnlQCilindH.add(spnRdioIntCH);
+		pnlMotherBoard.add(spnRdioIntCH);
+
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -247,27 +261,27 @@ public class regComponente extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Componente aux = null;
-						String codigo = textcodigo.getText();
+						String serial = textcodigo.getText();
 						float precio = Float.valueOf(spnPrecio.getValue().toString());
-						float costo = Float.valueOf(spncosto.getValue().toString());
-						if (rdbQuesoEsfrico.isSelected()) {
+						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
+						if (rdbDiscoDuro.isSelected()) {
 							int radio = Integer.valueOf(spnRadio.getValue().toString());
-							aux = new DiscoDuro(marca, modelo, capacida, tipoConexion);
+							aux = new DiscoDuro(marca, modelo, capacidad, tipoConexion);
 							Tienda.getInstance().insertarComponente(aux);
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();
 						}
-						if (rdbQuesoCilindro.isSelected()) {
+						if (rdbMicro.isSelected()) {
 							int radioE = Integer.valueOf(spnRadioExt.getValue().toString());
 							float longitud = Float.valueOf(spnLongitud.getValue().toString());
-							aux = new Micro();
+							aux = new Micro(tipo, precio, cantidad, serial);
 							Tienda.getInstance().insertarComponente(aux);
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();
 						}
-						if (rdbQuesoCilindroH.isSelected()) {
+						if (rdbMotherBoard.isSelected()) {
 							int radioECH = Integer.valueOf(spnRadioExtCH.getValue().toString());
 							float longitudCH = Float.valueOf(spnLongCH.getValue().toString());
 							float radioICH = Float.valueOf(spnRdioIntCH.getValue().toString());
@@ -276,15 +290,19 @@ public class regComponente extends JDialog {
 										"Operacion Negada, el radio interior no puede ser mayor o igual al exterior",
 										"Informacion", JOptionPane.INFORMATION_MESSAGE);
 
-							} else {
-								aux = new MotherBoard(marca, modelo, micro, DiscoDuro);
-								Tienda.getInstance().insertarComponente(aux);
-								JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
-										JOptionPane.INFORMATION_MESSAGE);
-								clean();
 							}
 						}
+						if (rdbRam.isSelected()) {
+							int radioECH = Integer.valueOf(spnRadioExtCH.getValue().toString());
+							float longitudCH = Float.valueOf(spnLongCH.getValue().toString());
+							float radioICH = Float.valueOf(spnRdioIntCH.getValue().toString());
+							if (radioICH >= radioECH) {
+								JOptionPane.showMessageDialog(null,
+										"Operacion Negada, el radio interior no puede ser mayor o igual al exterior",
+										"Informacion", JOptionPane.INFORMATION_MESSAGE);
 
+							}
+						}
 					}
 
 				});
@@ -309,13 +327,16 @@ public class regComponente extends JDialog {
 
 	private void updateCodigo() {
 		String pre = "";
-		if (rdbQuesoEsfrico.isSelected()) {
+		if (rdbDiscoDuro.isSelected()) {
 			pre = "QE";
 		}
-		if (rdbQuesoCilindroH.isSelected()) {
+		if (rdbMicro.isSelected()) {
 			pre = "QCH";
 		}
-		if (rdbQuesoCilindro.isSelected()) {
+		if (rdbMotherBoard.isSelected()) {
+			pre = "QC";
+		}
+		if (rdbRam.isSelected()) {
 			pre = "QC";
 		}
 		textcodigo.setText(pre + "-" + Tienda.codigo);
@@ -323,14 +344,18 @@ public class regComponente extends JDialog {
 	}
 
 	private void clean() {
-		pnlQEsf.setVisible(true);
-		pnlQCilindH.setVisible(false);
-		pnlQCilind.setVisible(false);
-		rdbQuesoEsfrico.setSelected(true);
-		rdbQuesoCilindroH.setSelected(false);
-		rdbQuesoCilindro.setSelected(false);
+		pnlDiscoDuro.setVisible(true);
+		pnlMicro.setVisible(false);
+		pnlMotherBoard.setVisible(false);
+		pnlRam.setVisible(false);
+		
+		rdbDiscoDuro.setSelected(true);
+		rdbMicro.setSelected(false);
+		rdbMotherBoard.setSelected(false);
+		rdbRam.setSelected(false);
+		
 		updateCodigo();
-		spncosto.setValue(new Float(1));
+		spnCantidad.setValue(new Integer(0));
 		spnPrecio.setValue(new Float(1));
 		spnRadio.setValue(new Integer(1));
 
