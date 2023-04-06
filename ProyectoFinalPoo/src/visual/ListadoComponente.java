@@ -85,7 +85,7 @@ public class ListadoComponente extends JDialog {
 						loadComponentes(comboBox.getSelectedIndex());
 					}
 				});
-				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Esf\u00E9rico", "Cil\u00EDndrico", "Cil\u00EDdrico Hueco"}));
+				comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "DiscoDuro", "Ram", "Micro", "MotherBoard"}));
 				panel.add(comboBox);
 			}
 		}
