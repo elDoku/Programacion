@@ -8,6 +8,7 @@ public class Factura {
 	private ArrayList<Componente> misComponentes;
 	private Cliente cliente;
 	private String codigo;
+	
 	public Factura(ArrayList<Combo> misCombos, ArrayList<Componente> misComponentes, Cliente cliente, String codigo) {
 		super();
 		this.misCombos = new ArrayList<>();
