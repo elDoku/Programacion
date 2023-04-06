@@ -5,27 +5,19 @@ package logico;
 public class MotherBoard extends Componente {
 
 	
-	private String marca;
-	private  String modelo;
 	private  String micro;
 	private  String DiscoDuro;
-	
 	private  String Ram;
 	
-	
-	
-	
+		
 	
 	public MotherBoard(String tipo, float precio, int cantidad, String serial, String marca, String modelo,
 			String micro, String discoDuro, String ram) {
-		super(tipo, precio, cantidad, serial);
-		this.marca = marca;
-		this.modelo = modelo;
+		super(tipo, precio, cantidad, serial, marca, modelo);
 		this.micro = micro;
 		DiscoDuro = discoDuro;
 		Ram = ram;
 	}
-	
 	
 	public String getMarca() {
 		return marca;

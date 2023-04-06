@@ -2,8 +2,6 @@ package logico;
 
 public class Micro extends Componente {
 	
-	private String marca;
-	private  String modelo;
 	private  String tipoConexion;
 	private  String MemoriaRam;
 	private  String procesamiento;
@@ -12,15 +10,16 @@ public class Micro extends Componente {
 	
 	
 	
+	
+
 	public Micro(String tipo, float precio, int cantidad, String serial, String marca, String modelo,
 			String tipoConexion, String memoriaRam, String procesamiento) {
-		super(tipo, precio, cantidad, serial);
-		this.marca = marca;
-		this.modelo = modelo;
+		super(tipo, precio, cantidad, serial, marca, modelo);
 		this.tipoConexion = tipoConexion;
 		MemoriaRam = memoriaRam;
 		this.procesamiento = procesamiento;
 	}
+	
 
 	public String getMarca() {
 		return marca;

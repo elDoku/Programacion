@@ -3,19 +3,22 @@ package logico;
 public class Ram extends Componente {
 
 	private String marca;
-	private  float cantmemoria;
+	private  float cantMemoria;
 	private String tipo;
 	
 	
 	
 	
 	
-	public Ram(String tipo, float precio, int cantidad, String serial, String marca, float cantmemoria, String tipo2) {
-		super(tipo, precio, cantidad, serial);
-		this.marca = marca;
-		this.cantmemoria = cantmemoria;
+
+	public Ram(String tipo, float precio, int cantidad, String serial, String marca, String modelo, String marca2,
+			float cantMemoria, String tipo2) {
+		super(tipo, precio, cantidad, serial, marca, modelo);
+		marca = marca2;
+		this.cantMemoria = cantMemoria;
 		tipo = tipo2;
 	}
+	
 
 	public String getMarca() {
 		return marca;
@@ -26,11 +29,11 @@ public class Ram extends Componente {
 	}
 
 	public float getCantmemoria() {
-		return cantmemoria;
+		return cantMemoria;
 	}
 
 	public void setCantmemoria(float cantmemoria) {
-		this.cantmemoria = cantmemoria;
+		this.cantMemoria = cantmemoria;
 	}
 
 	public String getTipo() {

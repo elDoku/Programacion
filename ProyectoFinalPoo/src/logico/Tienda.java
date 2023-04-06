@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.JList;
 
-import logical.Cliente;
-import logical.Queso;
-import logical.QuesoCilindricoH;
-
 
 
 public class Tienda {
