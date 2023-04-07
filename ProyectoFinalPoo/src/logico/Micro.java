@@ -1,25 +1,17 @@
 package logico;
 
 public class Micro extends Componente {
-	
-	private  String tipoConexion;
-	private  String MemoriaRam;
-	private  String procesamiento;
-	
-	
-	
-	
-	
-	
 
-	public Micro( float precio, int cantidad, String serial, String marca, String modelo,
-			String tipoConexion, String memoriaRam, String procesamiento) {
+	private String tipoConexion;
+	private String procesamiento;
+
+	public Micro(float precio, int cantidad, String serial, String marca, String modelo, String tipoConexion,
+			String procesamiento) {
 		super(precio, cantidad, serial, marca, modelo);
 		this.tipoConexion = tipoConexion;
-		MemoriaRam = memoriaRam;
+
 		this.procesamiento = procesamiento;
 	}
-	
 
 	public String getMarca() {
 		return marca;
@@ -45,14 +37,6 @@ public class Micro extends Componente {
 		this.tipoConexion = tipoConexion;
 	}
 
-	public String getMemoriaRam() {
-		return MemoriaRam;
-	}
-
-	public void setMemoriaRam(String memoriaRam) {
-		MemoriaRam = memoriaRam;
-	}
-
 	public String getProcesamiento() {
 		return procesamiento;
 	}
@@ -60,6 +44,5 @@ public class Micro extends Componente {
 	public void setProcesamiento(String procesamiento) {
 		this.procesamiento = procesamiento;
 	}
-
 
 }

@@ -3,16 +3,16 @@ package logico;
 public class MotherBoard extends Componente {
 
 	private String micro;
-	private String discoDuro;
-	private String ram;
+	private String conexionDisco;
+	private String tipoRam;
 	private String tipoConexion;
 
-	public MotherBoard( float precio, int cantidad, String serial, String marca, String modelo,
-			String micro, String discoDuro, String ram, String tipoConexion) {
+	public MotherBoard(float precio, int cantidad, String serial, String marca, String modelo,
+			String micro, String conexionDisco, String tipoRam, String tipoConexion) {
 		super(precio, cantidad, serial, marca, modelo);
 		this.micro = micro;
-		this.discoDuro = discoDuro;
-		this.ram = ram;
+		this.conexionDisco = conexionDisco;
+		this.tipoRam = tipoRam;
 		this.tipoConexion = tipoConexion;
 	}
 
@@ -40,20 +40,20 @@ public class MotherBoard extends Componente {
 		this.micro = micro;
 	}
 
-	public String getDiscoDuro() {
-		return discoDuro;
+	public String getConexionDisco() {
+		return conexionDisco;
 	}
 
-	public void setDiscoDuro(String discoDuro) {
-		this.discoDuro = discoDuro;
+	public void setConexionDisco(String discoDuro) {
+		this.conexionDisco = discoDuro;
 	}
 
-	public String getRam() {
-		return ram;
+	public String getTipoRam() {
+		return tipoRam;
 	}
 
-	public void setRam(String ram) {
-		this.ram = ram;
+	public void setTipoRam(String ram) {
+		this.tipoRam = ram;
 	}
 
 	public String getTipoConexion() {
