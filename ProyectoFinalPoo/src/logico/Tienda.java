@@ -152,6 +152,24 @@ public class Tienda {
 		}
 		return total;
 	}
+	
+	
+	public int cantComponente(Componente aux) {
+		
+	int total=0;
+	
+	for (Componente componente : misComponentes) {
+		
+		if(aux.marca.equalsIgnoreCase(componente.marca) && aux.modelo.equalsIgnoreCase(componente.modelo)){
+			
+			total++;
+		}
+		
+	}
+	
+	return total;
+		
+	}
 	public void modificarQueso(Componente componente) {
 		// TODO Auto-generated method stub
 

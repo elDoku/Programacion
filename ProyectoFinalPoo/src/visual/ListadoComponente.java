@@ -194,7 +194,7 @@ public class ListadoComponente extends JDialog {
 				
 					rows[2] = aux.getMarca();
 					rows[3] = aux.getModelo();
-					//rows[4] = aux.getCantidad();
+					rows[4] = Tienda.getInstance().cantComponente(aux);
 					rows[5] = aux.getPrecio();
 					model.addRow(rows);
 				
@@ -208,7 +208,7 @@ public class ListadoComponente extends JDialog {
 					rows[1] = "Ram";	
 					rows[2] = aux.getMarca();
 					rows[3] = aux.getModelo();
-					//rows[4] = aux.getCantidad();
+					rows[4] = Tienda.getInstance().cantComponente(aux);
 					rows[5] = aux.getPrecio();
 
 					model.addRow(rows);
@@ -223,7 +223,7 @@ public class ListadoComponente extends JDialog {
 					rows[1] = "DiscoDuro";	
 					rows[2] = aux.getMarca();
 					rows[3] = aux.getModelo();
-					//rows[4] = aux.getCantidad();
+					rows[4] =Tienda.getInstance().cantComponente(aux);
 					rows[5] = aux.getPrecio();
 					model.addRow(rows);
 				}
@@ -237,7 +237,7 @@ public class ListadoComponente extends JDialog {
 					rows[1] = "Micro";	
 					rows[2] = aux.getMarca();
 					rows[3] = aux.getModelo();
-					//rows[4] = aux.getCantidad();
+					rows[4] =Tienda.getInstance().cantComponente(aux);
 					rows[5] = aux.getPrecio();
 					model.addRow(rows);
 				}
@@ -251,7 +251,7 @@ public class ListadoComponente extends JDialog {
 					rows[1] = "Board";	
 					rows[2] = aux.getMarca();
 					rows[3] = aux.getModelo();
-					//rows[4] = aux.getCantidad();
+					rows[4] = Tienda.getInstance().cantComponente(aux);
 					rows[5] = aux.getPrecio();
 					model.addRow(rows);
 				}
