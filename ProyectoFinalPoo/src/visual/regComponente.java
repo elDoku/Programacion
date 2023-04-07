@@ -31,9 +31,10 @@ import java.awt.event.ActionEvent;
 public class regComponente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtModelo;
-	private JTextField txtMarca;
-	private JTextField txtTipoConexion;
+
+	private JTextField txtTipoConexionMc;
+	private JTextField txtTipoConexionDd;
+	private JTextField txtTipoConexionMb;
 	private JTextField txtProcesamiento;
 	private JTextField txtMemoriaRam;
 	private JTextField txtDiscoDuro;
@@ -43,6 +44,14 @@ public class regComponente extends JDialog {
 	private JTextField txtSerial;
 	private JTextField txtRam;
 	private JTextField txtMicro;
+	private JTextField txtModeloMb;
+	private JTextField txtMarcaMb;
+	private JTextField txtModeloMc;
+	private JTextField txtMarcaMc;
+	private JTextField txtModeloDd;
+	private JTextField txtMarcaDd;
+	private JTextField txtModeloRm;
+	private JTextField txtMarcaRm;
 
 	private JLabel lblCdigo;
 	private JLabel lblPrecio;
@@ -105,124 +114,29 @@ public class regComponente extends JDialog {
 		pnlRam = new JPanel();
 		pnlRam.setVisible(false);
 
+		// ---------------------------------------
+
+		pnlMicro = new JPanel();
+		pnlMicro.setVisible(false);
+
 		// --------------------------------------------
 
 		pnlMotherBoard = new JPanel();
 		pnlMotherBoard.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlMotherBoard.setBounds(6, 230, 384, 137);
 		pnlMotherBoard.setVisible(true);
-
-		// ---------------------------------------
-
-		pnlMicro = new JPanel();
-		pnlMicro.setVisible(false);
-
-		// -----------------------------------------------
-
-		pnlDiscoDuro = new JPanel();
-		pnlDiscoDuro.setBounds(6, 230, 384, 137);
-		contentPanel.add(pnlDiscoDuro);
-		pnlDiscoDuro.setVisible(false);
-		pnlDiscoDuro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlDiscoDuro.setLayout(null);
-
-		txtMarca = new JTextField();
-		txtMarca.setBounds(12, 35, 105, 22);
-		pnlDiscoDuro.add(txtMarca);
-		txtMarca.setColumns(10);
-
-		txtModelo = new JTextField();
-		txtModelo.setBounds(140, 35, 90, 22);
-		pnlDiscoDuro.add(txtModelo);
-		txtModelo.setColumns(10);
-
-		lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(12, 13, 56, 16);
-		pnlDiscoDuro.add(lblMarca);
-
-		lblModelo = new JLabel("Modelo:");
-		lblModelo.setBounds(140, 13, 56, 16);
-		pnlDiscoDuro.add(lblModelo);
-
-
-		txtTipoConexion = new JTextField();
-		txtTipoConexion.setBounds(12, 100, 105, 22);
-		pnlDiscoDuro.add(txtTipoConexion);
-		txtTipoConexion.setColumns(10);
-
-		lblCapacidad = new JLabel("Capacidad (Gb):");
-		lblCapacidad.setBounds(257, 13, 105, 16);
-		pnlDiscoDuro.add(lblCapacidad);
-
-		lblTipoConexion = new JLabel("Tipo de Conexion:");
-		lblTipoConexion.setBounds(12, 71, 112, 16);
-		pnlDiscoDuro.add(lblTipoConexion);
-		
-		spnCapacidad = new JSpinner();
-		spnCapacidad.setModel(new SpinnerNumberModel(new Integer(64), null, null, new Integer(1)));
-		spnCapacidad.setBounds(257, 35, 105, 22);
-		pnlDiscoDuro.add(spnCapacidad);
-		pnlMicro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlMicro.setBounds(6, 230, 384, 137);
-		contentPanel.add(pnlMicro);
-		pnlMicro.setLayout(null);
-
-		txtMarca = new JTextField();
-		txtMarca.setBounds(12, 40, 105, 22);
-		pnlMicro.add(txtMarca);
-		txtMarca.setColumns(10);
-
-		txtModelo = new JTextField();
-		txtModelo.setBounds(140, 40, 90, 22);
-		pnlMicro.add(txtModelo);
-		txtModelo.setColumns(10);
-
-		lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(12, 13, 56, 16);
-		pnlMicro.add(lblMarca);
-
-		lblModelo = new JLabel("Modelo:");
-		lblModelo.setBounds(140, 13, 56, 16);
-		pnlMicro.add(lblModelo);
-
-		txtTipoConexion = new JTextField();
-		txtTipoConexion.setBounds(254, 40, 105, 22);
-		pnlMicro.add(txtTipoConexion);
-		txtTipoConexion.setColumns(10);
-
-		txtMemoriaRam = new JTextField();
-		txtMemoriaRam.setBounds(12, 102, 105, 22);
-		pnlMicro.add(txtMemoriaRam);
-		txtMemoriaRam.setColumns(10);
-
-		txtProcesamiento = new JTextField();
-		txtProcesamiento.setBounds(140, 102, 90, 22);
-		pnlMicro.add(txtProcesamiento);
-		txtProcesamiento.setColumns(10);
-
-		lblTipoConexion = new JLabel("Tipo de Conexion:");
-		lblTipoConexion.setBounds(254, 13, 105, 16);
-		pnlMicro.add(lblTipoConexion);
-
-		lblMemoriaRam = new JLabel("MemoriaRam:");
-		lblMemoriaRam.setBounds(12, 73, 90, 16);
-		pnlMicro.add(lblMemoriaRam);
-
-		lblProcesamiento = new JLabel("Procesamiento:");
-		lblProcesamiento.setBounds(140, 73, 90, 16);
-		pnlMicro.add(lblProcesamiento);
 		contentPanel.add(pnlMotherBoard);
 		pnlMotherBoard.setLayout(null);
 
-		txtMarca = new JTextField();
-		txtMarca.setBounds(12, 38, 105, 22);
-		pnlMotherBoard.add(txtMarca);
-		txtMarca.setColumns(10);
+		txtMarcaMb = new JTextField();
+		txtMarcaMb.setBounds(12, 38, 105, 22);
+		pnlMotherBoard.add(txtMarcaMb);
+		txtMarcaMb.setColumns(10);
 
-		txtModelo = new JTextField();
-		txtModelo.setBounds(139, 38, 90, 22);
-		pnlMotherBoard.add(txtModelo);
-		txtModelo.setColumns(10);
+		txtModeloMb = new JTextField();
+		txtModeloMb.setBounds(139, 38, 90, 22);
+		pnlMotherBoard.add(txtModeloMb);
+		txtModeloMb.setColumns(10);
 
 		lblMarca = new JLabel("Marca:");
 		lblMarca.setBounds(12, 9, 56, 16);
@@ -259,29 +173,123 @@ public class regComponente extends JDialog {
 		lblRam.setBounds(139, 73, 56, 16);
 		pnlMotherBoard.add(lblRam);
 
-		txtTipoConexion = new JTextField();
-		txtTipoConexion.setBounds(254, 102, 105, 22);
-		pnlMotherBoard.add(txtTipoConexion);
-		txtTipoConexion.setColumns(10);
+		txtTipoConexionMb = new JTextField();
+		txtTipoConexionMb.setBounds(254, 102, 105, 22);
+		pnlMotherBoard.add(txtTipoConexionMb);
+		txtTipoConexionMb.setColumns(10);
 
 		lblTipoConexion = new JLabel("Tipo de Conector:");
 		lblTipoConexion.setBounds(254, 73, 105, 16);
 		pnlMotherBoard.add(lblTipoConexion);
+		pnlMicro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlMicro.setBounds(6, 230, 384, 137);
+		contentPanel.add(pnlMicro);
+		pnlMicro.setLayout(null);
+
+		txtMarcaMc = new JTextField();
+		txtMarcaMc.setBounds(12, 40, 105, 22);
+		pnlMicro.add(txtMarcaMc);
+		txtMarcaMc.setColumns(10);
+
+		txtModeloMc = new JTextField();
+		txtModeloMc.setBounds(140, 40, 90, 22);
+		pnlMicro.add(txtModeloMc);
+		txtModeloMc.setColumns(10);
+
+		lblMarca = new JLabel("Marca:");
+		lblMarca.setBounds(12, 13, 56, 16);
+		pnlMicro.add(lblMarca);
+
+		lblModelo = new JLabel("Modelo:");
+		lblModelo.setBounds(140, 13, 56, 16);
+		pnlMicro.add(lblModelo);
+
+		txtTipoConexionMc = new JTextField();
+		txtTipoConexionMc.setBounds(254, 40, 105, 22);
+		pnlMicro.add(txtTipoConexionMc);
+		txtTipoConexionMc.setColumns(10);
+
+		txtMemoriaRam = new JTextField();
+		txtMemoriaRam.setBounds(12, 102, 105, 22);
+		pnlMicro.add(txtMemoriaRam);
+		txtMemoriaRam.setColumns(10);
+
+		txtProcesamiento = new JTextField();
+		txtProcesamiento.setBounds(140, 102, 90, 22);
+		pnlMicro.add(txtProcesamiento);
+		txtProcesamiento.setColumns(10);
+
+		lblTipoConexion = new JLabel("Tipo de Conexion:");
+		lblTipoConexion.setBounds(254, 13, 105, 16);
+		pnlMicro.add(lblTipoConexion);
+
+		lblMemoriaRam = new JLabel("MemoriaRam:");
+		lblMemoriaRam.setBounds(12, 73, 90, 16);
+		pnlMicro.add(lblMemoriaRam);
+
+		lblProcesamiento = new JLabel("Procesamiento:");
+		lblProcesamiento.setBounds(140, 73, 90, 16);
+		pnlMicro.add(lblProcesamiento);
+
+		// -----------------------------------------------
+
+		pnlDiscoDuro = new JPanel();
+		pnlDiscoDuro.setBounds(6, 230, 384, 137);
+		contentPanel.add(pnlDiscoDuro);
+		pnlDiscoDuro.setVisible(false);
+		pnlDiscoDuro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlDiscoDuro.setLayout(null);
+
+		txtMarcaDd = new JTextField();
+		txtMarcaDd.setBounds(12, 35, 105, 22);
+		pnlDiscoDuro.add(txtMarcaDd);
+		txtMarcaDd.setColumns(10);
+
+		txtModeloDd = new JTextField();
+		txtModeloDd.setBounds(140, 35, 90, 22);
+		pnlDiscoDuro.add(txtModeloDd);
+		txtModeloDd.setColumns(10);
+
+		lblMarca = new JLabel("Marca:");
+		lblMarca.setBounds(12, 13, 56, 16);
+		pnlDiscoDuro.add(lblMarca);
+
+		lblModelo = new JLabel("Modelo:");
+		lblModelo.setBounds(140, 13, 56, 16);
+		pnlDiscoDuro.add(lblModelo);
+
+		txtTipoConexionDd = new JTextField();
+		txtTipoConexionDd.setBounds(12, 100, 105, 22);
+		pnlDiscoDuro.add(txtTipoConexionDd);
+		txtTipoConexionDd.setColumns(10);
+
+		lblCapacidad = new JLabel("Capacidad (Gb):");
+		lblCapacidad.setBounds(257, 13, 105, 16);
+		pnlDiscoDuro.add(lblCapacidad);
+
+		lblTipoConexion = new JLabel("Tipo de Conexion:");
+		lblTipoConexion.setBounds(12, 71, 112, 16);
+		pnlDiscoDuro.add(lblTipoConexion);
+
+		spnCapacidad = new JSpinner();
+		spnCapacidad.setModel(new SpinnerNumberModel(new Integer(64), null, null, new Integer(1)));
+		spnCapacidad.setBounds(257, 35, 105, 22);
+		pnlDiscoDuro.add(spnCapacidad);
 
 		pnlRam.setLayout(null);
 		pnlRam.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlRam.setBounds(6, 230, 384, 137);
 		contentPanel.add(pnlRam);
 
-		txtMarca = new JTextField();
-		txtMarca.setBounds(12, 43, 105, 22);
-		pnlRam.add(txtMarca);
-		txtMarca.setColumns(10);
+		txtMarcaRm = new JTextField();
+		txtMarcaRm.setBounds(12, 43, 105, 22);
+		pnlRam.add(txtMarcaRm);
+		txtMarcaRm.setColumns(10);
 
-		txtModelo = new JTextField();
-		txtModelo.setBounds(140, 43, 90, 22);
-		pnlRam.add(txtModelo);
-		txtModelo.setColumns(10);
+		txtModeloRm = new JTextField();
+		txtModeloRm.setBounds(140, 43, 90, 22);
+		pnlRam.add(txtModeloRm);
+		txtModeloRm.setColumns(10);
 
 		lblMarca = new JLabel("Marca:");
 		lblMarca.setBounds(12, 14, 105, 16);
@@ -445,55 +453,57 @@ public class regComponente extends JDialog {
 						float precio = Float.valueOf(spnPrecio.getValue().toString());
 						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 
-						if (rdbDiscoDuro.isSelected()) {
-							float capacidad = Float.valueOf(spnCapacidad.getValue().toString());
-							String marca = txtMarca.getText();
-							String tipoConexion = txtTipoConexion.getText();
-							String modelo = txtModelo.getText();
+						if (rdbMotherBoard.isSelected()) {
+							String marcaMb = txtMarcaMb.getText();
+							String tipoConexionMb = txtTipoConexionMb.getText();
 
-							aux = new DiscoDuro(precio, cantidad, serial, marca, modelo, capacidad, tipoConexion);
+							String modeloMb = txtModeloMb.getText();
+							String micro = txtMicro.getText();
+							String discoDuro = txtDiscoDuro.getText();
+							String ram = txtRam.getText();
+
+							aux = new MotherBoard(precio, cantidad, serial, marcaMb, modeloMb, micro, discoDuro, ram,
+									tipoConexionMb);
 							Tienda.getInstance().insertarComponente(aux);
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();
+
+						}
+						if (rdbDiscoDuro.isSelected()) {
+							float capacidad = Float.valueOf(spnCapacidad.getValue().toString());
+							String marcaDd = txtMarcaDd.getText();
+							String tipoConexionDd = txtTipoConexionDd.getText();
+							String modeloDd = txtModeloDd.getText();
+
+							aux = new DiscoDuro(precio, cantidad, serial, marcaDd, modeloDd, capacidad, tipoConexionDd);
+							Tienda.getInstance().insertarComponente(aux);
+							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
+									JOptionPane.INFORMATION_MESSAGE);
+
+							clean();
 						}
 						if (rdbMicro.isSelected()) {
-							String marca = txtMarca.getText();
+							String marcaMc = txtMarcaMc.getText();
 							String procesamiento = txtProcesamiento.getText();
-							String modelo = txtModelo.getText();
+							String modeloMc = txtModeloMc.getText();
 							String memoriaRam = txtMemoriaRam.getText();
-							String tipoConexion = txtTipoConexion.getText();
+							String tipoConexionMc = txtTipoConexionMc.getText();
 
-							aux = new Micro(precio, cantidad, serial, marca, modelo, tipoConexion, memoriaRam,
+							aux = new Micro(precio, cantidad, serial, marcaMc, modeloMc, tipoConexionMc, memoriaRam,
 									procesamiento);
 							Tienda.getInstance().insertarComponente(aux);
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();
 						}
-						if (rdbMotherBoard.isSelected()) {
-							String marca = txtMarca.getText();
-							String tipoConexion = txtTipoConexion.getText();
-							
-							String modelo = txtModelo.getText();
-							String micro = txtMicro.getText();
-							String discoDuro = txtDiscoDuro.getText();
-							String ram = txtRam.getText();
 
-							aux = new MotherBoard(precio, cantidad, serial, marca, modelo, micro, discoDuro, ram,
-									tipoConexion);
-							Tienda.getInstance().insertarComponente(aux);
-							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
-									JOptionPane.INFORMATION_MESSAGE);
-							clean();
-
-						}
 						if (rdbRam.isSelected()) {
-							String marca = txtMarca.getText();
-							String tipoConexion = txtTipoConexion.getText();
-							String modelo = txtModelo.getText();
+							String marcaRm = txtMarcaRm.getText();
+							String tipoRam = txtTipoRam.getText();
+							String modeloRm = txtModeloRm.getText();
 							float cantMemoria = Float.valueOf(spnCantMemoria.getValue().toString());
-							aux = new Ram(precio, cantidad, serial, marca, modelo, cantMemoria, tipoConexion);
+							aux = new Ram(precio, cantidad, serial, marcaRm, modeloRm, cantMemoria, tipoRam);
 							Tienda.getInstance().insertarComponente(aux);
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
@@ -518,7 +528,6 @@ public class regComponente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		clean();
 		updateCodigo();
 	}
 
@@ -555,10 +564,21 @@ public class regComponente extends JDialog {
 		spnCantidad.setValue(new Integer(1));
 		spnPrecio.setValue(new Float(1));
 
+		txtMarcaMb.setText("");
+		txtModeloMb.setText("");
+		txtMarcaMc.setText("");
+		txtModeloMc.setText("");
+		txtMarcaDd.setText("");
+		txtModeloDd.setText("");
+		txtMarcaRm.setText("");
+		txtModeloRm.setText("");
+
 		spnCapacidad.setValue(new Float(64));
-		txtTipoConexion.setText("");
-		txtMarca.setText("");
-		txtModelo.setText("");
+
+		txtTipoConexionMc.setText("");
+		txtTipoConexionDd.setText("");
+		txtTipoConexionMb.setText("");
+
 		txtProcesamiento.setText("");
 		txtMemoriaRam.setText("");
 		txtMicro.setText("");
