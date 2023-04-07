@@ -7,9 +7,9 @@ public class MotherBoard extends Componente {
 	private String ram;
 	private String tipoConexion;
 
-	public MotherBoard(String tipo, float precio, int cantidad, String serial, String marca, String modelo,
+	public MotherBoard( float precio, int cantidad, String serial, String marca, String modelo,
 			String micro, String discoDuro, String ram, String tipoConexion) {
-		super(tipo, precio, cantidad, serial, marca, modelo);
+		super(precio, cantidad, serial, marca, modelo);
 		this.micro = micro;
 		this.discoDuro = discoDuro;
 		this.ram = ram;

@@ -12,9 +12,9 @@ public class Micro extends Componente {
 	
 	
 
-	public Micro(String tipo, float precio, int cantidad, String serial, String marca, String modelo,
+	public Micro( float precio, int cantidad, String serial, String marca, String modelo,
 			String tipoConexion, String memoriaRam, String procesamiento) {
-		super(tipo, precio, cantidad, serial, marca, modelo);
+		super(precio, cantidad, serial, marca, modelo);
 		this.tipoConexion = tipoConexion;
 		MemoriaRam = memoriaRam;
 		this.procesamiento = procesamiento;
