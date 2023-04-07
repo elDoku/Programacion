@@ -2,47 +2,32 @@ package logico;
 
 public class Ram extends Componente {
 
-	private String marca;
 	private  float cantMemoria;
-	private String tipo;
-	
-	
-	
-	
-	
-
-	public Ram(String tipo, float precio, int cantidad, String serial, String marca, String modelo, String marca2,
-			float cantMemoria, String tipo2) {
+	private String tipoRam;
+	public Ram(String tipo, float precio, int cantidad, String serial, String marca, String modelo,
+			float cantMemoria, String tipoRam) {
 		super(tipo, precio, cantidad, serial, marca, modelo);
-		marca = marca2;
+	
 		this.cantMemoria = cantMemoria;
-		tipo = tipo2;
+		this.tipoRam = tipoRam;
 	}
 	
-
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public float getCantmemoria() {
+	public float getCantMemoria() {
 		return cantMemoria;
 	}
-
-	public void setCantmemoria(float cantmemoria) {
-		this.cantMemoria = cantmemoria;
+	public void setCantMemoria(float cantMemoria) {
+		this.cantMemoria = cantMemoria;
 	}
-
-	public String getTipo() {
-		return tipo;
+	public String getTipoRam() {
+		return tipoRam;
 	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setTipoRam(String tipoRam) {
+		this.tipoRam = tipoRam;
 	}
+	
+	
+	
+	
 
 	
 }

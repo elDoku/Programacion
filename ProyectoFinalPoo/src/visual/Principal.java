@@ -68,15 +68,15 @@ public class Principal extends JFrame {
 		});
 		mnComponente.add(mntmFabricarComponente);
 
-		JMenuItem mntmListadoDeQuesos = new JMenuItem("Listado de Componentes");
-		mntmListadoDeQuesos.addActionListener(new ActionListener() {
+		JMenuItem mntmListadoDeComponentes = new JMenuItem("Listado de Componentes");
+		mntmListadoDeComponentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// ListadoComponente list = new ListadoComponente();
-				// list.setModal(true);
-				// list.setVisible(true);
+				ListadoComponente list = new ListadoComponente();
+				list.setModal(true);
+				list.setVisible(true);
 			}
 		});
-		mnComponente.add(mntmListadoDeQuesos);
+		mnComponente.add(mntmListadoDeComponentes);
 
 		JMenu mnClientes = new JMenu("Clientes");
 		menuBar.add(mnClientes);
