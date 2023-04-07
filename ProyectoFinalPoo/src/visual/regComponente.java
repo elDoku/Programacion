@@ -143,20 +143,25 @@ public class regComponente extends JDialog {
 		lblModelo = new JLabel("Modelo:");
 		lblModelo.setBounds(140, 13, 56, 16);
 		pnlDiscoDuro.add(lblModelo);
-		pnlDiscoDuro.add(spnCapacidad);
+
 
 		txtTipoConexion = new JTextField();
-		txtTipoConexion.setBounds(12, 100, 112, 22);
+		txtTipoConexion.setBounds(12, 100, 105, 22);
 		pnlDiscoDuro.add(txtTipoConexion);
 		txtTipoConexion.setColumns(10);
 
-		lblCapacidad = new JLabel("Capacidad:");
-		lblCapacidad.setBounds(257, 13, 90, 16);
+		lblCapacidad = new JLabel("Capacidad (Gb):");
+		lblCapacidad.setBounds(257, 13, 105, 16);
 		pnlDiscoDuro.add(lblCapacidad);
 
 		lblTipoConexion = new JLabel("Tipo de Conexion:");
 		lblTipoConexion.setBounds(12, 71, 112, 16);
 		pnlDiscoDuro.add(lblTipoConexion);
+		
+		spnCapacidad = new JSpinner();
+		spnCapacidad.setModel(new SpinnerNumberModel(new Integer(64), null, null, new Integer(1)));
+		spnCapacidad.setBounds(257, 35, 105, 22);
+		pnlDiscoDuro.add(spnCapacidad);
 		pnlMicro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlMicro.setBounds(6, 230, 384, 137);
 		contentPanel.add(pnlMicro);
@@ -444,7 +449,6 @@ public class regComponente extends JDialog {
 							float capacidad = Float.valueOf(spnCapacidad.getValue().toString());
 							String marca = txtMarca.getText();
 							String tipoConexion = txtTipoConexion.getText();
-							String tipo = txtTipo.getText();
 							String modelo = txtModelo.getText();
 
 							aux = new DiscoDuro(precio, cantidad, serial, marca, modelo, capacidad, tipoConexion);
@@ -456,7 +460,6 @@ public class regComponente extends JDialog {
 						if (rdbMicro.isSelected()) {
 							String marca = txtMarca.getText();
 							String procesamiento = txtProcesamiento.getText();
-							String tipo = txtTipo.getText();
 							String modelo = txtModelo.getText();
 							String memoriaRam = txtMemoriaRam.getText();
 							String tipoConexion = txtTipoConexion.getText();
@@ -471,7 +474,7 @@ public class regComponente extends JDialog {
 						if (rdbMotherBoard.isSelected()) {
 							String marca = txtMarca.getText();
 							String tipoConexion = txtTipoConexion.getText();
-							String tipo = txtTipo.getText();
+							
 							String modelo = txtModelo.getText();
 							String micro = txtMicro.getText();
 							String discoDuro = txtDiscoDuro.getText();
@@ -488,7 +491,6 @@ public class regComponente extends JDialog {
 						if (rdbRam.isSelected()) {
 							String marca = txtMarca.getText();
 							String tipoConexion = txtTipoConexion.getText();
-							String tipo = txtTipo.getText();
 							String modelo = txtModelo.getText();
 							float cantMemoria = Float.valueOf(spnCantMemoria.getValue().toString());
 							aux = new Ram(precio, cantidad, serial, marca, modelo, cantMemoria, tipoConexion);
@@ -563,7 +565,7 @@ public class regComponente extends JDialog {
 		txtDiscoDuro.setText("");
 		txtRam.setText("");
 		txtTipoRam.setText("");
-		spnCapacidad.setValue(new Float(4000));
+		spnCapacidad.setValue(new Float(64));
 
 	}
 }
