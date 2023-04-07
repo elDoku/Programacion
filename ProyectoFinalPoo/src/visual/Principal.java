@@ -18,7 +18,12 @@ import javax.swing.JTable;
 
 public class Principal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+
 	private Dimension dim;
 
 	/**
@@ -50,28 +55,28 @@ public class Principal extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu mnQuesos = new JMenu("Quesos");
-		menuBar.add(mnQuesos);
+		JMenu mnComponente = new JMenu("Componentes");
+		menuBar.add(mnComponente);
 
-		JMenuItem mntmFabricarQueso = new JMenuItem("Fabricar Queso");
-		mntmFabricarQueso.addActionListener(new ActionListener() {
+		JMenuItem mntmFabricarComponente = new JMenuItem("Fabricar Componentes");
+		mntmFabricarComponente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				regQueso regQ = new regQueso();
-				regQ.setModal(true);
-				regQ.setVisible(true);
+				regComponente regC = new regComponente();
+				regC.setModal(true);
+				regC.setVisible(true);
 			}
 		});
-		mnQuesos.add(mntmFabricarQueso);
+		mnComponente.add(mntmFabricarComponente);
 
-		JMenuItem mntmListadoDeQuesos = new JMenuItem("Listado de Quesos");
+		JMenuItem mntmListadoDeQuesos = new JMenuItem("Listado de Componentes");
 		mntmListadoDeQuesos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ListadoComponente list = new ListadoComponente();
-				//list.setModal(true);
-				//list.setVisible(true);
+				// ListadoComponente list = new ListadoComponente();
+				// list.setModal(true);
+				// list.setVisible(true);
 			}
 		});
-		mnQuesos.add(mntmListadoDeQuesos);
+		mnComponente.add(mntmListadoDeQuesos);
 
 		JMenu mnClientes = new JMenu("Clientes");
 		menuBar.add(mnClientes);
@@ -115,9 +120,9 @@ public class Principal extends JFrame {
 		JMenuItem mntmReporte = new JMenuItem("Reporte");
 		mntmReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReporteDinero reporteD = new ReporteDinero();
-				reporteD.setModal(true);
-				reporteD.setVisible(true);
+//				ReporteDinero reporteD = new ReporteDinero();
+//				reporteD.setModal(true);
+//				reporteD.setVisible(true);
 			}
 		});
 		mnAdmin.add(mntmReporte);
