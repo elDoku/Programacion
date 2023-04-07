@@ -353,7 +353,7 @@ public class Facturar extends JDialog {
 						String direccion = txtDireccion.getText();
 						ArrayList<String> nombresQ = new ArrayList<String>();
 						ListModel<String> misComponentes = list_1.getModel();
-						aux = new Cliente(cedula, nombre, direccion, telefono);
+						aux = new Cliente(nombre, direccion, telefono, cedula);
 						factura = new Factura(null, losComponentes(),aux,"CF-00" + Tienda.getInstance().getMisFacturas().size());
 //						String codigo,ArrayList<Queso> misQuesos, Cliente cliente
 						Tienda.getInstance().insertarCliente(aux);
