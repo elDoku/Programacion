@@ -494,6 +494,7 @@ public class regComponente extends JDialog {
 							String micro = txtMicro.getText();
 							String discoDuro = txtDiscoDuro.getText();
 							String ram = txtRam.getText();
+							
 
 							aux = new MotherBoard(tipo, precio, cantidad, serial, marca, modelo, micro, discoDuro, ram,
 									tipoConexion);
@@ -534,6 +535,7 @@ public class regComponente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		clean();
 		updateCodigo();
 	}
 
