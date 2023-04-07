@@ -47,7 +47,6 @@ public class regComponente extends JDialog {
 
 	private JLabel lblCdigo;
 	private JLabel lblPrecio;
-	private JLabel lblTipo;
 	private JLabel lblDiscoDuro;
 	private JLabel lblRam;
 	private JLabel lblMicro;
@@ -77,17 +76,7 @@ public class regComponente extends JDialog {
 	private JRadioButton rdbMicro;
 	private JRadioButton rdbDiscoDuro;
 
-	private JSpinner spnRadio;
-	private JSpinner spnRadioExt;
 
-	private JSpinner spnRadioExtCH;
-	private JSpinner spnRdioIntCH;
-	private JSpinner spnLongCH;
-	private JSpinner spnLongitud;
-	private JSpinner spnCapacidad;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -158,18 +147,18 @@ public class regComponente extends JDialog {
 		spnCantMemoria.setBounds(12, 102, 105, 22);
 		pnlRam.add(spnCantMemoria);
 
-		txtTipo = new JTextField();
-		txtTipo.setBounds(140, 102, 90, 22);
-		pnlRam.add(txtTipo);
-		txtTipo.setColumns(10);
+		txtTipoRam = new JTextField();
+		txtTipoRam.setBounds(140, 102, 90, 22);
+		pnlRam.add(txtTipoRam);
+		txtTipoRam.setColumns(10);
 
 		lblDiscoDuro = new JLabel("#Memoria (Mb):");
 		lblDiscoDuro.setBounds(12, 78, 105, 16);
 		pnlRam.add(lblDiscoDuro);
 
-		lblTipo = new JLabel("Tipo de Ram:");
-		lblTipo.setBounds(140, 78, 90, 16);
-		pnlRam.add(lblTipo);
+		lblTipoRam = new JLabel("Tipo de Ram:");
+		lblTipoRam.setBounds(140, 78, 90, 16);
+		pnlRam.add(lblTipoRam);
 
 		// -----------------------------------------------
 

@@ -1,7 +1,7 @@
 package logico;
 
 public abstract class Componente {
-	protected String tipo;
+
 	protected float precio;
 	protected int cantidad;
 	protected String serial;
@@ -10,9 +10,9 @@ public abstract class Componente {
 
 
 	
-	public Componente(String tipo, float precio, int cantidad, String serial, String marca, String modelo) {
+	public Componente(float precio, int cantidad, String serial, String marca, String modelo) {
 		super();
-		this.tipo = tipo;
+		
 		this.precio = precio;
 		this.cantidad = 0;
 		this.serial = serial;
@@ -20,12 +20,7 @@ public abstract class Componente {
 		this.modelo = modelo;
 	}
 	
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+	
 	public float getPrecio() {
 		return precio;
 	}
