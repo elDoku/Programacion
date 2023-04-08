@@ -145,9 +145,9 @@ public class ListadoComponente extends JDialog {
 				btnUpdate = new JButton("Modificar");
 				btnUpdate.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//ModQueso modQueso= new ModQueso(selected);
-						//modQueso.setModal(true);
-					//	modQueso.setVisible(true);
+						ModComponente modComponente= new ModComponente(selected);
+						modComponente.setModal(true);
+						modComponente.setVisible(true);
 						btnUpdate.setEnabled(false);
 						comboBox.setSelectedItem("<Todos>");
 					}

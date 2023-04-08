@@ -14,7 +14,7 @@ public abstract class Componente {
 		super();
 		
 		this.precio = precio;
-		this.cantidad = 0;
+		this.cantidad = cantidad;
 		this.serial = serial;
 		this.marca = marca;
 		this.modelo = modelo;
