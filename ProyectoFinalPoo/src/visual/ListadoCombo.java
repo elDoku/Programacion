@@ -41,6 +41,7 @@ public class ListadoCombo extends JDialog {
 
 	private ArrayList<Cliente> misCliente;
 	private ArrayList<Combo> miscombos;
+	
 
 	/**
 	 * Launch the application.
