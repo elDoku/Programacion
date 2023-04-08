@@ -36,6 +36,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class Facturar extends JDialog {
 
@@ -176,7 +177,7 @@ public class Facturar extends JDialog {
 		scrollPane_1 = new JScrollPane();
 		panel_3.add(scrollPane_1, BorderLayout.CENTER);
 
-		JLabel lblQuesosDisponibles = new JLabel("Quesos Disponibles");
+		JLabel lblQuesosDisponibles = new JLabel("Componentes / Combos:");
 		lblQuesosDisponibles.setBounds(10, 11, 177, 14);
 		panel_1.add(lblQuesosDisponibles);
 
@@ -234,8 +235,8 @@ public class Facturar extends JDialog {
 
 		// ------------------------------------------------------------------------
 
-		JLabel lblCarritoDeCompra = new JLabel("Carrito de Compra");
-		lblCarritoDeCompra.setBounds(299, 9, 177, 14);
+		JLabel lblCarritoDeCompra = new JLabel("Carrito de Compra:");
+		lblCarritoDeCompra.setBounds(299, 11, 177, 14);
 		panel_1.add(lblCarritoDeCompra);
 
 		// ------------------------------------------------------------------------
@@ -276,7 +277,7 @@ public class Facturar extends JDialog {
 				}
 			}
 		});
-		btnDerecha.setBounds(200, 83, 89, 25);
+		btnDerecha.setBounds(199, 62, 89, 25);
 		panel_1.add(btnDerecha);
 
 		// ---------------------------------------------------------------------------------------
@@ -310,8 +311,13 @@ public class Facturar extends JDialog {
 			// modelo.removeAllElements();
 
 		});
-		btnIzquierda.setBounds(200, 119, 89, 23);
+		btnIzquierda.setBounds(199, 154, 88, 23);
 		panel_1.add(btnIzquierda);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinner.setBounds(209, 110, 64, 22);
+		panel_1.add(spinner);
 
 		// ---------------------------------------------------------------------------------------
 		//
