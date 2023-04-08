@@ -37,6 +37,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class AgregarCombo extends JDialog {
 
@@ -208,7 +209,7 @@ public class AgregarCombo extends JDialog {
 					list_1.setModel(modelo0);
 					
 					spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
-					spnDescuento.setValue((Tienda.getInstance().totalFactura(list_1)));
+					//spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
 					
 					if (list_1.getModel().getSize() > 0) {
 						btnFacturar.setEnabled(true);
@@ -243,7 +244,7 @@ public class AgregarCombo extends JDialog {
 				list.setModel(modelo);
 				list_1.setModel(modelo0);
 				spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
-				spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
+				//spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
 
 				if (list_1.getModel().getSize() > 0) {
 					btnFacturar.setEnabled(true);
@@ -279,6 +280,7 @@ public class AgregarCombo extends JDialog {
 		contentPanel.add(lblDescuento);
 		
 		JSpinner spnDescuento = new JSpinner();
+		spnDescuento.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
 		spnDescuento.setEnabled(false);
 		spnDescuento.setBounds(104, 365, 110, 22);
 		contentPanel.add(spnDescuento);
@@ -320,7 +322,7 @@ public class AgregarCombo extends JDialog {
 						
 //						
 						
-						Tienda.getInstance().verificarDisponibles(losComponentes());
+						
 						JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 								JOptionPane.INFORMATION_MESSAGE);
 						clean();
@@ -371,7 +373,7 @@ public class AgregarCombo extends JDialog {
 
 		DefaultListModel<String> limpio = new DefaultListModel<String>();
 		spnTotal.setValue(new Float(0.0));
-		spnDescuento.setValue(new Float(0.0));
+		//spnDescuento.setValue(new Float(0.0));
 		modelo0 = limpio;
 		list_1.setModel(limpio);
 
