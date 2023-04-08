@@ -11,8 +11,8 @@ public class Factura {
 	
 	public Factura(ArrayList<Combo> misCombos, ArrayList<Componente> misComponentes, Cliente cliente, String codigo) {
 		super();
-		this.misCombos = new ArrayList<>();
-		this.misComponentes = new ArrayList<>();
+		this.misCombos = misCombos;
+		this.misComponentes = misComponentes;
 		this.cliente = cliente;
 		this.codigo = codigo;
 	}
@@ -46,6 +46,7 @@ public class Factura {
     	for (Componente componente : misComponentes) {
 			precio += componente.getPrecio();
 		}
+    	System.out.println( misComponentes.size());
     	
     	return precio;
     	

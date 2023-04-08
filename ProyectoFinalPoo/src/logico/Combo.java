@@ -12,7 +12,7 @@ public class Combo {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
-		this.misComponentes = new ArrayList<>();
+		this.misComponentes = misComponentes;
 		this.precioCombo = precioCombo;
 	}
 
@@ -60,7 +60,7 @@ public class Combo {
 	
 	public float PrecioCombo(){
     	float precio = precioCombo;
-    	float preciod=(float) (precioCombo*(0.25));
+    	float preciod=(float) (precioCombo*(0.10));
     	
     	return precio-preciod;
     	

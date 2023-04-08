@@ -274,16 +274,6 @@ public class AgregarCombo extends JDialog {
 		spnTotal.setEnabled(false);
 		spnTotal.setBounds(349, 365, 110, 22);
 		contentPanel.add(spnTotal);
-		
-		JLabel lblDescuento = new JLabel("Descuento:");
-		lblDescuento.setBounds(35, 369, 69, 14);
-		contentPanel.add(lblDescuento);
-		
-		JSpinner spnDescuento = new JSpinner();
-		spnDescuento.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
-		spnDescuento.setEnabled(false);
-		spnDescuento.setBounds(104, 365, 110, 22);
-		contentPanel.add(spnDescuento);
 
 //		
 //		ArrayList<Queso> quesos3 = TiendaQueso.getInstance().getMisQuesos();
