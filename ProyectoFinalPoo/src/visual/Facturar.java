@@ -25,7 +25,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
@@ -203,33 +202,32 @@ public class Facturar extends JDialog {
 
 		// Llena el carrito de disponibles
 		ArrayList<Componente> componentes2 = Tienda.getInstance().getMisComponentes();
-		ArrayList<Combo> misCombos= Tienda.getInstance().getMisCombos();
+		ArrayList<Combo> misCombos = Tienda.getInstance().getMisCombos();
 		// Aqui traigo mis quesos hacia un arreglo
 		ArrayList<String> nombresComponentes = new ArrayList<String>();
 		// Aqui creo un arreglo de strings para colocar los codigos y nombres de los
 		// quesos
 		for (Componente q : componentes2) {
 			if (q instanceof Ram) {
-				nombresComponentes.add(q.getSerial() + "-Ram");
+				nombresComponentes.add(q.getSerial() + "-Ram (" + q.getCantidad() + ")");
 				// es decir que a un string si se le puede agregar de otra clase
 			}
 			if (q instanceof Micro) {
-				nombresComponentes.add(q.getSerial() + "-Micro (" + ")");
+				nombresComponentes.add(q.getSerial() + "-Micro (" + q.getCantidad() + ")");
 			}
 			if (q instanceof MotherBoard) {
-				nombresComponentes.add(q.getSerial() + "-MotherBoard");
+				nombresComponentes.add(q.getSerial() + "-MotherBoard (" + q.getCantidad() + ")");
 			}
 			if (q instanceof DiscoDuro) {
-				nombresComponentes.add(q.getSerial() + "-DiscoDuro");
+				nombresComponentes.add(q.getSerial() + "-DiscoDuro (" + q.getCantidad() + ")");
 			}
-			
+
 		}
-		
-		for (Combo combo :  misCombos) {
-			nombresComponentes.add(combo.getCodigo()+"-Combo");
+
+		for (Combo combo : misCombos) {
+			nombresComponentes.add(combo.getCodigo() + "-Combo");
 		}
-		
-	
+
 		// Aqui se presentan los quesos
 		// Creo una lista modelo para presentar los los nombres de la lista anterior
 		DefaultListModel<String> modeloComponentes = new DefaultListModel<String>();
@@ -257,7 +255,7 @@ public class Facturar extends JDialog {
 				ArrayList<Componente> Componentes = Tienda.getInstance().getMisComponentes();
 				ArrayList<Combo> Combos = Tienda.getInstance().getMisCombos();
 				// array que recoge los quesos
-				if (index >= 0 && index < (Componentes.size()+Combos.size())) {
+				if (index >= 0 && index < (Componentes.size() + Combos.size())) {
 					// verifica que lo que se busca esta dentro de la lista
 					// seleccionado dentro de los quesos
 					// boolean encontrado = false;
@@ -265,16 +263,23 @@ public class Facturar extends JDialog {
 					// aqui igualo modelo al modelo de la lista 1
 
 					if (index >= 0 && index < modelo.getSize()) {
-
 						String codigo = (String) modelo.getElementAt(index);
-						// index++;
-						modelo0.addElement(codigo);
-						// modelo0 es la lista 2
-						modelo.removeElementAt(index);
+
+						for (Componente cp : Tienda.getInstance().getMisComponentes()) {
+							// index++;
+							if (index <= cp.getCantidad()) {
+								modelo0.addElement(codigo);
+								// modelo0 es la lista 2
+								if (cp.getCantidad() == 1)
+									modelo.removeElementAt(index);
+
+							}
+						}
 					}
 					list.setModel(modelo);
 					list_1.setModel(modelo0);
-					spnTotal.setValue(Tienda.getInstance().totalFactura(list_1)+Tienda.getInstance().totalFacturaCombo(list_1));
+					spnTotal.setValue(
+							Tienda.getInstance().totalFactura(list_1) + Tienda.getInstance().totalFacturaCombo(list_1));
 					if (list_1.getModel().getSize() > 0) {
 						btnFacturar.setEnabled(true);
 					}
@@ -291,23 +296,29 @@ public class Facturar extends JDialog {
 		btnIzquierda = new JButton("<<");
 		btnIzquierda.setEnabled(false);
 		btnIzquierda.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
+				Componente c = null;
 				int index = list_1.getSelectedIndex();
 				ListModel<String> componentes = list_1.getModel();
 				// quesos es un arreglo con los datos de la primera lista
 				if (index >= 0 && index < componentes.getSize()) {
-//					modelo0 = modelo;
-
+					// modelo0 = modelo;
 					String codigo = (String) modelo0.getElementAt(index);
-					// codigo es el elemento seleccionado de la 2dalista
-					modelo.addElement(codigo);
-					// modelo0 es la lista 2
-					modelo0.removeElementAt(index);
 
+					for (Componente cp : Tienda.getInstance().getMisComponentes()) {
+						// codigo es el elemento seleccionado de la 2dalista
+						if (index <= cp.getCantidad()) {
+							modelo.addElement(codigo);
+							// modelo0 es la lista 2
+							modelo0.removeElementAt(index);
+						}
+					}
 				}
 				list.setModel(modelo);
 				list_1.setModel(modelo0);
-				spnTotal.setValue(Tienda.getInstance().totalFactura(list_1)+Tienda.getInstance().totalFacturaCombo(list_1));
+				spnTotal.setValue(
+						Tienda.getInstance().totalFactura(list_1) + Tienda.getInstance().totalFacturaCombo(list_1));
 				if (list_1.getModel().getSize() > 0) {
 					btnFacturar.setEnabled(true);
 				}
@@ -320,7 +331,7 @@ public class Facturar extends JDialog {
 		});
 		btnIzquierda.setBounds(199, 154, 88, 23);
 		panel_1.add(btnIzquierda);
-		
+
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spinner.setBounds(209, 110, 64, 22);
@@ -338,23 +349,6 @@ public class Facturar extends JDialog {
 		spnTotal.setEnabled(false);
 		spnTotal.setBounds(349, 365, 110, 22);
 		contentPanel.add(spnTotal);
-
-//		
-//		ArrayList<Queso> quesos3 = TiendaQueso.getInstance().getMisQuesos();
-////		
-//		for (Queso q : quesos3) {
-//			if (q instanceof QuesoEsferico) {
-//				modelo.addElement(q.getCodigo() + "-Esférico");
-//				// es decir que a un string si se le puede agregar de otra clase
-//			}
-//			if (q instanceof QuesoCilindrico && !(q instanceof QuesoCilindricoH)) {
-//				modelo.addElement(q.getCodigo() + "-Cilíndrico");
-//			}
-//			if (q instanceof QuesoCilindricoH) {
-//				modelo.addElement(q.getCodigo() + "-CilíndricoH");
-//			}
-//
-//		}
 
 		{
 			JPanel buttonPane = new JPanel();
@@ -374,8 +368,9 @@ public class Facturar extends JDialog {
 						ArrayList<String> nombresQ = new ArrayList<String>();
 						ListModel<String> misComponentes = list_1.getModel();
 						aux = new Cliente(nombre, direccion, telefono, cedula);
-						factura = new Factura(null, losComponentes(),aux,"CF-00" + Tienda.getInstance().getMisFacturas().size());
-//						String codigo,ArrayList<Queso> misQuesos, Cliente cliente
+						factura = new Factura(null, losComponentes(), aux,
+								"CF-00" + Tienda.getInstance().getMisFacturas().size());
+						// String codigo,ArrayList<Queso> misQuesos, Cliente cliente
 						Tienda.getInstance().insertarCliente(aux);
 						Tienda.getInstance().insertarFactura(factura);
 						Tienda.getInstance().verificarDisponibles(losComponentes());
@@ -409,7 +404,7 @@ public class Facturar extends JDialog {
 			String str = list_1.getModel().getElementAt(i);
 			String cod = str.substring(0, 4);
 			for (Componente componente : Tienda.getInstance().getMisComponentes()) {
-				
+
 				if (componente.getSerial().equalsIgnoreCase(cod)) {
 					array.add(componente);
 				}
