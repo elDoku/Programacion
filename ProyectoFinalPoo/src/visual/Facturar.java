@@ -4,6 +4,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import logico.Cliente;
+import logico.Combo;
 import logico.Componente;
 import logico.DiscoDuro;
 import logico.Factura;
@@ -202,6 +203,7 @@ public class Facturar extends JDialog {
 
 		// Llena el carrito de disponibles
 		ArrayList<Componente> componentes2 = Tienda.getInstance().getMisComponentes();
+		ArrayList<Combo> misCombos= Tienda.getInstance().getMisCombos();
 		// Aqui traigo mis quesos hacia un arreglo
 		ArrayList<String> nombresComponentes = new ArrayList<String>();
 		// Aqui creo un arreglo de strings para colocar los codigos y nombres de los
@@ -221,9 +223,13 @@ public class Facturar extends JDialog {
 				nombresComponentes.add(q.getSerial() + "-DiscoDuro");
 			}
 			
-			
-			
 		}
+		
+		for (Combo combo :  misCombos) {
+			nombresComponentes.add(combo.getCodigo()+"-Combo");
+		}
+		
+	
 		// Aqui se presentan los quesos
 		// Creo una lista modelo para presentar los los nombres de la lista anterior
 		DefaultListModel<String> modeloComponentes = new DefaultListModel<String>();
@@ -249,8 +255,9 @@ public class Facturar extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				int index = list.getSelectedIndex();
 				ArrayList<Componente> Componentes = Tienda.getInstance().getMisComponentes();
+				ArrayList<Combo> Combos = Tienda.getInstance().getMisCombos();
 				// array que recoge los quesos
-				if (index >= 0 && index < Componentes.size()) {
+				if (index >= 0 && index < (Componentes.size()+Combos.size())) {
 					// verifica que lo que se busca esta dentro de la lista
 					// seleccionado dentro de los quesos
 					// boolean encontrado = false;
@@ -327,6 +334,7 @@ public class Facturar extends JDialog {
 		contentPanel.add(lblTotal);
 
 		spnTotal = new JSpinner();
+		spnTotal.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
 		spnTotal.setEnabled(false);
 		spnTotal.setBounds(349, 365, 110, 22);
 		contentPanel.add(spnTotal);

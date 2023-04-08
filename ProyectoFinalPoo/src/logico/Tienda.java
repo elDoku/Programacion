@@ -71,6 +71,10 @@ public class Tienda {
 		codigo++;
 
 	}
+	public void insertarCombo(Combo combo) {
+		misCombos.add(combo);
+	}
+
 
 	public void verificarDisponibles(ArrayList<Componente> losComponentes) {
 		ArrayList<Componente> nuevos = new ArrayList<>();
@@ -140,14 +144,24 @@ public class Tienda {
 			String str = lista.getModel().getElementAt(i);
 			String cod = str.substring(0, 4);
 			for (Componente componente : misComponentes) {
-//				if (componente instanceof QuesoCilindricoH) {
-//					cod = str.substring(0, 5);
-//				}
+
 				if (componente.getSerial().equalsIgnoreCase(cod)) {
 					total += componente.getPrecio();
 				}
 
+				
+				for (Combo combo : misCombos) {
+					
+					if(combo.getCodigo().equalsIgnoreCase(cod)) {
+						
+						total+=combo.PrecioCombo();
+						
+					}
+					
+				}
 			}
+			
+			
 
 		}
 		return total;

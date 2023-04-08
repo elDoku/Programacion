@@ -315,11 +315,12 @@ public class AgregarCombo extends JDialog {
 						
 						Combo aux=null;
 						String nombre = txtNombre.getText();
-						aux=new Combo("CO-00" + Tienda.getInstance().getMisCombos().size(), nombre, losComponentes(), Tienda.getInstance().totalFactura(list_1));
+						aux=new Combo("CO-" + Tienda.getInstance().getMisCombos().size(), nombre, losComponentes(), Tienda.getInstance().totalFactura(list_1));
 						ArrayList<String> nombresQ = new ArrayList<String>();
 						ListModel<String> misComponentes = list_1.getModel();
-						
-						
+						Tienda.getInstance().insertarCombo(aux);
+						Tienda.getInstance().verificarDisponibles(losComponentes());
+
 //						
 						
 						
