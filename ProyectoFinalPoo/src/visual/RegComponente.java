@@ -28,7 +28,7 @@ import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class regComponente extends JDialog {
+public class RegComponente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -90,7 +90,7 @@ public class regComponente extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			regComponente dialog = new regComponente();
+			RegComponente dialog = new RegComponente();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -101,7 +101,7 @@ public class regComponente extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public regComponente() {
+	public RegComponente() {
 		setBounds(100, 100, 416, 467);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -497,7 +497,7 @@ public class regComponente extends JDialog {
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();
 						}
-				
+
 					}
 
 				});

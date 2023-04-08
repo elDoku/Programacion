@@ -61,7 +61,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmFabricarComponente = new JMenuItem("Fabricar Componentes");
 		mntmFabricarComponente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				regComponente regC = new regComponente();
+				RegComponente regC = new RegComponente();
 				regC.setModal(true);
 				regC.setVisible(true);
 			}
@@ -77,15 +77,15 @@ public class Principal extends JFrame {
 			}
 		});
 		mnComponente.add(mntmListadoDeComponentes);
-		
+
 		JMenuItem mntmNewMenuItem = new JMenuItem("Agregar Combo");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				AgregarCombo list = new AgregarCombo();
 				list.setModal(true);
 				list.setVisible(true);
-				
+
 			}
 		});
 		mnComponente.add(mntmNewMenuItem);
