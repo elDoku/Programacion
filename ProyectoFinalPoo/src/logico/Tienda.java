@@ -287,6 +287,17 @@ public class Tienda {
 		return aux;
 	}
 
+	
+	public Combo buscarComboByCodigo(String codigo) {
+		Combo aux = null;
+		for (Combo componente : misCombos) {
+			if (componente.getCodigo().equalsIgnoreCase(codigo)) {
+				aux = componente;
+			}
+		}
+		return aux;
+	}
+	
 	public float totalFactura(JList<String> lista) {
 		int i = 0;
 

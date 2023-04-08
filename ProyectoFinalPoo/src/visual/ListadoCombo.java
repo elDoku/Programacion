@@ -18,6 +18,7 @@ import logico.Factura;
 import logico.Tienda;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -37,7 +38,7 @@ public class ListadoCombo extends JDialog {
 	private JTable table;
 	private static DefaultTableModel model;
 	private static Object rows[];
-	private Componente selected = null;
+	private Combo selected = null;
 
 	private ArrayList<Cliente> misCliente;
 	private ArrayList<Combo> miscombos;
@@ -87,7 +88,7 @@ public class ListadoCombo extends JDialog {
 							int index = table.getSelectedRow();
 							if (index >= 0) {
 								String codigo = table.getValueAt(index, 0).toString();
-								selected = Tienda.getInstance().buscarQuesoByCodigo(codigo);
+								selected = Tienda.getInstance().buscarComboByCodigo(codigo);
 							}
 						}
 					});
@@ -110,6 +111,25 @@ public class ListadoCombo extends JDialog {
 						dispose();
 					}
 				});
+				{
+					JButton btnNewButton = new JButton("Detalles");
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							
+							for (Componente componente : selected.getMisComponentes()) {
+								
+								
+								
+							}
+							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
+									JOptionPane.INFORMATION_MESSAGE);
+							
+							
+						}
+					});
+					buttonPane.add(btnNewButton);
+				}
 				btnCancelar.setActionCommand("Cancel");
 				buttonPane.add(btnCancelar);
 			}
