@@ -65,4 +65,14 @@ public class Combo {
     	return precio-preciod;
     	
     }
+	
+	public int CantComponentes(){
+    	int total =0;
+    	for (Componente componente : misComponentes) {
+			total++;
+		}
+    	
+    	return total;
+    	
+    }
 }

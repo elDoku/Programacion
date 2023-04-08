@@ -274,7 +274,7 @@ public class Facturar extends JDialog {
 					}
 					list.setModel(modelo);
 					list_1.setModel(modelo0);
-					spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
+					spnTotal.setValue(Tienda.getInstance().totalFactura(list_1)+Tienda.getInstance().totalFacturaCombo(list_1));
 					if (list_1.getModel().getSize() > 0) {
 						btnFacturar.setEnabled(true);
 					}
@@ -307,7 +307,7 @@ public class Facturar extends JDialog {
 				}
 				list.setModel(modelo);
 				list_1.setModel(modelo0);
-				spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
+				spnTotal.setValue(Tienda.getInstance().totalFactura(list_1)+Tienda.getInstance().totalFacturaCombo(list_1));
 				if (list_1.getModel().getSize() > 0) {
 					btnFacturar.setEnabled(true);
 				}

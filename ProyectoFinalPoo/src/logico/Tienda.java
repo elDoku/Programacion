@@ -150,23 +150,33 @@ public class Tienda {
 				}
 
 				
-				for (Combo combo : misCombos) {
-					
-					if(combo.getCodigo().equalsIgnoreCase(cod)) {
-						
-						total+=combo.PrecioCombo();
-						
-					}
-					
-				}
 			}
-			
-			
-
 		}
 		return total;
 	}
-	
+	public float totalFacturaCombo(JList<String> lista) {
+		
+		int i = 0;
+
+		float total = 0;
+		
+		
+		for (i = 0; i >= 0 && i < lista.getModel().getSize(); i++) {
+			String str = lista.getModel().getElementAt(i);
+			String cod = str.substring(0, 4);
+		
+			for (Combo combo : misCombos) {
+				
+				if(combo.getCodigo().equalsIgnoreCase(cod)) {
+					
+					total+=combo.PrecioCombo();
+					System.out.println(total);
+				}
+				
+			}
+		}
+		return total;
+	}
 	
 	public int cantComponente(Componente aux) {
 		
