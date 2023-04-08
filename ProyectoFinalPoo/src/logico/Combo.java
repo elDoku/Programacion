@@ -59,12 +59,20 @@ public class Combo {
     }
 	
 	public float PrecioCombo(){
-    	float precio = 0;
+    	float precio = precioCombo;
+    	float preciod=(float) (precioCombo*(0.25));
+    	
+    	return precio-preciod;
+    	
+    }
+	
+	public int CantComponentes(){
+    	int total =0;
     	for (Componente componente : misComponentes) {
-			precio += componente.getPrecio();
+			total++;
 		}
-    	precio=precio-Descuento();
-    	return precio;
+    	
+    	return total;
     	
     }
 }

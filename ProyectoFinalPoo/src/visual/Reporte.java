@@ -12,7 +12,6 @@ import javax.swing.border.TitledBorder;
 import logico.Tienda;
 import sun.security.jca.GetInstance;
 
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -83,13 +82,11 @@ public class Reporte extends JDialog {
 		spnGMotherBoard.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		spnGMotherBoard.setEnabled(false);
 
-		//System.out.println(Tienda.getInstance().gananciaQEsferico());
+		// System.out.println(Tienda.getInstance().gananciaQEsferico());
 		// valor seteado
 		spnGMotherBoard.setBounds(119, 19, 123, 23);
 		panel.add(spnGMotherBoard);
-	
-		
-		
+
 		JLabel lblGMicro = new JLabel("Micro's:");
 		lblGMicro.setBounds(10, 60, 97, 14);
 		panel.add(lblGMicro);
@@ -122,11 +119,11 @@ public class Reporte extends JDialog {
 
 		spnTotal.setBounds(119, 175, 123, 23);
 		panel.add(spnTotal);
-		
+
 		JLabel lblGDiscoDuro = new JLabel("Discos Duros:");
 		lblGDiscoDuro.setBounds(10, 134, 95, 16);
 		panel.add(lblGDiscoDuro);
-		
+
 		JSpinner spnGDiscoDuro = new JSpinner();
 		spnGDiscoDuro.setEnabled(false);
 		spnGDiscoDuro.setBounds(119, 127, 123, 23);
@@ -170,11 +167,11 @@ public class Reporte extends JDialog {
 		spnVRam.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		spnVRam.setBounds(139, 91, 123, 23);
 		panel_1.add(spnVRam);
-		
+
 		JLabel lblVDiscoDuro = new JLabel("Discos Duros:");
 		lblVDiscoDuro.setBounds(10, 135, 107, 16);
 		panel_1.add(lblVDiscoDuro);
-		
+
 		JSpinner spnVDiscosDuros = new JSpinner();
 		spnVDiscosDuros.setEnabled(false);
 		spnVDiscosDuros.setBounds(139, 132, 123, 23);
@@ -193,18 +190,17 @@ public class Reporte extends JDialog {
 	}
 
 	private void recarga() {
-		// ganancias
-
 		spnGMotherBoard.setValue(Tienda.getInstance().gananciaMotherBoard());
 		spnGMicro.setValue(Tienda.getInstance().gananciaMicro());
 		spnGRam.setValue(Tienda.getInstance().gananciaRam());
 		spnGDiscoDuro.setValue(Tienda.getInstance().gananciaDiscoDuro());
 		spnTotal.setValue(Tienda.getInstance().totalGanancia());
 
-		// cantidad de ventas
 		spnVMotherBoard.setValue(Tienda.getInstance().ventaMotherBoard());
 		spnVMicro.setValue(Tienda.getInstance().ventaMicro());
 		spnVRam.setValue(Tienda.getInstance().ventaRam());
 		spnVDiscoDuro.setValue(Tienda.getInstance().ventaDiscoDuro());
+
 	}
+
 }

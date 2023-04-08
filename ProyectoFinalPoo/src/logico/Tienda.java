@@ -74,6 +74,10 @@ public class Tienda {
 		codigo++;
 
 	}
+	public void insertarCombo(Combo combo) {
+		misCombos.add(combo);
+	}
+
 
 	public void verificarDisponibles(ArrayList<Componente> losComponentes) {
 		ArrayList<Componente> nuevos = new ArrayList<>();
@@ -86,6 +90,129 @@ public class Tienda {
 
 	}
 
+	// --------------------------------------------------------------------------
+
+	public float gananciaDiscoDuro() {
+		float total = 0;
+		for (Factura fact : misFacturas) {
+			for (Componente cp : fact.getMisComponentes()) {
+				if (cp instanceof DiscoDuro) {
+					total += cp.getPrecio();
+
+				}
+			}
+		}
+		return total;
+
+	}
+
+	public float gananciaMotherBoard() {
+		float total = 0;
+		for (Factura fact : misFacturas) {
+			for (Componente cp : fact.getMisComponentes()) {
+				if (cp instanceof MotherBoard) {
+					total += cp.getPrecio();
+				}
+			}
+		}
+		return total;
+	}
+
+	public float gananciaMicro() {
+		float total = 0;
+		for (Factura fact : misFacturas) {
+			for (Componente cp : fact.getMisComponentes()) {
+				if (cp instanceof Micro) {
+					total += cp.getPrecio(); 
+				}
+			}
+		}
+		return total;
+	}
+
+	public float gananciaRam() {
+		float total = 0;
+		for (Factura fact : misFacturas) {
+			for (Componente cp : fact.getMisComponentes()) {
+				if (cp instanceof Ram) {
+					total += cp.getPrecio(); // se acumula el precio de cada queso cilíndrico hueco
+				}
+			}
+		}
+		return total;
+	}
+
+	public float totalGanancia() {
+		float total = 0;
+		float gd = gananciaDiscoDuro();
+		float gmb = gananciaMotherBoard();
+		float gm = gananciaMicro();
+		float gr = gananciaRam();
+		total = gd + gmb + gm + gr;
+		return total;
+	}
+
+	public int ventaDiscoDuro() {
+		int cantidad = 0;
+		ArrayList misCp = new ArrayList<>();
+		for (Factura fact : misFacturas) {
+			for (Componente cp : fact.getMisComponentes()) {
+				if (cp instanceof DiscoDuro) {
+					misCp.add(cp);
+					cantidad = misCp.size();
+
+				}
+			}
+		}
+		return cantidad;
+	}
+
+	public int ventaRam() {
+		int cantidad = 0;
+		ArrayList misCp = new ArrayList<>();
+		for (Factura fact : misFacturas) {
+			for (Componente cp : fact.getMisComponentes()) {
+				if (cp instanceof Ram) {
+					misCp.add(cp);
+					cantidad = misCp.size();
+
+				}
+			}
+		}
+		return cantidad;
+	}
+
+	public int ventaMotherBoard() {
+		int cantidad = 0;
+		ArrayList misCp = new ArrayList<>();
+		for (Factura fact : misFacturas) {
+			for (Componente cp : fact.getMisComponentes()) {
+				if (cp instanceof MotherBoard) {
+					misCp.add(cp);
+					cantidad = misCp.size();
+
+				}
+			}
+		}
+		return cantidad;
+	}
+
+	public int ventaMicro() {
+		int cantidad = 0;
+		ArrayList misCp = new ArrayList<>();
+		for (Factura fact : misFacturas) {
+			for (Componente cp : fact.getMisComponentes()) {
+				if (cp instanceof Micro) {
+					misCp.add(cp);
+					cantidad = misCp.size();
+
+				}
+			}
+		}
+		return cantidad;
+	}
+
+	// ------------------------------------------------------------------
 //	public ArrayList<Componente> mayorEsferico() {
 //		ArrayList<> queso = new ArrayList<>();
 //
@@ -144,20 +271,40 @@ public class Tienda {
 			String str = lista.getModel().getElementAt(i);
 			String cod = str.substring(0, 4);
 			for (Componente componente : misComponentes) {
-//				if (componente instanceof QuesoCilindricoH) {
-//					cod = str.substring(0, 5);
-//				}
+
 				if (componente.getSerial().equalsIgnoreCase(cod)) {
 					total += componente.getPrecio();
 				}
 
+				
 			}
-
 		}
 		return total;
 	}
 
-	
+	public float totalFacturaCombo(JList<String> lista) {
+		
+		int i = 0;
+
+		float total = 0;
+		
+		
+		for (i = 0; i >= 0 && i < lista.getModel().getSize(); i++) {
+			String str = lista.getModel().getElementAt(i);
+			String cod = str.substring(0, 4);
+		
+			for (Combo combo : misCombos) {
+				
+				if(combo.getCodigo().equalsIgnoreCase(cod)) {
+					
+					total+=combo.PrecioCombo();
+					System.out.println(total);
+				}
+				
+			}
+		}
+		return total;
+	}
 	public int cantComponente(Componente aux) {
 
 		int total = 0;
