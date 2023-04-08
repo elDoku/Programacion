@@ -367,6 +367,7 @@ public class Facturar extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						Cliente aux = null;
 						Factura factura = null;
+						ArrayList<Combo> combo = null;
 						String cedula = txtCedula.getText();
 						String nombre = txtNombre.getText();
 						String telefono = txtTelefono.getText();
@@ -374,7 +375,7 @@ public class Facturar extends JDialog {
 						ArrayList<String> nombresQ = new ArrayList<String>();
 						ListModel<String> misComponentes = list_1.getModel();
 						aux = new Cliente(nombre, direccion, telefono, cedula);
-						factura = new Factura(null, losComponentes(),aux,"CF-00" + Tienda.getInstance().getMisFacturas().size());
+						factura = new Factura(combo, losComponentes(),aux,"CF-00" + Tienda.getInstance().getMisFacturas().size());
 //						String codigo,ArrayList<Queso> misQuesos, Cliente cliente
 						Tienda.getInstance().insertarCliente(aux);
 						Tienda.getInstance().insertarFactura(factura);

@@ -119,6 +119,7 @@ public class ListadoFactura extends JDialog {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		for (Factura aux : Tienda.getInstance().getMisFacturas()) {
+			
 			rows[0] = aux.getCodigo();
 			rows[1] = aux.getCliente().getNombre();
 			rows[2] = aux.getMisComponentes().size();

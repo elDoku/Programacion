@@ -119,14 +119,13 @@ public class ListadoCombo extends JDialog {
 	public static void loadFactura(int index) {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
-		for (Factura fact : Tienda.getInstance().getMisFacturas()) {
-			for (Combo aux : Tienda.getInstance().getMisCombos()) {
-				rows[0] = aux.getCodigo();
-				rows[1] = aux.getNombre();
-				rows[2] = aux.CantComponentes();
-				rows[3] = aux.PrecioCombo();
-				model.addRow(rows);
-			}
+		for (Combo aux : Tienda.getInstance().getMisCombos()) {
+			rows[0] = aux.getCodigo();
+			rows[1] = aux.getNombre();
+			rows[2] = aux.CantComponentes();
+			rows[3] = aux.PrecioCombo();
+			model.addRow(rows);
+
 		}
 	}
 
