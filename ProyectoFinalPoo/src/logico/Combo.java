@@ -48,5 +48,23 @@ public class Combo {
 		this.precioCombo = precioCombo;
 	}
 	
+	public float Descuento(){
+    	float precio = 0;
+    	for (Componente componente : misComponentes) {
+			precio += componente.getPrecio();
+		}
+    	precio=(float) (precio*(0.10));
+    	return precio;
+    	
+    }
 	
+	public float PrecioCombo(){
+    	float precio = 0;
+    	for (Componente componente : misComponentes) {
+			precio += componente.getPrecio();
+		}
+    	precio=precio-Descuento();
+    	return precio;
+    	
+    }
 }

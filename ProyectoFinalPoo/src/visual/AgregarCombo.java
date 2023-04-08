@@ -4,6 +4,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import logico.Cliente;
+import logico.Combo;
 import logico.Componente;
 import logico.DiscoDuro;
 import logico.Factura;
@@ -37,15 +38,10 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 
-public class Facturar extends JDialog {
+public class AgregarCombo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-
-	private JTextField txtCedula;
-	private JButton btnBuscar;
 	private JTextField txtNombre;
-	private JTextField txtTelefono;
-	private JTextField txtDireccion;
 	private JScrollPane scrollPane;
 	private JList<String> list;
 	private JList<String> list_1;
@@ -53,6 +49,8 @@ public class Facturar extends JDialog {
 	private JButton btnDerecha;
 	private JButton btnIzquierda;
 	private JSpinner spnTotal;
+	private JSpinner spnDescuento;
+
 	private JButton btnFacturar;
 
 	private ArrayList<Cliente> misCliente;
@@ -64,7 +62,7 @@ public class Facturar extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			Facturar dialog = new Facturar();
+			AgregarCombo dialog = new AgregarCombo();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -75,8 +73,8 @@ public class Facturar extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Facturar() {
-		setTitle("Factura");
+	public AgregarCombo() {
+		setTitle("Combo");
 		setBounds(100, 100, 522, 476);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -86,77 +84,22 @@ public class Facturar extends JDialog {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 11, 486, 122);
+		panel.setBounds(10, 11, 486, 82);
 		contentPanel.add(panel);
 		panel.setLayout(null);
-
-		JLabel lblCdula = new JLabel("C\u00E9dula:");
-		lblCdula.setBounds(10, 11, 46, 14);
-		panel.add(lblCdula);
-
-		txtCedula = new JTextField();
-		txtCedula.setBounds(70, 8, 216, 23);
-		panel.add(txtCedula);
-		txtCedula.setColumns(10);
-
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Cliente aux = null;
-				Cliente auxFacturar = Tienda.getInstance().buscarClienteByCedula(txtCedula.getText());
-				if (auxFacturar == null) {
-
-					txtNombre.setEditable(true);
-					txtTelefono.setEditable(true);
-					txtDireccion.setEditable(true);
-				} else {
-
-					txtNombre.setEditable(false);
-					txtTelefono.setEditable(false);
-					txtDireccion.setEditable(false);
-					txtNombre.setText(auxFacturar.getNombre());
-					txtTelefono.setText(auxFacturar.getTelefono());
-					txtDireccion.setText(auxFacturar.getDireccion());
-				}
-
-			}
-		});
-		btnBuscar.setBounds(298, 7, 89, 23);
-		panel.add(btnBuscar);
 
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(10, 45, 52, 14);
 		panel.add(lblNombre);
 
 		txtNombre = new JTextField();
-		txtNombre.setEditable(false);
 		txtNombre.setBounds(70, 42, 216, 23);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 
-		JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
-		lblTelfono.setBounds(298, 45, 61, 14);
-		panel.add(lblTelfono);
-
-		txtTelefono = new JTextField();
-		txtTelefono.setEditable(false);
-		txtTelefono.setBounds(361, 42, 115, 23);
-		panel.add(txtTelefono);
-		txtTelefono.setColumns(10);
-
-		JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
-		lblDireccin.setBounds(10, 82, 61, 14);
-		panel.add(lblDireccin);
-
-		txtDireccion = new JTextField();
-		txtDireccion.setEditable(false);
-		txtDireccion.setBounds(70, 79, 406, 23);
-		panel.add(txtDireccion);
-		txtDireccion.setColumns(10);
-
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(10, 139, 486, 219);
+		panel_1.setBounds(10, 104, 486, 224);
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -175,10 +118,6 @@ public class Facturar extends JDialog {
 
 		scrollPane_1 = new JScrollPane();
 		panel_3.add(scrollPane_1, BorderLayout.CENTER);
-
-		JLabel lblQuesosDisponibles = new JLabel("Quesos Disponibles");
-		lblQuesosDisponibles.setBounds(10, 11, 177, 14);
-		panel_1.add(lblQuesosDisponibles);
 
 		list = new JList<String>();
 		scrollPane.setViewportView(list);
@@ -216,6 +155,7 @@ public class Facturar extends JDialog {
 			if (q instanceof MotherBoard) {
 				nombresComponentes.add(q.getSerial() + "-MotherBoard");
 			}
+			
 			if (q instanceof DiscoDuro) {
 				nombresComponentes.add(q.getSerial() + "-DiscoDuro");
 			}
@@ -234,7 +174,7 @@ public class Facturar extends JDialog {
 
 		// ------------------------------------------------------------------------
 
-		JLabel lblCarritoDeCompra = new JLabel("Carrito de Compra");
+		JLabel lblCarritoDeCompra = new JLabel("Combo");
 		lblCarritoDeCompra.setBounds(299, 9, 177, 14);
 		panel_1.add(lblCarritoDeCompra);
 
@@ -266,7 +206,10 @@ public class Facturar extends JDialog {
 					}
 					list.setModel(modelo);
 					list_1.setModel(modelo0);
+					
 					spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
+					spnDescuento.setValue((Tienda.getInstance().totalFactura(list_1)));
+					
 					if (list_1.getModel().getSize() > 0) {
 						btnFacturar.setEnabled(true);
 					}
@@ -300,6 +243,8 @@ public class Facturar extends JDialog {
 				list.setModel(modelo);
 				list_1.setModel(modelo0);
 				spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
+				spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
+
 				if (list_1.getModel().getSize() > 0) {
 					btnFacturar.setEnabled(true);
 				}
@@ -312,6 +257,10 @@ public class Facturar extends JDialog {
 		});
 		btnIzquierda.setBounds(200, 119, 89, 23);
 		panel_1.add(btnIzquierda);
+		
+				JLabel lblQuesosDisponibles = new JLabel("Componentes Disponibles");
+				lblQuesosDisponibles.setBounds(10, 9, 177, 14);
+				panel_1.add(lblQuesosDisponibles);
 
 		// ---------------------------------------------------------------------------------------
 		//
@@ -324,6 +273,15 @@ public class Facturar extends JDialog {
 		spnTotal.setEnabled(false);
 		spnTotal.setBounds(349, 365, 110, 22);
 		contentPanel.add(spnTotal);
+		
+		JLabel lblDescuento = new JLabel("Descuento:");
+		lblDescuento.setBounds(35, 369, 69, 14);
+		contentPanel.add(lblDescuento);
+		
+		JSpinner spnDescuento = new JSpinner();
+		spnDescuento.setEnabled(false);
+		spnDescuento.setBounds(104, 365, 110, 22);
+		contentPanel.add(spnDescuento);
 
 //		
 //		ArrayList<Queso> quesos3 = TiendaQueso.getInstance().getMisQuesos();
@@ -348,22 +306,20 @@ public class Facturar extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnFacturar = new JButton("Facturar");
+				btnFacturar = new JButton("Agregar");
 				btnFacturar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Cliente aux = null;
-						Factura factura = null;
-						String cedula = txtCedula.getText();
+					
+						
+						Combo aux=null;
 						String nombre = txtNombre.getText();
-						String telefono = txtTelefono.getText();
-						String direccion = txtDireccion.getText();
+						aux=new Combo("CO-00" + Tienda.getInstance().getMisCombos().size(), nombre, losComponentes(), Tienda.getInstance().totalFactura(list_1));
 						ArrayList<String> nombresQ = new ArrayList<String>();
 						ListModel<String> misComponentes = list_1.getModel();
-						aux = new Cliente(nombre, direccion, telefono, cedula);
-						factura = new Factura(null, losComponentes(),aux,"CF-00" + Tienda.getInstance().getMisFacturas().size());
-//						String codigo,ArrayList<Queso> misQuesos, Cliente cliente
-						Tienda.getInstance().insertarCliente(aux);
-						Tienda.getInstance().insertarFactura(factura);
+						
+						
+//						
+						
 						Tienda.getInstance().verificarDisponibles(losComponentes());
 						JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 								JOptionPane.INFORMATION_MESSAGE);
@@ -405,18 +361,17 @@ public class Facturar extends JDialog {
 	}
 
 	private void clean() {
-		txtCedula.setText("");
+		
 		txtNombre.setText("");
-		txtTelefono.setText("");
-		txtDireccion.setText("");
+	
 		txtNombre.setEditable(false);
-		txtTelefono.setEditable(false);
-		txtDireccion.setEditable(false);
+		
 		btnDerecha.setEnabled(false);
 		btnIzquierda.setEnabled(false);
 
 		DefaultListModel<String> limpio = new DefaultListModel<String>();
 		spnTotal.setValue(new Float(0.0));
+		spnDescuento.setValue(new Float(0.0));
 		modelo0 = limpio;
 		list_1.setModel(limpio);
 
