@@ -111,11 +111,6 @@ public class regComponente extends JDialog {
 
 		// ---------------------------------------
 
-		pnlRam = new JPanel();
-		pnlRam.setVisible(false);
-
-		// ---------------------------------------
-
 		pnlMicro = new JPanel();
 		pnlMicro.setVisible(false);
 
@@ -125,6 +120,52 @@ public class regComponente extends JDialog {
 		pnlMotherBoard.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlMotherBoard.setBounds(6, 230, 384, 137);
 		pnlMotherBoard.setVisible(true);
+
+		// ---------------------------------------
+
+		pnlRam = new JPanel();
+		pnlRam.setVisible(false);
+
+		pnlRam.setLayout(null);
+		pnlRam.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlRam.setBounds(6, 230, 384, 137);
+		contentPanel.add(pnlRam);
+
+		txtMarcaRm = new JTextField();
+		txtMarcaRm.setBounds(12, 43, 105, 22);
+		pnlRam.add(txtMarcaRm);
+		txtMarcaRm.setColumns(10);
+
+		txtModeloRm = new JTextField();
+		txtModeloRm.setBounds(140, 43, 90, 22);
+		pnlRam.add(txtModeloRm);
+		txtModeloRm.setColumns(10);
+
+		lblMarca = new JLabel("Marca:");
+		lblMarca.setBounds(12, 14, 105, 16);
+		pnlRam.add(lblMarca);
+
+		lblModelo = new JLabel("Modelo:");
+		lblModelo.setBounds(140, 14, 56, 16);
+		pnlRam.add(lblModelo);
+
+		spnCantMemoria = new JSpinner();
+		spnCantMemoria.setModel(new SpinnerNumberModel(new Float(4096), new Float(4096), null, new Float(1)));
+		spnCantMemoria.setBounds(12, 102, 105, 22);
+		pnlRam.add(spnCantMemoria);
+
+		txtTipoRam = new JTextField();
+		txtTipoRam.setBounds(140, 102, 90, 22);
+		pnlRam.add(txtTipoRam);
+		txtTipoRam.setColumns(10);
+
+		lblDiscoDuro = new JLabel("#Memoria (Mb):");
+		lblDiscoDuro.setBounds(12, 78, 105, 16);
+		pnlRam.add(lblDiscoDuro);
+
+		lblTipoRam = new JLabel("Tipo de Ram:");
+		lblTipoRam.setBounds(140, 78, 90, 16);
+		pnlRam.add(lblTipoRam);
 		contentPanel.add(pnlMotherBoard);
 		pnlMotherBoard.setLayout(null);
 
@@ -267,47 +308,6 @@ public class regComponente extends JDialog {
 		spnCapacidad.setBounds(257, 35, 105, 22);
 		pnlDiscoDuro.add(spnCapacidad);
 
-		pnlRam.setLayout(null);
-		pnlRam.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlRam.setBounds(6, 230, 384, 137);
-		contentPanel.add(pnlRam);
-
-		txtMarcaRm = new JTextField();
-		txtMarcaRm.setBounds(12, 43, 105, 22);
-		pnlRam.add(txtMarcaRm);
-		txtMarcaRm.setColumns(10);
-
-		txtModeloRm = new JTextField();
-		txtModeloRm.setBounds(140, 43, 90, 22);
-		pnlRam.add(txtModeloRm);
-		txtModeloRm.setColumns(10);
-
-		lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(12, 14, 105, 16);
-		pnlRam.add(lblMarca);
-
-		lblModelo = new JLabel("Modelo:");
-		lblModelo.setBounds(140, 14, 56, 16);
-		pnlRam.add(lblModelo);
-
-		spnCantMemoria = new JSpinner();
-		spnCantMemoria.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
-		spnCantMemoria.setBounds(12, 102, 105, 22);
-		pnlRam.add(spnCantMemoria);
-
-		txtTipoRam = new JTextField();
-		txtTipoRam.setBounds(140, 102, 90, 22);
-		pnlRam.add(txtTipoRam);
-		txtTipoRam.setColumns(10);
-
-		lblDiscoDuro = new JLabel("#Memoria (Mb):");
-		lblDiscoDuro.setBounds(12, 78, 105, 16);
-		pnlRam.add(lblDiscoDuro);
-
-		lblTipoRam = new JLabel("Tipo de Ram:");
-		lblTipoRam.setBounds(140, 78, 90, 16);
-		pnlRam.add(lblTipoRam);
-
 		spnCapacidad = new JSpinner();
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo de Queso:",
@@ -442,9 +442,8 @@ public class regComponente extends JDialog {
 						Componente aux = null;
 						String serial = textcodigo.getText();
 						float precio = Float.valueOf(spnPrecio.getValue().toString());
-						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
-
 						if (rdbMotherBoard.isSelected()) {
+							int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 							String marcaMb = txtMarcaMb.getText();
 							String tipoConexionMb = txtTipoConexionMb.getText();
 
@@ -452,7 +451,7 @@ public class regComponente extends JDialog {
 							String micro = txtMicro.getText();
 							String discoDuro = txtDiscoDuro.getText();
 							String tipoRam = txtTipoRam.getText();
-		
+
 							aux = new MotherBoard(precio, cantidad, serial, marcaMb, modeloMb, micro, discoDuro,
 									tipoRam, tipoConexionMb);
 							Tienda.getInstance().insertarComponente(aux);
@@ -462,6 +461,7 @@ public class regComponente extends JDialog {
 
 						}
 						if (rdbDiscoDuro.isSelected()) {
+							int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 							float capacidad = Float.valueOf(spnCapacidad.getValue().toString());
 							String marcaDd = txtMarcaDd.getText();
 							String tipoConexionDd = txtTipoConexionDd.getText();
@@ -475,6 +475,7 @@ public class regComponente extends JDialog {
 							clean();
 						}
 						if (rdbMicro.isSelected()) {
+							int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 							String marcaMc = txtMarcaMc.getText();
 							String procesamiento = txtProcesamiento.getText();
 							String modeloMc = txtModeloMc.getText();
@@ -488,6 +489,7 @@ public class regComponente extends JDialog {
 						}
 
 						if (rdbRam.isSelected()) {
+							int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 							String marcaRm = txtMarcaRm.getText();
 							String tipoRam = txtTipoRam.getText();
 							String modeloRm = txtModeloRm.getText();
@@ -561,20 +563,17 @@ public class regComponente extends JDialog {
 		txtModeloDd.setText("");
 		txtMarcaRm.setText("");
 		txtModeloRm.setText("");
-
-		spnCapacidad.setValue(new Float(64));
-
 		txtTipoConexionMc.setText("");
 		txtTipoConexionDd.setText("");
 		txtTipoConexionMb.setText("");
 
 		txtProcesamiento.setText("");
-		txtMemoriaRam.setText("");
 		txtMicro.setText("");
 		txtDiscoDuro.setText("");
 		txtRam.setText("");
 		txtTipoRam.setText("");
 		spnCapacidad.setValue(new Float(64));
+		spnCantMemoria.setValue(new Float(4096));
 
 	}
 }
