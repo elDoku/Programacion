@@ -165,8 +165,8 @@ public class regComponente extends JDialog {
 		lblMicro.setBounds(254, 9, 56, 16);
 		pnlMotherBoard.add(lblMicro);
 
-		lblDiscoDuro = new JLabel("Disco Duro:");
-		lblDiscoDuro.setBounds(12, 73, 90, 16);
+		lblDiscoDuro = new JLabel("Conexion Disco Duro:");
+		lblDiscoDuro.setBounds(12, 73, 105, 16);
 		pnlMotherBoard.add(lblDiscoDuro);
 
 		lblRam = new JLabel("Ram:");
@@ -209,13 +209,8 @@ public class regComponente extends JDialog {
 		pnlMicro.add(txtTipoConexionMc);
 		txtTipoConexionMc.setColumns(10);
 
-		txtMemoriaRam = new JTextField();
-		txtMemoriaRam.setBounds(12, 102, 105, 22);
-		pnlMicro.add(txtMemoriaRam);
-		txtMemoriaRam.setColumns(10);
-
 		txtProcesamiento = new JTextField();
-		txtProcesamiento.setBounds(140, 102, 90, 22);
+		txtProcesamiento.setBounds(12, 102, 105, 22);
 		pnlMicro.add(txtProcesamiento);
 		txtProcesamiento.setColumns(10);
 
@@ -223,12 +218,8 @@ public class regComponente extends JDialog {
 		lblTipoConexion.setBounds(254, 13, 105, 16);
 		pnlMicro.add(lblTipoConexion);
 
-		lblMemoriaRam = new JLabel("MemoriaRam:");
-		lblMemoriaRam.setBounds(12, 73, 90, 16);
-		pnlMicro.add(lblMemoriaRam);
-
 		lblProcesamiento = new JLabel("Procesamiento:");
-		lblProcesamiento.setBounds(140, 73, 90, 16);
+		lblProcesamiento.setBounds(12, 75, 90, 16);
 		pnlMicro.add(lblProcesamiento);
 
 		// -----------------------------------------------
@@ -460,10 +451,10 @@ public class regComponente extends JDialog {
 							String modeloMb = txtModeloMb.getText();
 							String micro = txtMicro.getText();
 							String discoDuro = txtDiscoDuro.getText();
-							String ram = txtRam.getText();
-
-							aux = new MotherBoard(precio, cantidad, serial, marcaMb, modeloMb, micro, discoDuro, ram,
-									tipoConexionMb);
+							String tipoRam = txtTipoRam.getText();
+		
+							aux = new MotherBoard(precio, cantidad, serial, marcaMb, modeloMb, micro, discoDuro,
+									tipoRam, tipoConexionMb);
 							Tienda.getInstance().insertarComponente(aux);
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
@@ -487,11 +478,9 @@ public class regComponente extends JDialog {
 							String marcaMc = txtMarcaMc.getText();
 							String procesamiento = txtProcesamiento.getText();
 							String modeloMc = txtModeloMc.getText();
-							String memoriaRam = txtMemoriaRam.getText();
 							String tipoConexionMc = txtTipoConexionMc.getText();
 
-							aux = new Micro(precio, cantidad, serial, marcaMc, modeloMc, tipoConexionMc, memoriaRam,
-									procesamiento);
+							aux = new Micro(precio, cantidad, serial, marcaMc, modeloMc, tipoConexionMc, procesamiento);
 							Tienda.getInstance().insertarComponente(aux);
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
