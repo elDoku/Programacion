@@ -116,14 +116,11 @@ public class ListadoCombo extends JDialog {
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
+							DetallesCombo detallescombo = new DetallesCombo(selected);
+							detallescombo.setModal(true);
+								detallescombo.setVisible(true);
 							
-							for (Componente componente : selected.getMisComponentes()) {
-								
-								
-								
-							}
-							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
-									JOptionPane.INFORMATION_MESSAGE);
+							
 							
 							
 						}
