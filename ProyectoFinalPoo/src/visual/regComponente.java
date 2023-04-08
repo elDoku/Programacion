@@ -442,8 +442,8 @@ public class regComponente extends JDialog {
 						Componente aux = null;
 						String serial = textcodigo.getText();
 						float precio = Float.valueOf(spnPrecio.getValue().toString());
+						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 						if (rdbMotherBoard.isSelected()) {
-							int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 							String marcaMb = txtMarcaMb.getText();
 							String tipoConexionMb = txtTipoConexionMb.getText();
 
@@ -461,7 +461,6 @@ public class regComponente extends JDialog {
 
 						}
 						if (rdbDiscoDuro.isSelected()) {
-							int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 							float capacidad = Float.valueOf(spnCapacidad.getValue().toString());
 							String marcaDd = txtMarcaDd.getText();
 							String tipoConexionDd = txtTipoConexionDd.getText();
@@ -475,7 +474,6 @@ public class regComponente extends JDialog {
 							clean();
 						}
 						if (rdbMicro.isSelected()) {
-							int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 							String marcaMc = txtMarcaMc.getText();
 							String procesamiento = txtProcesamiento.getText();
 							String modeloMc = txtModeloMc.getText();
@@ -489,7 +487,6 @@ public class regComponente extends JDialog {
 						}
 
 						if (rdbRam.isSelected()) {
-							int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 							String marcaRm = txtMarcaRm.getText();
 							String tipoRam = txtTipoRam.getText();
 							String modeloRm = txtModeloRm.getText();
