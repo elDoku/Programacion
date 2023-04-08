@@ -74,10 +74,10 @@ public class Tienda {
 		codigo++;
 
 	}
+
 	public void insertarCombo(Combo combo) {
 		misCombos.add(combo);
 	}
-
 
 	public void verificarDisponibles(ArrayList<Componente> losComponentes) {
 		ArrayList<Componente> nuevos = new ArrayList<>();
@@ -123,7 +123,7 @@ public class Tienda {
 		for (Factura fact : misFacturas) {
 			for (Componente cp : fact.getMisComponentes()) {
 				if (cp instanceof Micro) {
-					total += cp.getPrecio(); 
+					total += cp.getPrecio();
 				}
 			}
 		}
@@ -137,6 +137,16 @@ public class Tienda {
 				if (cp instanceof Ram) {
 					total += cp.getPrecio(); // se acumula el precio de cada queso cilíndrico hueco
 				}
+			}
+		}
+		return total;
+	}
+
+	public float gananciaCombo() {
+		float total = 0;
+		for (Factura fact : misFacturas) {
+			for (Combo cb : fact.getMisCombos()) {
+				total += cb.getPrecioCombo(); // se acumula el precio de cada queso cilíndrico hueco
 			}
 		}
 		return total;
@@ -212,35 +222,50 @@ public class Tienda {
 		return cantidad;
 	}
 
-	// ------------------------------------------------------------------
-//	public ArrayList<Componente> mayorEsferico() {
-//		ArrayList<> queso = new ArrayList<>();
-//
-//		float volumen = 0;
-//		for (Factura factura : misfacturas) {
-//			for (Queso aux : factura.getMisQuesos()) {
-//				if (aux instanceof QuesoEsferico && aux.Volumen() > volumen) {
-//					volumen = aux.Volumen();
-//					queso.removeAll(queso);
-//					queso.add(aux);
-//				}
-//				if (aux instanceof QuesoEsferico && aux.Volumen() == volumen) {
-//					queso.add(aux);
-//				}
-//			}
-//		}
-//		return queso;
-//	}
+	public int ventaCombo() {
+		int cantidad = 0;
+		ArrayList misCp = new ArrayList<>();
+		for (Factura fact : misFacturas) {
+			for (Combo cb : fact.getMisCombos()) {
+				misCp.add(cb);
+				cantidad = misCp.size();
 
-//	public int cantEsferico() {
-//		int cant = 0;
-//		for (Queso aux : misQuesos) {
-//			if (aux instanceof QuesoEsferico) {
-//				cant++;
-//			}
-//		}
-//		return cant;
-//	}
+			}
+
+		}
+		return cantidad;
+
+	}
+
+	// ------------------------------------------------------------------
+	// public ArrayList<Componente> mayorEsferico() {
+	// ArrayList<> queso = new ArrayList<>();
+	//
+	// float volumen = 0;
+	// for (Factura factura : misfacturas) {
+	// for (Queso aux : factura.getMisQuesos()) {
+	// if (aux instanceof QuesoEsferico && aux.Volumen() > volumen) {
+	// volumen = aux.Volumen();
+	// queso.removeAll(queso);
+	// queso.add(aux);
+	// }
+	// if (aux instanceof QuesoEsferico && aux.Volumen() == volumen) {
+	// queso.add(aux);
+	// }
+	// }
+	// }
+	// return queso;
+	// }
+
+	// public int cantEsferico() {
+	// int cant = 0;
+	// for (Queso aux : misQuesos) {
+	// if (aux instanceof QuesoEsferico) {
+	// cant++;
+	// }
+	// }
+	// return cant;
+	// }
 
 	public Cliente buscarClienteByCedula(String cedula) {
 		Cliente auxCliente = null;
@@ -276,35 +301,34 @@ public class Tienda {
 					total += componente.getPrecio();
 				}
 
-				
 			}
 		}
 		return total;
 	}
 
 	public float totalFacturaCombo(JList<String> lista) {
-		
+
 		int i = 0;
 
 		float total = 0;
-		
-		
+
 		for (i = 0; i >= 0 && i < lista.getModel().getSize(); i++) {
 			String str = lista.getModel().getElementAt(i);
 			String cod = str.substring(0, 4);
-		
+
 			for (Combo combo : misCombos) {
-				
-				if(combo.getCodigo().equalsIgnoreCase(cod)) {
-					
-					total+=combo.PrecioCombo();
+
+				if (combo.getCodigo().equalsIgnoreCase(cod)) {
+
+					total += combo.PrecioCombo();
 					System.out.println(total);
 				}
-				
+
 			}
 		}
 		return total;
 	}
+
 	public int cantComponente(Componente aux) {
 
 		int total = 0;

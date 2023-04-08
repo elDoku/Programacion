@@ -147,7 +147,7 @@ public class ModComponente extends JDialog {
 		pnlRam.add(lblModelo);
 
 		spnCantMemoria = new JSpinner();
-		spnCantMemoria.setModel(new SpinnerNumberModel(new Float(4096), new Float(4096), null, new Float(1)));
+		spnCantMemoria.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
 		spnCantMemoria.setBounds(12, 102, 105, 22);
 		pnlRam.add(spnCantMemoria);
 

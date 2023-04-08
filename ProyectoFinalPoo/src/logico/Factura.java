@@ -11,8 +11,8 @@ public class Factura {
 	
 	public Factura(ArrayList<Combo> misCombos, ArrayList<Componente> misComponentes, Cliente cliente, String codigo) {
 		super();
-		this.misCombos = misCombos;
-		this.misComponentes = misComponentes;
+		this.misCombos = new ArrayList<>();
+		this.misComponentes = new ArrayList<>();
 		this.cliente = cliente;
 		this.codigo = codigo;
 	}
