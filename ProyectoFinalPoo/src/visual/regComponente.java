@@ -497,6 +497,7 @@ public class regComponente extends JDialog {
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();
 						}
+				
 					}
 
 				});
