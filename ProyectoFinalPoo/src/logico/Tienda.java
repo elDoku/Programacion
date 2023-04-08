@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.JList;
 
-
-
 public class Tienda {
 	private ArrayList<Combo> misCombos;
 	private ArrayList<Componente> misComponentes;
@@ -13,7 +11,7 @@ public class Tienda {
 	private ArrayList<Cliente> misClientes;
 	public static int codigo = 1;
 	public static Tienda tienda = null;
-	
+
 	public Tienda() {
 		super();
 		this.misCombos = new ArrayList<>();
@@ -21,7 +19,7 @@ public class Tienda {
 		this.misFacturas = new ArrayList<>();
 		this.misClientes = new ArrayList<>();
 	}
-	
+
 	public static Tienda getInstance() {
 		if (tienda == null) {
 			tienda = new Tienda();
@@ -29,33 +27,38 @@ public class Tienda {
 		return tienda;
 	}
 
-	
 	public ArrayList<Combo> getMisCombos() {
 		return misCombos;
 	}
+
 	public void setMisCombos(ArrayList<Combo> misCombos) {
 		this.misCombos = misCombos;
 	}
+
 	public ArrayList<Componente> getMisComponentes() {
 		return misComponentes;
 	}
+
 	public void setMisComponentes(ArrayList<Componente> misComponentes) {
 		this.misComponentes = misComponentes;
 	}
+
 	public ArrayList<Factura> getMisFacturas() {
 		return misFacturas;
 	}
+
 	public void setMisFacturas(ArrayList<Factura> misFacturas) {
 		this.misFacturas = misFacturas;
 	}
+
 	public ArrayList<Cliente> getMisClientes() {
 		return misClientes;
 	}
+
 	public void setMisClientes(ArrayList<Cliente> misClientes) {
 		this.misClientes = misClientes;
 	}
-	
-	
+
 	public void insertarComponente(Componente componente) {
 		misComponentes.add(componente);
 		codigo++;
@@ -131,6 +134,7 @@ public class Tienda {
 		}
 		return aux;
 	}
+
 	public float totalFactura(JList<String> lista) {
 		int i = 0;
 
@@ -152,24 +156,25 @@ public class Tienda {
 		}
 		return total;
 	}
-	
+
 	
 	public int cantComponente(Componente aux) {
-		
-	int total=0;
-	
-	for (Componente componente : misComponentes) {
-		
-		if(aux.marca.equalsIgnoreCase(componente.marca) && aux.modelo.equalsIgnoreCase(componente.modelo)){
-			
-			total++;
+
+		int total = 0;
+
+		for (Componente componente : misComponentes) {
+
+			if (aux.marca.equalsIgnoreCase(componente.marca) && aux.modelo.equalsIgnoreCase(componente.modelo)) {
+
+				total++;
+			}
+
 		}
-		
+
+		return total;
+
 	}
-	
-	return total;
-		
-	}
+
 	public void modificarQueso(Componente componente) {
 		// TODO Auto-generated method stub
 
@@ -179,5 +184,5 @@ public class Tienda {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 }

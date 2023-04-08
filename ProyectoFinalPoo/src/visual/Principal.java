@@ -132,9 +132,9 @@ public class Principal extends JFrame {
 		JMenuItem mntmReporte = new JMenuItem("Reporte");
 		mntmReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				ReporteDinero reporteD = new ReporteDinero();
-//				reporteD.setModal(true);
-//				reporteD.setVisible(true);
+				Reporte reporte = new Reporte();
+				reporte.setModal(true);
+				reporte.setVisible(true);
 			}
 		});
 		mnAdmin.add(mntmReporte);

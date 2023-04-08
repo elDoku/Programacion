@@ -32,13 +32,15 @@ public class Reporte extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	private JSpinner spnEGanancia;
-	private JSpinner spnCGanancia;
-	private JSpinner spnCHGanancia;
+	private JSpinner spnGMotherBoard;
+	private JSpinner spnGMicro;
+	private JSpinner spnGRam;
+	private JSpinner spnGDiscoDuro;
 	private JSpinner spnTotal;
-	private JSpinner spnQCVenta;
-	private JSpinner spnQCHVenta;
-	private JSpinner spnQEVenta;
+	private JSpinner spnVMicro;
+	private JSpinner spnVRam;
+	private JSpinner spnVDiscoDuro;
+	private JSpinner spnVMotherBoard;
 
 	/**
 	 * Launch the application.
@@ -72,44 +74,44 @@ public class Reporte extends JDialog {
 		contentPanel.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblQEGanancia = new JLabel("Queso Esf\u00E9rico:");
-		lblQEGanancia.setBounds(10, 11, 97, 14);
-		panel.add(lblQEGanancia);
+		JLabel lblGMotherBoard = new JLabel("Mother board's:");
+		lblGMotherBoard.setBounds(10, 24, 97, 14);
+		panel.add(lblGMotherBoard);
 
-		spnEGanancia = new JSpinner();
-		spnEGanancia.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
-		spnEGanancia.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spnEGanancia.setEnabled(false);
+		spnGMotherBoard = new JSpinner();
+		spnGMotherBoard.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+		spnGMotherBoard.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		spnGMotherBoard.setEnabled(false);
 
 		//System.out.println(Tienda.getInstance().gananciaQEsferico());
 		// valor seteado
-		spnEGanancia.setBounds(119, 7, 123, 23);
-		panel.add(spnEGanancia);
+		spnGMotherBoard.setBounds(119, 19, 123, 23);
+		panel.add(spnGMotherBoard);
 	
 		
 		
-		JLabel lblQCGanancia = new JLabel("Queso Cil\u00EDndrico:");
-		lblQCGanancia.setBounds(10, 59, 97, 14);
-		panel.add(lblQCGanancia);
-		spnCGanancia = new JSpinner();
-		spnCGanancia.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
-		spnCGanancia.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spnCGanancia.setEnabled(false);
-		spnCGanancia.setBounds(119, 55, 123, 23);
-		panel.add(spnCGanancia);
+		JLabel lblGMicro = new JLabel("Micro's:");
+		lblGMicro.setBounds(10, 60, 97, 14);
+		panel.add(lblGMicro);
+		spnGMicro = new JSpinner();
+		spnGMicro.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+		spnGMicro.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		spnGMicro.setEnabled(false);
+		spnGMicro.setBounds(119, 55, 123, 23);
+		panel.add(spnGMicro);
 
-		JLabel lblQCHGanancia = new JLabel("Q.Cil\u00EDndrico H:");
-		lblQCHGanancia.setBounds(10, 111, 123, 14);
-		panel.add(lblQCHGanancia);
-		spnCHGanancia = new JSpinner();
-		spnCHGanancia.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
-		spnCHGanancia.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spnCHGanancia.setEnabled(false);
-		spnCHGanancia.setBounds(119, 107, 123, 23);
-		panel.add(spnCHGanancia);
+		JLabel lblGRam = new JLabel("Ram's:");
+		lblGRam.setBounds(10, 95, 123, 14);
+		panel.add(lblGRam);
+		spnGRam = new JSpinner();
+		spnGRam.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+		spnGRam.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		spnGRam.setEnabled(false);
+		spnGRam.setBounds(119, 91, 123, 23);
+		panel.add(spnGRam);
 
 		JLabel lblTotal = new JLabel("Total Ganacias:");
-		lblTotal.setBounds(10, 157, 97, 14);
+		lblTotal.setBounds(10, 180, 97, 14);
 		panel.add(lblTotal);
 
 		spnTotal = new JSpinner();
@@ -118,8 +120,17 @@ public class Reporte extends JDialog {
 		spnTotal.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
 		// con el setvalue es que coloco el valor de la funcion dentro del spinner
 
-		spnTotal.setBounds(119, 153, 123, 23);
+		spnTotal.setBounds(119, 175, 123, 23);
 		panel.add(spnTotal);
+		
+		JLabel lblGDiscoDuro = new JLabel("Discos Duros:");
+		lblGDiscoDuro.setBounds(10, 134, 95, 16);
+		panel.add(lblGDiscoDuro);
+		
+		JSpinner spnGDiscoDuro = new JSpinner();
+		spnGDiscoDuro.setEnabled(false);
+		spnGDiscoDuro.setBounds(119, 127, 123, 23);
+		panel.add(spnGDiscoDuro);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
@@ -127,38 +138,47 @@ public class Reporte extends JDialog {
 		panel_1.setBounds(12, 36, 274, 207);
 		contentPanel.add(panel_1);
 
-		JLabel lblQEVenta = new JLabel("Queso Esf\u00E9rico:");
-		lblQEVenta.setBounds(10, 16, 97, 14);
-		panel_1.add(lblQEVenta);
+		JLabel lblVMotherBoard = new JLabel("Mother board's:");
+		lblVMotherBoard.setBounds(10, 16, 97, 14);
+		panel_1.add(lblVMotherBoard);
 
-		spnQEVenta = new JSpinner();
-		spnQEVenta.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
-		spnQEVenta.setEnabled(false);
-		spnQEVenta.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spnQEVenta.setBounds(139, 12, 123, 23);
-		panel_1.add(spnQEVenta);
+		spnVMotherBoard = new JSpinner();
+		spnVMotherBoard.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
+		spnVMotherBoard.setEnabled(false);
+		spnVMotherBoard.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		spnVMotherBoard.setBounds(139, 12, 123, 23);
+		panel_1.add(spnVMotherBoard);
 
-		JLabel lblQCVenta = new JLabel("Queso Cil\u00EDndrico:");
-		lblQCVenta.setBounds(10, 81, 97, 14);
-		panel_1.add(lblQCVenta);
+		JLabel lblVMicro = new JLabel("Micro's:");
+		lblVMicro.setBounds(10, 58, 97, 14);
+		panel_1.add(lblVMicro);
 
-		spnQCVenta = new JSpinner();
-		spnQCVenta.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
-		spnQCVenta.setEnabled(false);
-		spnQCVenta.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spnQCVenta.setBounds(139, 77, 123, 23);
-		panel_1.add(spnQCVenta);
+		spnVMicro = new JSpinner();
+		spnVMicro.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
+		spnVMicro.setEnabled(false);
+		spnVMicro.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		spnVMicro.setBounds(139, 53, 123, 23);
+		panel_1.add(spnVMicro);
 
-		JLabel lblQCHVenta = new JLabel("Q.Cil\u00EDndrico H:");
-		lblQCHVenta.setBounds(12, 150, 123, 14);
-		panel_1.add(lblQCHVenta);
+		JLabel lblVRam = new JLabel("Ram's:");
+		lblVRam.setBounds(10, 85, 123, 37);
+		panel_1.add(lblVRam);
 
-		spnQCHVenta = new JSpinner();
-		spnQCHVenta.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
-		spnQCHVenta.setEnabled(false);
-		spnQCHVenta.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spnQCHVenta.setBounds(139, 146, 123, 23);
-		panel_1.add(spnQCHVenta);
+		spnVRam = new JSpinner();
+		spnVRam.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
+		spnVRam.setEnabled(false);
+		spnVRam.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		spnVRam.setBounds(139, 91, 123, 23);
+		panel_1.add(spnVRam);
+		
+		JLabel lblVDiscoDuro = new JLabel("Discos Duros:");
+		lblVDiscoDuro.setBounds(10, 135, 107, 16);
+		panel_1.add(lblVDiscoDuro);
+		
+		JSpinner spnVDiscosDuros = new JSpinner();
+		spnVDiscosDuros.setEnabled(false);
+		spnVDiscosDuros.setBounds(139, 132, 123, 23);
+		panel_1.add(spnVDiscosDuros);
 
 		JLabel lblVentas = new JLabel("Ventas:");
 		lblVentas.setBounds(12, 7, 97, 16);
@@ -175,15 +195,16 @@ public class Reporte extends JDialog {
 	private void recarga() {
 		// ganancias
 
-		spnEGanancia.setValue(Tienda.getInstance().gananciaQEsferico());
-		spnCGanancia.setValue(Tienda.getInstance().gananciaQCilindrico());
-		spnCHGanancia.setValue(Tienda.getInstance().gananciaQCilindricoH());
-
+		spnGMotherBoard.setValue(Tienda.getInstance().gananciaMotherBoard());
+		spnGMicro.setValue(Tienda.getInstance().gananciaMicro());
+		spnGRam.setValue(Tienda.getInstance().gananciaRam());
+		spnGDiscoDuro.setValue(Tienda.getInstance().gananciaDiscoDuro());
 		spnTotal.setValue(Tienda.getInstance().totalGanancia());
 
 		// cantidad de ventas
-		spnQEVenta.setValue(Tienda.getInstance().ventaQEsferico());
-		spnQCVenta.setValue(Tienda.getInstance().ventaQCilindrico());
-		spnQCHVenta.setValue(Tienda.getInstance().ventaQCilindricoH());
+		spnVMotherBoard.setValue(Tienda.getInstance().ventaMotherBoard());
+		spnVMicro.setValue(Tienda.getInstance().ventaMicro());
+		spnVRam.setValue(Tienda.getInstance().ventaRam());
+		spnVDiscoDuro.setValue(Tienda.getInstance().ventaDiscoDuro());
 	}
 }
