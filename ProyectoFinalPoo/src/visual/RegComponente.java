@@ -109,11 +109,6 @@ public class RegComponente extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		// ---------------------------------------
-
-		pnlMicro = new JPanel();
-		pnlMicro.setVisible(false);
-
 		// --------------------------------------------
 
 		pnlMotherBoard = new JPanel();
@@ -125,6 +120,96 @@ public class RegComponente extends JDialog {
 
 		pnlRam = new JPanel();
 		pnlRam.setVisible(false);
+
+		// ---------------------------------------
+
+		pnlMicro = new JPanel();
+		pnlMicro.setVisible(false);
+
+		// -----------------------------------------------
+
+		pnlDiscoDuro = new JPanel();
+		pnlDiscoDuro.setBounds(6, 230, 384, 137);
+		contentPanel.add(pnlDiscoDuro);
+		pnlDiscoDuro.setVisible(false);
+		pnlDiscoDuro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlDiscoDuro.setLayout(null);
+
+		txtMarcaDd = new JTextField();
+		txtMarcaDd.setBounds(12, 35, 105, 22);
+		pnlDiscoDuro.add(txtMarcaDd);
+		txtMarcaDd.setColumns(10);
+
+		txtModeloDd = new JTextField();
+		txtModeloDd.setBounds(140, 35, 90, 22);
+		pnlDiscoDuro.add(txtModeloDd);
+		txtModeloDd.setColumns(10);
+
+		lblMarca = new JLabel("Marca:");
+		lblMarca.setBounds(12, 13, 56, 16);
+		pnlDiscoDuro.add(lblMarca);
+
+		lblModelo = new JLabel("Modelo:");
+		lblModelo.setBounds(140, 13, 56, 16);
+		pnlDiscoDuro.add(lblModelo);
+
+		txtTipoConexionDd = new JTextField();
+		txtTipoConexionDd.setBounds(12, 100, 105, 22);
+		pnlDiscoDuro.add(txtTipoConexionDd);
+		txtTipoConexionDd.setColumns(10);
+
+		lblCapacidad = new JLabel("Capacidad (Gb):");
+		lblCapacidad.setBounds(257, 13, 105, 16);
+		pnlDiscoDuro.add(lblCapacidad);
+
+		lblTipoConexion = new JLabel("Tipo de Conexion:");
+		lblTipoConexion.setBounds(12, 71, 112, 16);
+		pnlDiscoDuro.add(lblTipoConexion);
+
+		spnCapacidad = new JSpinner();
+		spnCapacidad.setModel(new SpinnerNumberModel(new Integer(64), null, null, new Integer(1)));
+		spnCapacidad.setBounds(257, 35, 105, 22);
+		pnlDiscoDuro.add(spnCapacidad);
+		pnlMicro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlMicro.setBounds(6, 230, 384, 137);
+		contentPanel.add(pnlMicro);
+		pnlMicro.setLayout(null);
+
+		txtMarcaMc = new JTextField();
+		txtMarcaMc.setBounds(12, 40, 105, 22);
+		pnlMicro.add(txtMarcaMc);
+		txtMarcaMc.setColumns(10);
+
+		txtModeloMc = new JTextField();
+		txtModeloMc.setBounds(140, 40, 90, 22);
+		pnlMicro.add(txtModeloMc);
+		txtModeloMc.setColumns(10);
+
+		lblMarca = new JLabel("Marca:");
+		lblMarca.setBounds(12, 13, 56, 16);
+		pnlMicro.add(lblMarca);
+
+		lblModelo = new JLabel("Modelo:");
+		lblModelo.setBounds(140, 13, 56, 16);
+		pnlMicro.add(lblModelo);
+
+		txtTipoConexionMc = new JTextField();
+		txtTipoConexionMc.setBounds(254, 40, 105, 22);
+		pnlMicro.add(txtTipoConexionMc);
+		txtTipoConexionMc.setColumns(10);
+
+		txtProcesamiento = new JTextField();
+		txtProcesamiento.setBounds(12, 102, 105, 22);
+		pnlMicro.add(txtProcesamiento);
+		txtProcesamiento.setColumns(10);
+
+		lblTipoConexion = new JLabel("Tipo de Conexion:");
+		lblTipoConexion.setBounds(254, 13, 105, 16);
+		pnlMicro.add(lblTipoConexion);
+
+		lblProcesamiento = new JLabel("Procesamiento:");
+		lblProcesamiento.setBounds(12, 75, 90, 16);
+		pnlMicro.add(lblProcesamiento);
 
 		pnlRam.setLayout(null);
 		pnlRam.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -222,91 +307,6 @@ public class RegComponente extends JDialog {
 		lblTipoConexion = new JLabel("Tipo de Conector:");
 		lblTipoConexion.setBounds(254, 73, 105, 16);
 		pnlMotherBoard.add(lblTipoConexion);
-		pnlMicro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlMicro.setBounds(6, 230, 384, 137);
-		contentPanel.add(pnlMicro);
-		pnlMicro.setLayout(null);
-
-		txtMarcaMc = new JTextField();
-		txtMarcaMc.setBounds(12, 40, 105, 22);
-		pnlMicro.add(txtMarcaMc);
-		txtMarcaMc.setColumns(10);
-
-		txtModeloMc = new JTextField();
-		txtModeloMc.setBounds(140, 40, 90, 22);
-		pnlMicro.add(txtModeloMc);
-		txtModeloMc.setColumns(10);
-
-		lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(12, 13, 56, 16);
-		pnlMicro.add(lblMarca);
-
-		lblModelo = new JLabel("Modelo:");
-		lblModelo.setBounds(140, 13, 56, 16);
-		pnlMicro.add(lblModelo);
-
-		txtTipoConexionMc = new JTextField();
-		txtTipoConexionMc.setBounds(254, 40, 105, 22);
-		pnlMicro.add(txtTipoConexionMc);
-		txtTipoConexionMc.setColumns(10);
-
-		txtProcesamiento = new JTextField();
-		txtProcesamiento.setBounds(12, 102, 105, 22);
-		pnlMicro.add(txtProcesamiento);
-		txtProcesamiento.setColumns(10);
-
-		lblTipoConexion = new JLabel("Tipo de Conexion:");
-		lblTipoConexion.setBounds(254, 13, 105, 16);
-		pnlMicro.add(lblTipoConexion);
-
-		lblProcesamiento = new JLabel("Procesamiento:");
-		lblProcesamiento.setBounds(12, 75, 90, 16);
-		pnlMicro.add(lblProcesamiento);
-
-		// -----------------------------------------------
-
-		pnlDiscoDuro = new JPanel();
-		pnlDiscoDuro.setBounds(6, 230, 384, 137);
-		contentPanel.add(pnlDiscoDuro);
-		pnlDiscoDuro.setVisible(false);
-		pnlDiscoDuro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlDiscoDuro.setLayout(null);
-
-		txtMarcaDd = new JTextField();
-		txtMarcaDd.setBounds(12, 35, 105, 22);
-		pnlDiscoDuro.add(txtMarcaDd);
-		txtMarcaDd.setColumns(10);
-
-		txtModeloDd = new JTextField();
-		txtModeloDd.setBounds(140, 35, 90, 22);
-		pnlDiscoDuro.add(txtModeloDd);
-		txtModeloDd.setColumns(10);
-
-		lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(12, 13, 56, 16);
-		pnlDiscoDuro.add(lblMarca);
-
-		lblModelo = new JLabel("Modelo:");
-		lblModelo.setBounds(140, 13, 56, 16);
-		pnlDiscoDuro.add(lblModelo);
-
-		txtTipoConexionDd = new JTextField();
-		txtTipoConexionDd.setBounds(12, 100, 105, 22);
-		pnlDiscoDuro.add(txtTipoConexionDd);
-		txtTipoConexionDd.setColumns(10);
-
-		lblCapacidad = new JLabel("Capacidad (Gb):");
-		lblCapacidad.setBounds(257, 13, 105, 16);
-		pnlDiscoDuro.add(lblCapacidad);
-
-		lblTipoConexion = new JLabel("Tipo de Conexion:");
-		lblTipoConexion.setBounds(12, 71, 112, 16);
-		pnlDiscoDuro.add(lblTipoConexion);
-
-		spnCapacidad = new JSpinner();
-		spnCapacidad.setModel(new SpinnerNumberModel(new Integer(64), null, null, new Integer(1)));
-		spnCapacidad.setBounds(257, 35, 105, 22);
-		pnlDiscoDuro.add(spnCapacidad);
 
 		spnCapacidad = new JSpinner();
 		JPanel panel_1 = new JPanel();

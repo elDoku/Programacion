@@ -41,7 +41,6 @@ public class ModComponente extends JDialog {
 	private JTextField txtProcesamiento;
 	private JTextField txtMemoriaRam;
 	private JTextField txtDiscoDuro;
-	private JTextField textcodigo;
 	private JTextField txtTipo;
 	private JTextField txtTipoRam;
 	private JTextField txtSerial;
@@ -55,8 +54,6 @@ public class ModComponente extends JDialog {
 	private JTextField txtMarcaDd;
 	private JTextField txtModeloRm;
 	private JTextField txtMarcaRm;
-
-	private JLabel lblCdigo;
 	private JLabel lblPrecio;
 	private JLabel lblDiscoDuro;
 	private JLabel lblRam;
@@ -83,10 +80,6 @@ public class ModComponente extends JDialog {
 	private JSpinner spnCantidad;
 	private JSpinner spnCantMemoria;
 	private JSpinner spnCapacidad;
-	private JRadioButton rdbRam;
-	private JRadioButton rdbMotherBoard;
-	private JRadioButton rdbMicro;
-	private JRadioButton rdbDiscoDuro;
 
 	/**
 	 * Launch the application.
@@ -105,6 +98,7 @@ public class ModComponente extends JDialog {
 	 * Create the dialog.
 	 */
 	public ModComponente(Componente selected) {
+		cp = selected;
 		setBounds(100, 100, 416, 467);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -312,122 +306,30 @@ public class ModComponente extends JDialog {
 		pnlDiscoDuro.add(spnCapacidad);
 
 		spnCapacidad = new JSpinner();
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo de Queso:",
-				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(5, 161, 384, 66);
-		contentPanel.add(panel_1);
-		panel_1.setLayout(null);
-
-		rdbDiscoDuro = new JRadioButton("Disco Duro");
-		rdbDiscoDuro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rdbRam.setSelected(false);
-				rdbMotherBoard.setSelected(false);
-				rdbMicro.setSelected(false);
-				rdbDiscoDuro.setSelected(true);
-
-				pnlMicro.setVisible(false);
-				pnlMotherBoard.setVisible(false);
-				pnlDiscoDuro.setVisible(true);
-				pnlRam.setVisible(false);
-				// updateCodigo();
-			}
-		});
-
-		rdbDiscoDuro.setBounds(206, 25, 89, 23);
-		panel_1.add(rdbDiscoDuro);
-
-		rdbMicro = new JRadioButton("Micro");
-		rdbMicro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rdbRam.setSelected(false);
-				rdbMotherBoard.setSelected(false);
-				rdbMicro.setSelected(true);
-				rdbDiscoDuro.setSelected(false);
-
-				pnlMicro.setVisible(true);
-				pnlMotherBoard.setVisible(false);
-				pnlDiscoDuro.setVisible(false);
-				pnlRam.setVisible(false);
-				// updateCodigo();
-			}
-		});
-		rdbMicro.setBounds(129, 25, 59, 23);
-		panel_1.add(rdbMicro);
-
-		rdbRam = new JRadioButton("Ram");
-		rdbRam.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rdbRam.setSelected(true);
-				rdbMotherBoard.setSelected(false);
-				rdbMicro.setSelected(false);
-				rdbDiscoDuro.setSelected(false);
-
-				pnlMicro.setVisible(false);
-				pnlMotherBoard.setVisible(false);
-				pnlDiscoDuro.setVisible(false);
-				pnlRam.setVisible(true);
-				// updateCodigo();
-			}
-		});
-		rdbRam.setBounds(308, 25, 68, 23);
-		panel_1.add(rdbRam);
-
-		rdbMotherBoard = new JRadioButton("MotherBoard");
-		rdbMotherBoard.setBounds(8, 25, 112, 23);
-		panel_1.add(rdbMotherBoard);
-		rdbMotherBoard.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				rdbRam.setSelected(false);
-				rdbMotherBoard.setSelected(true);
-				rdbMicro.setSelected(false);
-				rdbDiscoDuro.setSelected(false);
-
-				pnlMicro.setVisible(false);
-				pnlMotherBoard.setVisible(true);
-				pnlDiscoDuro.setVisible(false);
-				pnlRam.setVisible(false);
-				// updateCodigo();
-			}
-		});
-		rdbMotherBoard.setSelected(true);
-		rdbRam.setBounds(308, 25, 68, 23);
-		panel_1.add(rdbRam);
 		{
 			JPanel panel = new JPanel();
-			panel.setBounds(5, 5, 384, 152);
+			panel.setBounds(6, 13, 384, 204);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n General:",
 					TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel);
 			panel.setLayout(null);
 
-			lblCdigo = new JLabel("Serial:");
-			lblCdigo.setBounds(10, 24, 53, 14);
-			panel.add(lblCdigo);
-
-			textcodigo = new JTextField();
-			textcodigo.setEditable(false);
-			textcodigo.setBounds(10, 49, 364, 20);
-			panel.add(textcodigo);
-			textcodigo.setColumns(10);
-
 			lblPrecio = new JLabel("Precio:");
-			lblPrecio.setBounds(10, 82, 72, 14);
+			lblPrecio.setBounds(12, 36, 72, 14);
 			panel.add(lblPrecio);
 
 			spnPrecio = new JSpinner();
 			spnPrecio.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
-			spnPrecio.setBounds(10, 107, 161, 20);
+			spnPrecio.setBounds(12, 67, 161, 20);
 			panel.add(spnPrecio);
 
 			lblCantidad = new JLabel("Cantidad:");
-			lblCantidad.setBounds(203, 82, 72, 14);
+			lblCantidad.setBounds(12, 112, 72, 14);
 			panel.add(lblCantidad);
 
 			spnCantidad = new JSpinner();
 			spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-			spnCantidad.setBounds(203, 107, 161, 20);
+			spnCantidad.setBounds(12, 148, 161, 20);
 			panel.add(spnCantidad);
 
 		}
@@ -442,7 +344,6 @@ public class ModComponente extends JDialog {
 				JButton okButton = new JButton("Modificar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Componente aux = null;
 						float precio = Float.valueOf(spnPrecio.getValue().toString());
 						int cantidad = Integer.valueOf(spnCantidad.getValue().toString());
 						if (cp instanceof MotherBoard) {
@@ -453,10 +354,10 @@ public class ModComponente extends JDialog {
 							String micro = txtMicro.getText();
 							String discoDuro = txtDiscoDuro.getText();
 							String tipoRam = txtTipoRam.getText();
-
+							((MotherBoard) cp).setSerial(txtSerial.getText());
 							((MotherBoard) cp).setPrecio(precio);
 							((MotherBoard) cp).setCantidad(cantidad);
-							;
+
 							((MotherBoard) cp).setMarca(marcaMb);
 							((MotherBoard) cp).setModelo(modeloMb);
 							((MotherBoard) cp).setMicro(micro);
@@ -510,6 +411,11 @@ public class ModComponente extends JDialog {
 							((Ram) cp).setTipoRam(tipoRam);
 							// clean();
 						}
+						Tienda.getInstance().modificarQueso(cp);
+						ListadoComponente.loadComponentes(0);
+						JOptionPane.showMessageDialog(null, "Modificación Exitosa", "Informacion",
+								JOptionPane.INFORMATION_MESSAGE);
+						dispose();
 
 					}
 
@@ -529,6 +435,66 @@ public class ModComponente extends JDialog {
 
 				buttonPane.add(cancelButton);
 			}
+			if (cp instanceof MotherBoard) {
+				pnlMotherBoard.setVisible(true);
+				pnlRam.setVisible(false);
+				pnlMicro.setVisible(false);
+				pnlDiscoDuro.setVisible(false);
+
+				spnPrecio.setValue(cp.getPrecio());
+				spnCantidad.setValue(cp.getCantidad());
+				txtMarcaMb.setText(cp.getMarca());
+				txtModeloMb.setText(cp.getModelo());
+				txtMicro.setText(((MotherBoard) cp).getMicro());
+				txtDiscoDuro.setText(((MotherBoard) cp).getConexionDisco());
+				txtRam.setText(((MotherBoard) cp).getTipoRam());
+				txtTipoConexionMb.setText(((MotherBoard) cp).getTipoConexion());
+			}
+
+			if (cp instanceof Ram) {
+				pnlMotherBoard.setVisible(false);
+				pnlRam.setVisible(true);
+				pnlMicro.setVisible(false);
+				pnlDiscoDuro.setVisible(false);
+
+				spnPrecio.setValue(cp.getPrecio());
+				spnCantidad.setValue(cp.getCantidad());
+				txtMarcaRm.setText(cp.getMarca());
+				txtModeloRm.setText(cp.getModelo());
+				spnCantMemoria.setValue(((Ram) cp).getCantMemoria());
+				txtTipoRam.setText(((Ram) cp).getTipoRam());
+
+			}
+
+			if (cp instanceof Micro) {
+				pnlMotherBoard.setVisible(false);
+				pnlRam.setVisible(false);
+				pnlMicro.setVisible(true);
+				pnlDiscoDuro.setVisible(false);
+
+				spnPrecio.setValue(cp.getPrecio());
+				spnCantidad.setValue(cp.getCantidad());
+				txtMarcaMc.setText(cp.getMarca());
+				txtModeloMc.setText(cp.getModelo());
+				txtTipoConexionMc.setText(((Micro) cp).getTipoConexion());
+				txtProcesamiento.setText(((Micro) cp).getProcesamiento());
+
+			}
+			if (cp instanceof DiscoDuro) {
+				pnlMotherBoard.setVisible(false);
+				pnlRam.setVisible(false);
+				pnlMicro.setVisible(false);
+				pnlDiscoDuro.setVisible(true);
+
+				spnPrecio.setValue(cp.getPrecio());
+				spnCantidad.setValue(cp.getCantidad());
+				txtMarcaDd.setText(cp.getMarca());
+				txtModeloDd.setText(cp.getModelo());
+				spnCapacidad.setValue(((DiscoDuro) cp).getCapacidad());
+				txtTipoConexionDd.setText(((DiscoDuro) cp).getTipoConexion());
+
+			}
+
 		}
 
 	}
