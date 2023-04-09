@@ -208,41 +208,40 @@ public class Facturar extends JDialog {
 		// Aqui creo un arreglo de strings para colocar los codigos y nombres de los
 		// quesos
 		for (Componente q : componentes2) {
-			String nRam = "Ram";
-			String nMicro = "Micro";
-			String nMotherBoard = "MotherBoard";
-			String nDiscoDuro = "DiscoDuro";
+			String serial = q.getSerial();
 			int cantidad = q.getCantidad();
-			q.setCantidad(cantidad);
+
 			if (q instanceof Ram) {
-				nombresComponentes.add(String.format("%s %d", nRam,cantidad));
+				nombresComponentes.add(String.format("%s(%d)", serial, cantidad));
 
 				// nombresComponentes.add(q.getSerial() + "-Ram");
 				// es decir que a un string si se le puede agregar de otra clase
 			}
 			if (q instanceof Micro) {
-				nombresComponentes.add(q.getSerial() + "-Micro");
+				nombresComponentes.add(String.format("%s(%d)", serial, cantidad));
+
 			}
 			if (q instanceof MotherBoard) {
-				nombresComponentes.add(q.getSerial() + "-MotherBoard");
+				nombresComponentes.add(String.format("%s(%d)", serial, cantidad));
+
 			}
 			if (q instanceof DiscoDuro) {
-				nombresComponentes.add(q.getSerial() + "-DiscoDuro");
+				nombresComponentes.add(String.format("%s(%d)", serial, cantidad));
+
 			}
 
 		}
 
 		for (Combo combo : misCombos) {
-			nombresComponentes.add(combo.getCodigo() + "-Combo");
+			nombresComponentes.add(combo.getCodigo() + "-Combo  ");
 		}
 
 		// Aqui se presentan los quesos
 		// Creo una lista modelo para presentar los los nombres de la lista anterior
 		DefaultListModel<String> modeloComponentes = new DefaultListModel<String>();
 		for (String nombre : nombresComponentes) {
-			for (Componente cp : Tienda.getInstance().getMisComponentes()) {
-				modeloComponentes.addElement(nombre);
-			}
+			modeloComponentes.addElement(nombre);
+
 		}
 		list.setModel(modeloComponentes);
 
@@ -273,32 +272,30 @@ public class Facturar extends JDialog {
 
 						String codigo = (String) modelo.getElementAt(index);
 						// index++;
-						if (codigo.substring(12, 15).equalsIgnoreCase("(1)")) {
-							for (Componente cp : Tienda.getInstance().getMisComponentes()) {
-								int cantidad = cp.getCantidad();
-								cp.setCantidad(cantidad);
-								modelo0.addElement(String.format("%s (%d)", codigo, cantidad));
-							}
-							// modelo0 es la lista 2
+						int cantidad = 0;
+
+						if (codigo.substring(4, 7).equalsIgnoreCase("(1)")) {
+							modelo0.addElement(codigo);
 							modelo.removeElementAt(index);
 						} else {
 							for (Componente cp : Tienda.getInstance().getMisComponentes()) {
-								int cantidad = cp.getCantidad();
+								cantidad = cp.getCantidad();
+								System.out.println(cantidad);
 								--cantidad; // restar 1 a la cantidad actual
 								cp.setCantidad(cantidad);
-								System.out.println(cantidad);
-								if (cantidad >= 1) {
-									modelo0.addElement(String.format("%s (%d)", codigo, cantidad));
+								if (cantidad > 1) {
+									modelo0.addElement(String.format("%s(%d)", codigo, cantidad));
+									
 								}
-								// } else {
-//							        modelo0.addElement(codigo);
-//							    }
 							}
 
-							// modelo0 es la lista 2
-							// modelo.removeElementAt(index);
+							System.out.println(codigo.substring(4, 7));
 						}
-						System.out.println(codigo.substring(12, 15));
+
+						// modelo0 es la lista 2
+
+						// modelo0 es la lista 2
+						// modelo.removeElementAt(index);
 
 					}
 					// aqui igualo modelo al modelo de la lista 1
@@ -332,16 +329,25 @@ public class Facturar extends JDialog {
 				if (index >= 0 && index < componentes.getSize()) {
 					// modelo0 = modelo;
 					String codigo = (String) modelo0.getElementAt(index);
-					// codigo es el elemento seleccionado de la 2dalista
+					// index++;
+					int cantidad = 0;
 
-					// modelo0 es la lista 2
+					if (codigo.substring(4, 7).equalsIgnoreCase("(1)")) {
+						modelo.addElement(codigo);
+						modelo0.removeElementAt(index);
+					} else {
+						for (Componente cp : Tienda.getInstance().getMisComponentes()) {
+							cantidad = cp.getCantidad();
+							System.out.println(cantidad);
+							++cantidad; // restar 1 a la cantidad actual
+							cp.setCantidad(cantidad);
+							if (cantidad > 1) {
+								modelo.addElement(String.format("%s(%d)", codigo, cantidad));
+							}
+						}
 
-					modelo.addElement(codigo);
-					modelo0.removeElementAt(index);
-
-//							modelo.addElement(codigo);
-//							// modelo0 es la lista 2
-//							modelo0.removeElementAt(index);
+						System.out.println(codigo.substring(4, 7));
+					}
 
 				}
 				list.setModel(modelo);
