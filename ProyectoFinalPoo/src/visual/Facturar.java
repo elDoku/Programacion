@@ -285,16 +285,11 @@ public class Facturar extends JDialog {
 								cp.setCantidad(cantidad);
 								if (cantidad > 1) {
 									modelo0.addElement(String.format("%s(%d)", codigo, cantidad));
-
+									
 								}
 							}
 
 							System.out.println(codigo.substring(4, 7));
-
-							// Actualizar modelo de lista 1
-							String codigo2 = (String) modelo.getElementAt(index);
-							String codigoActualizado = String.format("%s(%d)", codigo2.substring(0, 4), cantidad);
-							modelo.setElementAt(codigoActualizado, index);
 						}
 
 						// modelo0 es la lista 2
@@ -413,6 +408,9 @@ public class Facturar extends JDialog {
 						// String codigo,ArrayList<Queso> misQuesos, Cliente cliente
 						Tienda.getInstance().insertarCliente(aux);
 						Tienda.getInstance().insertarFactura(factura);
+						
+			            Tienda.getInstance().guardarClientesEnArchivo();
+						Tienda.getInstance().guardarFacturasEnArchivo();
 						Tienda.getInstance().verificarDisponibles(losComponentes());
 						JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 								JOptionPane.INFORMATION_MESSAGE);

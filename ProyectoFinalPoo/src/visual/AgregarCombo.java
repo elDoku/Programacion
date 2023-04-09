@@ -301,7 +301,6 @@ public class AgregarCombo extends JDialog {
 				btnFacturar = new JButton("Agregar");
 				btnFacturar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-					
 						
 						Combo aux=null;
 						String nombre = txtNombre.getText();

@@ -8,6 +8,7 @@ public class Combo implements Serializable{
 	 * 
 	 */
 	
+	
 	private static final long serialVersionUID = 5016231498019537345L;
 	/**
 	 * 
