@@ -1,5 +1,10 @@
 package logico;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.JList;
@@ -18,6 +23,7 @@ public class Tienda {
 		this.misComponentes = new ArrayList<>();
 		this.misFacturas = new ArrayList<>();
 		this.misClientes = new ArrayList<>();
+		cargarComponentesDesdeArchivo();
 	}
 
 	public static Tienda getInstance() {
@@ -92,6 +98,45 @@ public class Tienda {
 
 	// --------------------------------------------------------------------------
 
+	public void guardarComponentesEnArchivo() {
+        try {
+            File archivo = new File("C:\\Users\\DELL\\Documents\\DatosProjectoFinal\\Miscomponentes.dat");
+            FileOutputStream fos = new FileOutputStream(archivo);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeInt(misComponentes.size());
+            for (Componente componente : misComponentes) {
+            	
+            	oos.writeObject(componente);
+			}
+            
+            oos.close();
+            fos.close();
+            System.out.println("Se ha guardado el ArrayList misComponentes en el archivo " + archivo.getPath());
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error al guardar el ArrayList misComponentes en el archivo: " + e.getMessage());
+        }
+    }
+	
+	
+	public void cargarComponentesDesdeArchivo() {
+	    try {
+	        File archivo = new File("C:\\Users\\DELL\\Documents\\DatosProjectoFinal\\Miscomponentes.dat");
+	        FileInputStream fis = new FileInputStream(archivo);
+	        ObjectInputStream ois = new ObjectInputStream(fis);
+	        int numComponentes = ois.readInt();
+	        for (int i = 0; i < numComponentes; i++) {
+	            Componente componente = (Componente) ois.readObject();
+	            misComponentes.add(componente);
+	        }
+	        ois.close();
+	        fis.close();
+	        System.out.println("Se han cargado " + numComponentes + " componentes desde el archivo " + archivo.getPath());
+	    } catch (Exception e) {
+	        System.out.println("Ha ocurrido un error al cargar los componentes desde el archivo: " + e.getMessage());
+	    }
+	}
+	
+	
 	public float gananciaDiscoDuro() {
 		float total = 0;
 		for (Factura fact : misFacturas) {

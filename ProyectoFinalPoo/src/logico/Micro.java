@@ -2,6 +2,10 @@ package logico;
 
 public class Micro extends Componente {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4176954534353180914L;
 	private String tipoConexion;
 	private String procesamiento;
 

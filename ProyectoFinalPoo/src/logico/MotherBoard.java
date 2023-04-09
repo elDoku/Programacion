@@ -2,6 +2,10 @@ package logico;
 
 public class MotherBoard extends Componente {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6398190048088735735L;
 	private String micro;
 	private String conexionDisco;
 	private String tipoRam;

@@ -493,6 +493,7 @@ public class RegComponente extends JDialog {
 							float cantMemoria = Float.valueOf(spnCantMemoria.getValue().toString());
 							aux = new Ram(precio, cantidad, serial, marcaRm, modeloRm, cantMemoria, tipoRam);
 							Tienda.getInstance().insertarComponente(aux);
+							Tienda.getInstance().guardarComponentesEnArchivo();
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();

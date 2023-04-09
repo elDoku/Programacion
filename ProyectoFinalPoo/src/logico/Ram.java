@@ -2,6 +2,10 @@ package logico;
 
 public class Ram extends Componente {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1562685468018217480L;
 	private  float cantMemoria;
 	private String tipoRam;
 	public Ram( float precio, int cantidad, String serial, String marca, String modelo,
