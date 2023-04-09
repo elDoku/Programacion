@@ -49,6 +49,7 @@ public class Facturar extends JDialog {
 	private JTextField txtDireccion;
 	private JScrollPane scrollPane;
 	private JList<String> list;
+	private JSpinner spnNCant;
 	private JList<String> list_1;
 	private JScrollPane scrollPane_1;
 	private JButton btnDerecha;
@@ -267,6 +268,9 @@ public class Facturar extends JDialog {
 					// verifica que lo que se busca esta dentro de la lista
 					// seleccionado dentro de los quesos
 					// boolean encontrado = false;
+
+					int ncantidad = Integer.valueOf(spnNCant.getValue().toString());
+
 					modelo = modeloComponentes;
 					if (index >= 0 && index < modelo.getSize()) {
 
@@ -280,22 +284,23 @@ public class Facturar extends JDialog {
 						} else {
 							for (Componente cp : Tienda.getInstance().getMisComponentes()) {
 								cantidad = cp.getCantidad();
-								System.out.println(cantidad);
-								--cantidad; // restar 1 a la cantidad actual
-								cp.setCantidad(cantidad);
-								if (cantidad > 1) {
-									modelo0.addElement(String.format("%s(%d)", codigo, cantidad));
+								if (ncantidad <= cantidad) {
+
+									// cantidad = cp.getCantidad();
+									System.out.println(cantidad);
 									
+									cp.setCantidad(cantidad - ncantidad);
+									if (cantidad > 1) {
+										modelo0.addElement(String.format("%s(%d)", codigo, ncantidad));
+
+									}
 								}
 							}
 
-							System.out.println(codigo.substring(4, 7));
+							String codigo2 = (String) modelo.getElementAt(index);
+							String codigoActualizado = String.format("%s(%d)", codigo2.substring(0, 4), cantidad);
+							modelo.setElementAt(codigoActualizado, index);
 						}
-
-						// modelo0 es la lista 2
-
-						// modelo0 es la lista 2
-						// modelo.removeElementAt(index);
 
 					}
 					// aqui igualo modelo al modelo de la lista 1
@@ -331,22 +336,30 @@ public class Facturar extends JDialog {
 					String codigo = (String) modelo0.getElementAt(index);
 					// index++;
 					int cantidad = 0;
+					int ncantidad = Integer.valueOf(spnNCant.getValue().toString());
 
+					// System.out.println(codigo.substring(7, 10));
 					if (codigo.substring(4, 7).equalsIgnoreCase("(1)")) {
 						modelo.addElement(codigo);
 						modelo0.removeElementAt(index);
 					} else {
 						for (Componente cp : Tienda.getInstance().getMisComponentes()) {
 							cantidad = cp.getCantidad();
-							System.out.println(cantidad);
+
+							// System.out.println(cantidad);
 							++cantidad; // restar 1 a la cantidad actual
 							cp.setCantidad(cantidad);
-							if (cantidad > 1) {
-								modelo.addElement(String.format("%s(%d)", codigo, cantidad));
-							}
+
+//							if (cantidad == 1) {
+//								modelo.addElement(String.format("%s(%d)", codigo, cantidad));
+//							
+//							}
 						}
 
-						System.out.println(codigo.substring(4, 7));
+						String codigo2 = (String) modelo0.getElementAt(index);
+						String codigoActualizado = String.format("%s(%d)", codigo2.substring(0, 4), cantidad);
+						modelo.setElementAt(codigoActualizado, index);
+
 					}
 
 				}
@@ -367,10 +380,10 @@ public class Facturar extends JDialog {
 		btnIzquierda.setBounds(199, 154, 88, 23);
 		panel_1.add(btnIzquierda);
 
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spinner.setBounds(209, 110, 64, 22);
-		panel_1.add(spinner);
+		spnNCant = new JSpinner();
+		spnNCant.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spnNCant.setBounds(209, 110, 64, 22);
+		panel_1.add(spnNCant);
 
 		// ---------------------------------------------------------------------------------------
 		//
@@ -408,8 +421,8 @@ public class Facturar extends JDialog {
 						// String codigo,ArrayList<Queso> misQuesos, Cliente cliente
 						Tienda.getInstance().insertarCliente(aux);
 						Tienda.getInstance().insertarFactura(factura);
-						
-			            Tienda.getInstance().guardarClientesEnArchivo();
+
+						Tienda.getInstance().guardarClientesEnArchivo();
 						Tienda.getInstance().guardarFacturasEnArchivo();
 						Tienda.getInstance().verificarDisponibles(losComponentes());
 						JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
