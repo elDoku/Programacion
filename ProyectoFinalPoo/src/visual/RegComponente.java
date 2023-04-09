@@ -455,6 +455,7 @@ public class RegComponente extends JDialog {
 							aux = new MotherBoard(precio, cantidad, serial, marcaMb, modeloMb, micro, discoDuro,
 									tipoRam, tipoConexionMb);
 							Tienda.getInstance().insertarComponente(aux);
+							Tienda.getInstance().guardarComponentesEnArchivo();
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();
@@ -468,6 +469,7 @@ public class RegComponente extends JDialog {
 
 							aux = new DiscoDuro(precio, cantidad, serial, marcaDd, modeloDd, capacidad, tipoConexionDd);
 							Tienda.getInstance().insertarComponente(aux);
+							Tienda.getInstance().guardarComponentesEnArchivo();
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 
@@ -481,6 +483,7 @@ public class RegComponente extends JDialog {
 
 							aux = new Micro(precio, cantidad, serial, marcaMc, modeloMc, tipoConexionMc, procesamiento);
 							Tienda.getInstance().insertarComponente(aux);
+							Tienda.getInstance().guardarComponentesEnArchivo();
 							JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 									JOptionPane.INFORMATION_MESSAGE);
 							clean();

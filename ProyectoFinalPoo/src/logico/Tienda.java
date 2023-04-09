@@ -100,7 +100,7 @@ public class Tienda {
 
 	public void guardarComponentesEnArchivo() {
         try {
-            File archivo = new File("C:\\Users\\DELL\\Documents\\DatosProjectoFinal\\Miscomponentes.dat");
+            File archivo = new File("Miscomponentes.dat");
             FileOutputStream fos = new FileOutputStream(archivo);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeInt(misComponentes.size());
@@ -120,7 +120,7 @@ public class Tienda {
 	
 	public void cargarComponentesDesdeArchivo() {
 	    try {
-	        File archivo = new File("C:\\Users\\DELL\\Documents\\DatosProjectoFinal\\Miscomponentes.dat");
+	        File archivo = new File("Miscomponentes.dat");
 	        FileInputStream fis = new FileInputStream(archivo);
 	        ObjectInputStream ois = new ObjectInputStream(fis);
 	        int numComponentes = ois.readInt();
