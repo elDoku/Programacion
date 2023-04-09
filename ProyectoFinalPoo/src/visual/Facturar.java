@@ -408,9 +408,6 @@ public class Facturar extends JDialog {
 						// String codigo,ArrayList<Queso> misQuesos, Cliente cliente
 						Tienda.getInstance().insertarCliente(aux);
 						Tienda.getInstance().insertarFactura(factura);
-						
-			            Tienda.getInstance().guardarClientesEnArchivo();
-						Tienda.getInstance().guardarFacturasEnArchivo();
 						Tienda.getInstance().verificarDisponibles(losComponentes());
 						JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 								JOptionPane.INFORMATION_MESSAGE);
