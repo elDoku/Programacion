@@ -9,10 +9,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+
+import logico.Tienda;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
@@ -30,6 +40,7 @@ public class Principal extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+			
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -46,6 +57,32 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		
+		
+		addWindowListener(new WindowAdapter() {
+			
+			public void windowClosing(WindowEvent e) {
+				
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("empresa.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(Tienda.getInstance());
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			
+			
+		});
+		
+		
 		setTitle("Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

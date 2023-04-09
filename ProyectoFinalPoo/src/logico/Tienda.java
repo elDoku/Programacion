@@ -5,11 +5,25 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JList;
 
-public class Tienda {
+
+
+
+
+
+
+public class Tienda implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1850334921469337776L;
+	private ArrayList<User> misUser;
+	private static User LoginUser;
+	
 	private ArrayList<Combo> misCombos;
 	private ArrayList<Componente> misComponentes;
 	private ArrayList<Factura> misFacturas;
@@ -24,6 +38,7 @@ public class Tienda {
 		this.misComponentes = new ArrayList<>();
 		this.misFacturas = new ArrayList<>();
 		this.misClientes = new ArrayList<>();
+		this.misUser= new ArrayList<>();
 		
 		cargarComponentesDesdeArchivo();
 		cargarCombosDesdeArchivo();
@@ -89,7 +104,52 @@ public class Tienda {
 	public void insertarCombo(Combo combo) {
 		misCombos.add(combo);
 	}
+	
+	//////////////////////////////////////////////////
+	
+	public ArrayList<User> getMisUsers() {
+		return misUser;
+	}
 
+	public void setMisUsers(ArrayList<User> misUsers) {
+		this.misUser = misUsers;
+	}
+	
+	public void regUser(User user) {
+		misUser.add(user);
+		
+	}
+
+	public static Tienda getTienda() {
+		return tienda;
+	}
+
+	public static void setTienda(Tienda tienda) {
+		Tienda.tienda = tienda;
+	}
+	
+	public static User getLoginUser() {
+		return LoginUser;
+	}
+
+	public static void setLoginUser(User loginUser) {
+			Tienda.LoginUser = loginUser;
+	}
+	
+	public boolean confirmLogin(String text, String text2) {
+		boolean login = false;
+		for (User user : misUser) {
+			if(user.getUserName().equals(text) && user.getPass().equals(text2)){
+				LoginUser = user;
+				login = true;
+			}
+		}
+		return login;
+	}
+
+
+	///////////////////////////////////////////////
+	
 	public void verificarDisponibles(ArrayList<Componente> losComponentes) {
 		ArrayList<Componente> nuevos = new ArrayList<>();
 		nuevos.addAll(misComponentes);
@@ -102,6 +162,16 @@ public class Tienda {
 	}
 
 	// --------------------------------------------------------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//////////////////////////////////////////////////////////
 
 	public void guardarComponentesEnArchivo() {
         try {
@@ -531,5 +601,15 @@ public class Tienda {
 		// TODO Auto-generated method stub
 
 	}
+
+	public ArrayList<User> getMisUser() {
+		return misUser;
+	}
+
+	public void setMisUser(ArrayList<User> misUser) {
+		this.misUser = misUser;
+	}
+
+	
 
 }
