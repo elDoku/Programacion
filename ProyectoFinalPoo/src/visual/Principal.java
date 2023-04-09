@@ -37,6 +37,7 @@ public class Principal extends JFrame {
 	private Dimension dim;
 
 	/**
+	 * 
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
