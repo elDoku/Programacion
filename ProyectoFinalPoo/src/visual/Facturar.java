@@ -208,18 +208,26 @@ public class Facturar extends JDialog {
 		// Aqui creo un arreglo de strings para colocar los codigos y nombres de los
 		// quesos
 		for (Componente q : componentes2) {
+			String nRam = "Ram";
+			String nMicro = "Micro";
+			String nMotherBoard = "MotherBoard";
+			String nDiscoDuro = "DiscoDuro";
+			int cantidad = q.getCantidad();
+			q.setCantidad(cantidad);
 			if (q instanceof Ram) {
-				nombresComponentes.add(q.getSerial() + "-Ram (" + q.getCantidad() + ")");
+				nombresComponentes.add(String.format("%s %d", nRam,cantidad));
+
+				// nombresComponentes.add(q.getSerial() + "-Ram");
 				// es decir que a un string si se le puede agregar de otra clase
 			}
 			if (q instanceof Micro) {
-				nombresComponentes.add(q.getSerial() + "-Micro (" + q.getCantidad() + ")");
+				nombresComponentes.add(q.getSerial() + "-Micro");
 			}
 			if (q instanceof MotherBoard) {
-				nombresComponentes.add(q.getSerial() + "-MotherBoard (" + q.getCantidad() + ")");
+				nombresComponentes.add(q.getSerial() + "-MotherBoard");
 			}
 			if (q instanceof DiscoDuro) {
-				nombresComponentes.add(q.getSerial() + "-DiscoDuro (" + q.getCantidad() + ")");
+				nombresComponentes.add(q.getSerial() + "-DiscoDuro");
 			}
 
 		}
@@ -232,8 +240,9 @@ public class Facturar extends JDialog {
 		// Creo una lista modelo para presentar los los nombres de la lista anterior
 		DefaultListModel<String> modeloComponentes = new DefaultListModel<String>();
 		for (String nombre : nombresComponentes) {
-			// se recorre el arreglo string de la variable nombre de la clase string
-			modeloComponentes.addElement(nombre);
+			for (Componente cp : Tienda.getInstance().getMisComponentes()) {
+				modeloComponentes.addElement(nombre);
+			}
 		}
 		list.setModel(modeloComponentes);
 
@@ -260,32 +269,51 @@ public class Facturar extends JDialog {
 					// seleccionado dentro de los quesos
 					// boolean encontrado = false;
 					modelo = modeloComponentes;
+					if (index >= 0 && index < modelo.getSize()) {
+
+						String codigo = (String) modelo.getElementAt(index);
+						// index++;
+						if (codigo.substring(12, 15).equalsIgnoreCase("(1)")) {
+							for (Componente cp : Tienda.getInstance().getMisComponentes()) {
+								int cantidad = cp.getCantidad();
+								cp.setCantidad(cantidad);
+								modelo0.addElement(String.format("%s (%d)", codigo, cantidad));
+							}
+							// modelo0 es la lista 2
+							modelo.removeElementAt(index);
+						} else {
+							for (Componente cp : Tienda.getInstance().getMisComponentes()) {
+								int cantidad = cp.getCantidad();
+								--cantidad; // restar 1 a la cantidad actual
+								cp.setCantidad(cantidad);
+								System.out.println(cantidad);
+								if (cantidad >= 1) {
+									modelo0.addElement(String.format("%s (%d)", codigo, cantidad));
+								}
+								// } else {
+//							        modelo0.addElement(codigo);
+//							    }
+							}
+
+							// modelo0 es la lista 2
+							// modelo.removeElementAt(index);
+						}
+						System.out.println(codigo.substring(12, 15));
+
+					}
 					// aqui igualo modelo al modelo de la lista 1
 
-					if (index >= 0 && index < modelo.getSize()) {
-						String codigo = (String) modelo.getElementAt(index);
+				}
+				list.setModel(modelo);
+				list_1.setModel(modelo0);
+				spnTotal.setValue(
+						Tienda.getInstance().totalFactura(list_1) + Tienda.getInstance().totalFacturaCombo(list_1));
+				if (list_1.getModel().getSize() > 0) {
+					btnFacturar.setEnabled(true);
+				}
+				if (list_1.getModel().getSize() < 1) {
+					btnFacturar.setEnabled(false);
 
-						for (Componente cp : Tienda.getInstance().getMisComponentes()) {
-							// index++;
-							if (index <= cp.getCantidad()) {
-								modelo0.addElement(codigo);
-								// modelo0 es la lista 2
-								if (cp.getCantidad() == 1)
-									modelo.removeElementAt(index);
-
-							}
-						}
-					}
-					list.setModel(modelo);
-					list_1.setModel(modelo0);
-					spnTotal.setValue(
-							Tienda.getInstance().totalFactura(list_1) + Tienda.getInstance().totalFacturaCombo(list_1));
-					if (list_1.getModel().getSize() > 0) {
-						btnFacturar.setEnabled(true);
-					}
-					if (list_1.getModel().getSize() < 1) {
-						btnFacturar.setEnabled(false);
-					}
 				}
 			}
 		});
@@ -298,22 +326,23 @@ public class Facturar extends JDialog {
 		btnIzquierda.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				Componente c = null;
 				int index = list_1.getSelectedIndex();
 				ListModel<String> componentes = list_1.getModel();
 				// quesos es un arreglo con los datos de la primera lista
 				if (index >= 0 && index < componentes.getSize()) {
 					// modelo0 = modelo;
 					String codigo = (String) modelo0.getElementAt(index);
+					// codigo es el elemento seleccionado de la 2dalista
 
-					for (Componente cp : Tienda.getInstance().getMisComponentes()) {
-						// codigo es el elemento seleccionado de la 2dalista
-						if (index <= cp.getCantidad()) {
-							modelo.addElement(codigo);
-							// modelo0 es la lista 2
-							modelo0.removeElementAt(index);
-						}
-					}
+					// modelo0 es la lista 2
+
+					modelo.addElement(codigo);
+					modelo0.removeElementAt(index);
+
+//							modelo.addElement(codigo);
+//							// modelo0 es la lista 2
+//							modelo0.removeElementAt(index);
+
 				}
 				list.setModel(modelo);
 				list_1.setModel(modelo0);
@@ -395,6 +424,7 @@ public class Facturar extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+
 	}
 
 	private ArrayList<Componente> losComponentes() {
