@@ -16,6 +16,7 @@ public class Tienda {
 	private ArrayList<Cliente> misClientes;
 	public static int codigo = 1;
 	public static Tienda tienda = null;
+	
 
 	public Tienda() {
 		super();

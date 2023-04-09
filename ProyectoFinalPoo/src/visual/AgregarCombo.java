@@ -309,6 +309,7 @@ public class AgregarCombo extends JDialog {
 						ArrayList<String> nombresQ = new ArrayList<String>();
 						ListModel<String> misComponentes = list_1.getModel();
 						Tienda.getInstance().insertarCombo(aux);
+						
 						Tienda.getInstance().guardarCombosEnArchivo();
 						Tienda.getInstance().verificarDisponibles(losComponentes());
 
