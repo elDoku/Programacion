@@ -1,8 +1,17 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Combo {
+public class Combo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5016231498019537345L;
+	/**
+	 * 
+	 */
+	
 	private String codigo;
 	private String nombre;
 	private ArrayList<Componente> misComponentes;

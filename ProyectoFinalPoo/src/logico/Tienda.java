@@ -23,7 +23,11 @@ public class Tienda {
 		this.misComponentes = new ArrayList<>();
 		this.misFacturas = new ArrayList<>();
 		this.misClientes = new ArrayList<>();
+		
 		cargarComponentesDesdeArchivo();
+		cargarCombosDesdeArchivo();
+		cargarFacturasDesdeArchivo();
+		cargarClientesDesdeArchivo();
 	}
 
 	public static Tienda getInstance() {
@@ -136,6 +140,121 @@ public class Tienda {
 	    }
 	}
 	
+	
+	public void guardarCombosEnArchivo() {
+        try {
+            File archivo = new File("Miscombos.dat");
+            FileOutputStream fos = new FileOutputStream(archivo);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeInt(misCombos.size());
+            for (Combo combo : misCombos) {
+            	
+            	oos.writeObject(combo);
+			}
+            
+            oos.close();
+            fos.close();
+            System.out.println("Se ha guardado el ArrayList misCombos en el archivo " + archivo.getPath());
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error al guardar el ArrayList misCombos en el archivo: " + e.getMessage());
+        }
+    }
+	
+	public void cargarCombosDesdeArchivo() {
+	    try {
+	        File archivo = new File("Miscombos.dat");
+	        FileInputStream fis = new FileInputStream(archivo);
+	        ObjectInputStream ois = new ObjectInputStream(fis);
+	        int numCombos = ois.readInt();
+	        for (int i = 0; i < numCombos; i++) {
+	            Combo combo = (Combo) ois.readObject();
+	            misCombos.add(combo);
+	        }
+	        ois.close();
+	        fis.close();
+	        System.out.println("Se han cargado " + numCombos + " combos desde el archivo " + archivo.getPath());
+	    } catch (Exception e) {
+	        System.out.println("Ha ocurrido un error al cargar los combos desde el archivo: " + e.getMessage());
+	    }
+	}
+	
+	
+	public void guardarFacturasEnArchivo() {
+        try {
+            File archivo = new File("MisFacturas.dat");
+            FileOutputStream fos = new FileOutputStream(archivo);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeInt(misFacturas.size());
+            for (Factura factura : misFacturas) {
+            	
+            	oos.writeObject(factura);
+			}
+            
+            oos.close();
+            fos.close();
+            System.out.println("Se ha guardado el ArrayList misFacturas en el archivo " + archivo.getPath());
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error al guardar el ArrayList misFacturass en el archivo: " + e.getMessage());
+        }
+    }
+	
+	
+	public void cargarFacturasDesdeArchivo() {
+	    try {
+	        File archivo = new File("MisFacturas.dat");
+	        FileInputStream fis = new FileInputStream(archivo);
+	        ObjectInputStream ois = new ObjectInputStream(fis);
+	        int numFacturas = ois.readInt();
+	        for (int i = 0; i < numFacturas; i++) {
+	            Factura factura = (Factura) ois.readObject();
+	            misFacturas.add(factura);
+	        }
+	        ois.close();
+	        fis.close();
+	        System.out.println("Se han cargado " + numFacturas + " las facturas desde el archivo " + archivo.getPath());
+	    } catch (Exception e) {
+	        System.out.println("Ha ocurrido un error al cargar las facturas desde el archivo: " + e.getMessage());
+	    }
+	}
+	
+	
+	public void guardarClientesEnArchivo() {
+        try {
+            File archivo = new File("MisClientes.dat");
+            FileOutputStream fos = new FileOutputStream(archivo);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeInt(misFacturas.size());
+            for (Cliente cliente : misClientes) {
+            	
+            	oos.writeObject(cliente);
+			}
+            
+            oos.close();
+            fos.close();
+            System.out.println("Se ha guardado el ArrayList misClientes en el archivo " + archivo.getPath());
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error al guardar el ArrayList misClientes en el archivo: " + e.getMessage());
+        }
+    }
+	
+	
+	public void cargarClientesDesdeArchivo() {
+	    try {
+	        File archivo = new File("MisClientes.dat");
+	        FileInputStream fis = new FileInputStream(archivo);
+	        ObjectInputStream ois = new ObjectInputStream(fis);
+	        int numClientes = ois.readInt();
+	        for (int i = 0; i < numClientes; i++) {
+	            Cliente cliente = (Cliente) ois.readObject();
+	            misClientes.add(cliente);
+	        }
+	        ois.close();
+	        fis.close();
+	        System.out.println("Se han cargado " + numClientes + " los Clientes desde el archivo " + archivo.getPath());
+	    } catch (Exception e) {
+	        System.out.println("Ha ocurrido un error al cargar los clientes desde el archivo: " + e.getMessage());
+	    }
+	}
 	
 	public float gananciaDiscoDuro() {
 		float total = 0;
