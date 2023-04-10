@@ -12,6 +12,7 @@ import logico.Tienda;
 import logico.User;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -61,7 +62,7 @@ public class regUser extends JDialog {
 		textField.setColumns(10);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Administrador", "Comercial"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Administrador"}));
 		comboBox.setBounds(20, 113, 127, 20);
 		contentPanel.add(comboBox);
 		
@@ -96,6 +97,9 @@ public class regUser extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						User user = new User(comboBox.getSelectedItem().toString(),textField.getText(),textField_1.getText());
 					    Tienda.getInstance().regUser(user);
+					    JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
+								JOptionPane.INFORMATION_MESSAGE);
+					    dispose();
 					}
 				});
 				okButton.setActionCommand("OK");

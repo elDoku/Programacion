@@ -17,6 +17,7 @@ import logico.Tienda;
 import logico.User;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -97,7 +98,7 @@ public class login extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(39, 39, 46, 14);
+		lblUsuario.setBounds(39, 39, 87, 14);
 		panel.add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
@@ -121,6 +122,10 @@ public class login extends JFrame {
 					Principal frame = new Principal();
 					dispose();
 					frame.setVisible(true);
+				}else{
+					
+					JOptionPane.showMessageDialog(null, "Usuario No Existe", "Informacion",
+							JOptionPane.INFORMATION_MESSAGE);
 				};
 				
 			}
