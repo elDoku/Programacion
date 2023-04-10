@@ -109,13 +109,6 @@ public class RegComponente extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		// --------------------------------------------
-
-		pnlMotherBoard = new JPanel();
-		pnlMotherBoard.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlMotherBoard.setBounds(6, 230, 384, 137);
-		pnlMotherBoard.setVisible(true);
-
 		// ---------------------------------------
 
 		pnlRam = new JPanel();
@@ -125,6 +118,69 @@ public class RegComponente extends JDialog {
 
 		pnlMicro = new JPanel();
 		pnlMicro.setVisible(false);
+
+		// --------------------------------------------
+
+		pnlMotherBoard = new JPanel();
+		pnlMotherBoard.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlMotherBoard.setBounds(6, 230, 384, 137);
+		pnlMotherBoard.setVisible(true);
+		contentPanel.add(pnlMotherBoard);
+		pnlMotherBoard.setLayout(null);
+
+		txtMarcaMb = new JTextField();
+		txtMarcaMb.setBounds(12, 38, 105, 22);
+		pnlMotherBoard.add(txtMarcaMb);
+		txtMarcaMb.setColumns(10);
+
+		txtModeloMb = new JTextField();
+		txtModeloMb.setBounds(139, 38, 90, 22);
+		pnlMotherBoard.add(txtModeloMb);
+		txtModeloMb.setColumns(10);
+
+		lblMarca = new JLabel("Marca:");
+		lblMarca.setBounds(12, 9, 56, 16);
+		pnlMotherBoard.add(lblMarca);
+
+		lblModelo = new JLabel("Modelo:");
+		lblModelo.setBounds(140, 9, 56, 16);
+		pnlMotherBoard.add(lblModelo);
+
+		txtDiscoDuro = new JTextField();
+		txtDiscoDuro.setBounds(12, 102, 105, 22);
+		pnlMotherBoard.add(txtDiscoDuro);
+		txtDiscoDuro.setColumns(10);
+
+		txtRam = new JTextField();
+		txtRam.setBounds(139, 102, 90, 22);
+		pnlMotherBoard.add(txtRam);
+		txtRam.setColumns(10);
+
+		txtMicro = new JTextField();
+		txtMicro.setBounds(254, 38, 105, 22);
+		pnlMotherBoard.add(txtMicro);
+		txtMicro.setColumns(10);
+
+		lblMicro = new JLabel("Micro:");
+		lblMicro.setBounds(254, 9, 56, 16);
+		pnlMotherBoard.add(lblMicro);
+
+		lblDiscoDuro = new JLabel("Conexion Disco Duro:");
+		lblDiscoDuro.setBounds(12, 73, 105, 16);
+		pnlMotherBoard.add(lblDiscoDuro);
+
+		lblRam = new JLabel("Ram:");
+		lblRam.setBounds(139, 73, 56, 16);
+		pnlMotherBoard.add(lblRam);
+
+		txtTipoConexionMb = new JTextField();
+		txtTipoConexionMb.setBounds(254, 102, 105, 22);
+		pnlMotherBoard.add(txtTipoConexionMb);
+		txtTipoConexionMb.setColumns(10);
+
+		lblTipoConexion = new JLabel("Tipo de Conector:");
+		lblTipoConexion.setBounds(254, 73, 105, 16);
+		pnlMotherBoard.add(lblTipoConexion);
 
 		// -----------------------------------------------
 
@@ -251,62 +307,6 @@ public class RegComponente extends JDialog {
 		lblTipoRam = new JLabel("Tipo de Ram:");
 		lblTipoRam.setBounds(140, 78, 90, 16);
 		pnlRam.add(lblTipoRam);
-		contentPanel.add(pnlMotherBoard);
-		pnlMotherBoard.setLayout(null);
-
-		txtMarcaMb = new JTextField();
-		txtMarcaMb.setBounds(12, 38, 105, 22);
-		pnlMotherBoard.add(txtMarcaMb);
-		txtMarcaMb.setColumns(10);
-
-		txtModeloMb = new JTextField();
-		txtModeloMb.setBounds(139, 38, 90, 22);
-		pnlMotherBoard.add(txtModeloMb);
-		txtModeloMb.setColumns(10);
-
-		lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(12, 9, 56, 16);
-		pnlMotherBoard.add(lblMarca);
-
-		lblModelo = new JLabel("Modelo:");
-		lblModelo.setBounds(140, 9, 56, 16);
-		pnlMotherBoard.add(lblModelo);
-
-		txtDiscoDuro = new JTextField();
-		txtDiscoDuro.setBounds(12, 102, 105, 22);
-		pnlMotherBoard.add(txtDiscoDuro);
-		txtDiscoDuro.setColumns(10);
-
-		txtRam = new JTextField();
-		txtRam.setBounds(139, 102, 90, 22);
-		pnlMotherBoard.add(txtRam);
-		txtRam.setColumns(10);
-
-		txtMicro = new JTextField();
-		txtMicro.setBounds(254, 38, 105, 22);
-		pnlMotherBoard.add(txtMicro);
-		txtMicro.setColumns(10);
-
-		lblMicro = new JLabel("Micro:");
-		lblMicro.setBounds(254, 9, 56, 16);
-		pnlMotherBoard.add(lblMicro);
-
-		lblDiscoDuro = new JLabel("Conexion Disco Duro:");
-		lblDiscoDuro.setBounds(12, 73, 105, 16);
-		pnlMotherBoard.add(lblDiscoDuro);
-
-		lblRam = new JLabel("Ram:");
-		lblRam.setBounds(139, 73, 56, 16);
-		pnlMotherBoard.add(lblRam);
-
-		txtTipoConexionMb = new JTextField();
-		txtTipoConexionMb.setBounds(254, 102, 105, 22);
-		pnlMotherBoard.add(txtTipoConexionMb);
-		txtTipoConexionMb.setColumns(10);
-
-		lblTipoConexion = new JLabel("Tipo de Conector:");
-		lblTipoConexion.setBounds(254, 73, 105, 16);
-		pnlMotherBoard.add(lblTipoConexion);
 
 		spnCapacidad = new JSpinner();
 		JPanel panel_1 = new JPanel();

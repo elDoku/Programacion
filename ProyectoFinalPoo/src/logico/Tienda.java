@@ -397,7 +397,8 @@ public class Tienda implements Serializable{
 		float gmb = gananciaMotherBoard();
 		float gm = gananciaMicro();
 		float gr = gananciaRam();
-		total = gd + gmb + gm + gr;
+		float gc = gananciaCombo();
+		total = gd + gmb + gm + gr + gc;
 		return total;
 	}
 
@@ -509,9 +510,9 @@ public class Tienda implements Serializable{
 	
 	public Combo buscarComboByCodigo(String codigo) {
 		Combo aux = null;
-		for (Combo componente : misCombos) {
-			if (componente.getCodigo().equalsIgnoreCase(codigo)) {
-				aux = componente;
+		for (Combo combo: misCombos) {
+			if (combo.getCodigo().equalsIgnoreCase(codigo)) {
+				aux = combo;
 			}
 		}
 		return aux;
@@ -526,9 +527,11 @@ public class Tienda implements Serializable{
 			String str = lista.getModel().getElementAt(i);
 			String cod = str.substring(0, 4);
 			for (Componente componente : misComponentes) {
-
+				System.out.println(cod);
 				if (componente.getSerial().equalsIgnoreCase(cod)) {
 					total += componente.getPrecio() * componente.getCantidad();
+					System.out.println(componente.getSerial());
+					
 				}
 
 			}
@@ -547,7 +550,7 @@ public class Tienda implements Serializable{
 			String cod = str.substring(0, 4);
 
 			for (Combo combo : misCombos) {
-
+				System.out.println(cod);
 				if (combo.getCodigo().equalsIgnoreCase(cod)) {
 
 					total += combo.PrecioCombo();

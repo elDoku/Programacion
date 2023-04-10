@@ -30,6 +30,8 @@ public class ListadoCliente extends JDialog {
 	private static DefaultTableModel model;
 	private static Object row[];
 	private JButton btnModificar;
+
+	private JButton btnDelete;
 	private Cliente selected = null;
 
 	/**
@@ -76,6 +78,7 @@ public class ListadoCliente extends JDialog {
 							int index = table.getSelectedRow();
 							if(index>=0){
 								btnModificar.setEnabled(true);
+								btnDelete.setEnabled(true);
 								String cedula = table.getValueAt(index, 0).toString();
 								selected = Tienda.getInstance().buscarClienteByCedula(cedula); 
 							}
@@ -92,6 +95,21 @@ public class ListadoCliente extends JDialog {
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				btnDelete = new JButton("Eliminar");
+				btnDelete.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (selected != null) {
+							Tienda.getInstance().getMisClientes().remove(selected);
+							Tienda.getInstance().guardarClientesEnArchivo();
+							loadClients();
+							btnDelete.setEnabled(false);
+						}
+					}
+				});
+				btnDelete.setEnabled(false);
+				buttonPane.add(btnDelete);
+			}
 			{
 				btnModificar = new JButton("Modificar");
 				btnModificar.addActionListener(new ActionListener() {

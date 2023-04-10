@@ -212,31 +212,31 @@ public class Facturar extends JDialog {
 			int cantidad = q.getCantidad();
 
 			if (q instanceof Ram) {
-				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s  #(%d)", serial, cantidad));
 
 				// nombresComponentes.add(q.getSerial() + "-Ram");
 				// es decir que a un string si se le puede agregar de otra clase
 			}
 			if (q instanceof Micro) {
-				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s  #(%d)", serial, cantidad));
 
 			}
 			if (q instanceof MotherBoard) {
-				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s  #(%d)", serial, cantidad));
 
 			}
 			if (q instanceof DiscoDuro) {
-				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s  #(%d)", serial, cantidad));
 
 			}
 
 		}
 
 		for (Combo combo : misCombos) {
-			//nombresComponentes.add(String.format("%s(%d)", serial));
+			// nombresComponentes.add(String.format("%s(%d)", serial));
 
-			nombresComponentes.add(combo.getCodigo() +"  "+combo.getNombre());
-		
+			nombresComponentes.add(combo.getCodigo() + "  " + combo.getNombre());
+
 		}
 
 		// Aqui se presentan los quesos
@@ -411,7 +411,7 @@ public class Facturar extends JDialog {
 		}
 		return array;
 	}
-	
+
 	private ArrayList<Combo> losCombos() {
 		ArrayList<Combo> array = new ArrayList<>();
 		int i = 0;
@@ -423,7 +423,7 @@ public class Facturar extends JDialog {
 				if (combo.getCodigo().equalsIgnoreCase(cod)) {
 					array.add(combo);
 				}
-				
+
 			}
 		}
 		return array;

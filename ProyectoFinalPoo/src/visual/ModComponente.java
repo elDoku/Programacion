@@ -111,58 +111,17 @@ public class ModComponente extends JDialog {
 		pnlMicro = new JPanel();
 		pnlMicro.setVisible(false);
 
+		// ---------------------------------------
+
+		pnlRam = new JPanel();
+		pnlRam.setVisible(false);
+
 		// --------------------------------------------
 
 		pnlMotherBoard = new JPanel();
 		pnlMotherBoard.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlMotherBoard.setBounds(6, 230, 384, 137);
 		pnlMotherBoard.setVisible(true);
-
-		// ---------------------------------------
-
-		pnlRam = new JPanel();
-		pnlRam.setVisible(false);
-
-		pnlRam.setLayout(null);
-		pnlRam.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnlRam.setBounds(6, 230, 384, 137);
-		contentPanel.add(pnlRam);
-
-		txtMarcaRm = new JTextField();
-		txtMarcaRm.setBounds(12, 43, 105, 22);
-		pnlRam.add(txtMarcaRm);
-		txtMarcaRm.setColumns(10);
-
-		txtModeloRm = new JTextField();
-		txtModeloRm.setBounds(140, 43, 90, 22);
-		pnlRam.add(txtModeloRm);
-		txtModeloRm.setColumns(10);
-
-		lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(12, 14, 105, 16);
-		pnlRam.add(lblMarca);
-
-		lblModelo = new JLabel("Modelo:");
-		lblModelo.setBounds(140, 14, 56, 16);
-		pnlRam.add(lblModelo);
-
-		spnCantMemoria = new JSpinner();
-		spnCantMemoria.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
-		spnCantMemoria.setBounds(12, 102, 105, 22);
-		pnlRam.add(spnCantMemoria);
-
-		txtTipoRam = new JTextField();
-		txtTipoRam.setBounds(140, 102, 90, 22);
-		pnlRam.add(txtTipoRam);
-		txtTipoRam.setColumns(10);
-
-		lblDiscoDuro = new JLabel("#Memoria (Mb):");
-		lblDiscoDuro.setBounds(12, 78, 105, 16);
-		pnlRam.add(lblDiscoDuro);
-
-		lblTipoRam = new JLabel("Tipo de Ram:");
-		lblTipoRam.setBounds(140, 78, 90, 16);
-		pnlRam.add(lblTipoRam);
 		contentPanel.add(pnlMotherBoard);
 		pnlMotherBoard.setLayout(null);
 
@@ -219,6 +178,47 @@ public class ModComponente extends JDialog {
 		lblTipoConexion = new JLabel("Tipo de Conector:");
 		lblTipoConexion.setBounds(254, 73, 105, 16);
 		pnlMotherBoard.add(lblTipoConexion);
+		// ---------------------------------------------------------
+		pnlRam.setLayout(null);
+		pnlRam.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlRam.setBounds(6, 230, 384, 137);
+		contentPanel.add(pnlRam);
+
+		txtMarcaRm = new JTextField();
+		txtMarcaRm.setBounds(12, 43, 105, 22);
+		pnlRam.add(txtMarcaRm);
+		txtMarcaRm.setColumns(10);
+
+		txtModeloRm = new JTextField();
+		txtModeloRm.setBounds(140, 43, 90, 22);
+		pnlRam.add(txtModeloRm);
+		txtModeloRm.setColumns(10);
+
+		lblMarca = new JLabel("Marca:");
+		lblMarca.setBounds(12, 14, 105, 16);
+		pnlRam.add(lblMarca);
+
+		lblModelo = new JLabel("Modelo:");
+		lblModelo.setBounds(140, 14, 56, 16);
+		pnlRam.add(lblModelo);
+
+		spnCantMemoria = new JSpinner();
+		spnCantMemoria.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+		spnCantMemoria.setBounds(12, 102, 105, 22);
+		pnlRam.add(spnCantMemoria);
+
+		txtTipoRam = new JTextField();
+		txtTipoRam.setBounds(140, 102, 90, 22);
+		pnlRam.add(txtTipoRam);
+		txtTipoRam.setColumns(10);
+
+		lblDiscoDuro = new JLabel("#Memoria (Mb):");
+		lblDiscoDuro.setBounds(12, 78, 105, 16);
+		pnlRam.add(lblDiscoDuro);
+
+		lblTipoRam = new JLabel("Tipo de Ram:");
+		lblTipoRam.setBounds(140, 78, 90, 16);
+		pnlRam.add(lblTipoRam);
 		pnlMicro.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnlMicro.setBounds(6, 230, 384, 137);
 		contentPanel.add(pnlMicro);
@@ -349,12 +349,11 @@ public class ModComponente extends JDialog {
 						if (cp instanceof MotherBoard) {
 							String marcaMb = txtMarcaMb.getText();
 							String tipoConexionMb = txtTipoConexionMb.getText();
-
 							String modeloMb = txtModeloMb.getText();
 							String micro = txtMicro.getText();
-							String discoDuro = txtDiscoDuro.getText();
-							String tipoRam = txtTipoRam.getText();
-							((MotherBoard) cp).setSerial(txtSerial.getText());
+							String conexionDisco = txtDiscoDuro.getText();
+							String tipoRam = txtRam.getText();
+
 							((MotherBoard) cp).setPrecio(precio);
 							((MotherBoard) cp).setCantidad(cantidad);
 
@@ -363,7 +362,7 @@ public class ModComponente extends JDialog {
 							((MotherBoard) cp).setMicro(micro);
 							((MotherBoard) cp).setConexionDisco(tipoConexionMb);
 							((MotherBoard) cp).setTipoRam(tipoRam);
-							((MotherBoard) cp).setTipoConexion(tipoConexionMb);
+							((MotherBoard) cp).setTipoConexion(conexionDisco);
 
 						}
 						if (cp instanceof DiscoDuro) {

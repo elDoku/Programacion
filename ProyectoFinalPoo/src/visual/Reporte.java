@@ -213,13 +213,14 @@ public class Reporte extends JDialog {
 		spnGMicro.setValue(Tienda.getInstance().gananciaMicro());
 		spnGRam.setValue(Tienda.getInstance().gananciaRam());
 		spnGDiscoDuro.setValue(Tienda.getInstance().gananciaDiscoDuro());
+		spnGCombo.setValue(Tienda.getInstance().gananciaCombo());
+
 		spnTotal.setValue(Tienda.getInstance().totalGanancia());
-		//spnGCombo.setValue(Tienda.getInstance().gananciaCombo());
 
 		spnVMotherBoard.setValue(Tienda.getInstance().ventaMotherBoard());
 		spnVMicro.setValue(Tienda.getInstance().ventaMicro());
 		spnVRam.setValue(Tienda.getInstance().ventaRam());
 		spnVDiscoDuro.setValue(Tienda.getInstance().ventaDiscoDuro());
-		//spnVCombo.setValue(Tienda.getInstance().ventaCombo());
+		spnVCombo.setValue(Tienda.getInstance().ventaCombo());
 	}
 }
