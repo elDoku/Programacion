@@ -497,6 +497,15 @@ public class Tienda implements Serializable{
 		return aux;
 	}
 
+	public Factura buscarFacturaByCodigo(String codigo) {
+		Factura aux = null;
+		for (Factura factura : misFacturas) {
+			if (factura.getCodigo().equalsIgnoreCase(codigo)) {
+				aux = factura;
+			}
+		}
+		return aux;
+	}
 	
 	public Combo buscarComboByCodigo(String codigo) {
 		Combo aux = null;

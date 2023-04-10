@@ -87,6 +87,7 @@ public class ListadoCombo extends JDialog {
 						public void mouseClicked(MouseEvent e) {
 							int index = table.getSelectedRow();
 							if (index >= 0) {
+								btnDelete.setEnabled(true);
 								String codigo = table.getValueAt(index, 0).toString();
 								selected = Tienda.getInstance().buscarComboByCodigo(codigo);
 							}

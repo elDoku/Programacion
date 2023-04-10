@@ -36,7 +36,7 @@ public class ListadoFactura extends JDialog {
 	private JTable table;
 	private static DefaultTableModel model;
 	private static Object rows[];
-	private Componente selected = null;
+	private Factura selected = null;
 	private JButton btnDelete;
 	private ArrayList<Cliente> misCliente;
 	private ArrayList<Factura> misfacturas;
@@ -84,8 +84,9 @@ public class ListadoFactura extends JDialog {
 						public void mouseClicked(MouseEvent e) {
 							int index = table.getSelectedRow();
 							if (index >= 0) {
+								btnDelete.setEnabled(true);
 								String codigo = table.getValueAt(index, 0).toString();
-								selected = Tienda.getInstance().buscarComponenteByCodigo(codigo);
+								selected = Tienda.getInstance().buscarFacturaByCodigo(codigo);
 							}
 						}
 					});
@@ -105,8 +106,8 @@ public class ListadoFactura extends JDialog {
 				btnDelete.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (selected != null) {
-							Tienda.getInstance().getMisComponentes().remove(selected);
-							Tienda.getInstance().guardarComponentesEnArchivo();
+							Tienda.getInstance().getMisFacturas().remove(selected);
+							Tienda.getInstance().guardarFacturasEnArchivo();
 							loadFactura(0);
 							btnDelete.setEnabled(false);
 
