@@ -131,6 +131,7 @@ public class ListadoComponente extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						if (selected != null) {
 							Tienda.getInstance().getMisComponentes().remove(selected);
+							Tienda.getInstance().guardarComponentesEnArchivo();
 							loadComponentes(0);
 							btnDelete.setEnabled(false);
 							comboBox.setSelectedItem("<Todos>");

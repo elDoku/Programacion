@@ -189,6 +189,18 @@ public class Principal extends JFrame {
 				reporte.setVisible(true);
 			}
 		});
+		
+		JMenuItem mntmRegistarUser = new JMenuItem("Registar User");
+		mntmRegistarUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				regUser reg= new regUser();
+				reg.setModal(true);
+				reg.setVisible(true);
+			}
+		});
+		mnAdmin.add(mntmRegistarUser);
 		mnAdmin.add(mntmReporte);
 
 		contentPane = new JPanel();

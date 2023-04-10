@@ -44,7 +44,7 @@ public class DetallesCombo extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Facturar dialog = new Facturar();
+			DetallesCombo dialog = new DetallesCombo(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
