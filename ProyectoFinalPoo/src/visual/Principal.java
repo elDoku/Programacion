@@ -19,10 +19,19 @@ import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
@@ -33,8 +42,12 @@ public class Principal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
 	private Dimension dim;
+
+	
+	static Socket sfd = null;
+	static DataInputStream EntradaSocket;
+	static DataOutputStream SalidaSocket;
 
 	/**
 	 * 
@@ -202,6 +215,53 @@ public class Principal extends JFrame {
 		});
 		mnAdmin.add(mntmRegistarUser);
 		mnAdmin.add(mntmReporte);
+		
+		JMenu mnNewMenu = new JMenu("Respaldo");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Respaldar");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try
+			    {
+			      sfd = new Socket("127.0.0.1",7000);
+			       DataInputStream aux=new DataInputStream(new FileInputStream(new File("empresa.dat")));
+			     // EntradaSocket = new DataInputStream(new FileInputStream(sfd.getInputStream()));
+			      SalidaSocket = new DataOutputStream((sfd.getOutputStream()));
+			      String ejemplo = new String("Esto es una prueba nueva");
+			      int unByte;
+			      try
+			      {
+			        //SalidaSocket.writeUTF(ejemplo);
+			       // SalidaSocket.flush();
+			    	  
+			    	  while((unByte=aux.read()) != -1) {
+			    		  SalidaSocket.write(unByte);
+			          	SalidaSocket.flush();
+			          	}
+			      }
+			      catch (IOException ioe)
+			      {
+			        System.out.println("Error: "+ioe);
+			      }
+			    }
+			    catch (UnknownHostException uhe)
+			    {
+			      System.out.println("No se puede acceder al servidor.");
+			      System.exit(1);
+			    }
+			    catch (IOException ioe)
+			    {
+			      System.out.println("Comunicación rechazada.");
+			      System.exit(1);
+			    }
+				
+				
+				
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_2);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

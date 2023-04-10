@@ -26,8 +26,8 @@ public class ServerS extends Thread
       {
         Socket nsfd = sfd.accept();
         System.out.println("Conexion aceptada de: "+nsfd.getInetAddress());
-        ObjectInputStream oss = new ObjectInputStream(nsfd.getInputStream());
-        ObjectOutputStream escritor=new ObjectOutputStream(new FileOutputStream(new File("empresa_respaldo.dat")));
+        DataInputStream oss = new DataInputStream(nsfd.getInputStream());
+        DataOutputStream escritor=new DataOutputStream(new FileOutputStream(new File("empresa_respaldo.dat")));
         
         //DataInputStream FlujoLectura = new DataInputStream(new BufferedInputStream(nsfd.getInputStream()));
        // String linea = FlujoLectura.readUTF();
