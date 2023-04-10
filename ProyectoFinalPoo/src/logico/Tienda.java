@@ -375,7 +375,7 @@ public class Tienda implements Serializable {
 		float total = 0;
 		for (Factura fact : misFacturas) {
 			for (Combo cb : fact.getMisCombos()) {
-				total += cb.getPrecioCombo(); // se acumula el precio de cada queso cilíndrico hueco
+				total += cb.PrecioCombo(); // se acumula el precio de cada queso cilíndrico hueco
 			}
 		}
 		return total;

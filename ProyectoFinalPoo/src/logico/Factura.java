@@ -74,7 +74,7 @@ public class Factura implements Serializable {
 	public float PrecioFacturaCombo() {
 		float precio = 0;
 		for (Combo combo : misCombos) {
-			precio += combo.getPrecioCombo();
+			precio += combo.PrecioCombo();
 		}
 
 		return precio;

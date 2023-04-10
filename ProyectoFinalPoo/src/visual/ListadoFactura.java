@@ -136,10 +136,11 @@ public class ListadoFactura extends JDialog {
 		rows = new Object[model.getColumnCount()];
 		for (Factura aux : Tienda.getInstance().getMisFacturas()) {
 
+			float descuento=(float) (aux.PrecioFacturaCombo()*(0.10));
 			rows[0] = aux.getCodigo();
 			rows[1] = aux.getCliente().getNombre();
 			rows[2] = aux.getMisComponentes().size() + aux.getMisCombos().size();
-			rows[3] = aux.PrecioFactura() + aux.PrecioFacturaCombo();
+			rows[3] = aux.PrecioFactura() + (aux.PrecioFacturaCombo());
 			model.addRow(rows);
 
 		}
