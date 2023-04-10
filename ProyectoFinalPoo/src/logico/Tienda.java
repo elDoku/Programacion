@@ -10,27 +10,20 @@ import java.util.ArrayList;
 
 import javax.swing.JList;
 
-
-
-
-
-
-
-public class Tienda implements Serializable{
+public class Tienda implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1850334921469337776L;
 	private ArrayList<User> misUser;
 	private static User LoginUser;
-	
+
 	private ArrayList<Combo> misCombos;
 	private ArrayList<Componente> misComponentes;
 	private ArrayList<Factura> misFacturas;
 	private ArrayList<Cliente> misClientes;
 	public static int codigo = 1;
 	public static Tienda tienda = null;
-	
 
 	public Tienda() {
 		super();
@@ -38,8 +31,8 @@ public class Tienda implements Serializable{
 		this.misComponentes = new ArrayList<>();
 		this.misFacturas = new ArrayList<>();
 		this.misClientes = new ArrayList<>();
-		this.misUser= new ArrayList<>();
-		
+		this.misUser = new ArrayList<>();
+
 		cargarComponentesDesdeArchivo();
 		cargarCombosDesdeArchivo();
 		cargarFacturasDesdeArchivo();
@@ -104,9 +97,9 @@ public class Tienda implements Serializable{
 	public void insertarCombo(Combo combo) {
 		misCombos.add(combo);
 	}
-	
+
 	//////////////////////////////////////////////////
-	
+
 	public ArrayList<User> getMisUsers() {
 		return misUser;
 	}
@@ -114,10 +107,10 @@ public class Tienda implements Serializable{
 	public void setMisUsers(ArrayList<User> misUsers) {
 		this.misUser = misUsers;
 	}
-	
+
 	public void regUser(User user) {
 		misUser.add(user);
-		
+
 	}
 
 	public static Tienda getTienda() {
@@ -127,19 +120,19 @@ public class Tienda implements Serializable{
 	public static void setTienda(Tienda tienda) {
 		Tienda.tienda = tienda;
 	}
-	
+
 	public static User getLoginUser() {
 		return LoginUser;
 	}
 
 	public static void setLoginUser(User loginUser) {
-			Tienda.LoginUser = loginUser;
+		Tienda.LoginUser = loginUser;
 	}
-	
+
 	public boolean confirmLogin(String text, String text2) {
 		boolean login = false;
 		for (User user : misUser) {
-			if(user.getUserName().equals(text) && user.getPass().equals(text2)){
+			if (user.getUserName().equals(text) && user.getPass().equals(text2)) {
 				LoginUser = user;
 				login = true;
 			}
@@ -147,9 +140,8 @@ public class Tienda implements Serializable{
 		return login;
 	}
 
-
 	///////////////////////////////////////////////
-	
+
 	public void verificarDisponibles(ArrayList<Componente> losComponentes) {
 		ArrayList<Componente> nuevos = new ArrayList<>();
 		nuevos.addAll(misComponentes);
@@ -162,7 +154,7 @@ public class Tienda implements Serializable{
 	}
 
 	// --------------------------------------------------------------------------
-	
+
 	public void verificarDisponiblesCombos(ArrayList<Combo> losCombos) {
 		ArrayList<Combo> nuevos = new ArrayList<>();
 		nuevos.addAll(misCombos);
@@ -173,164 +165,162 @@ public class Tienda implements Serializable{
 		}
 
 	}
-	
+
 	//////////////////////////////////////////////////////////
 
 	public void guardarComponentesEnArchivo() {
-        try {
-            File archivo = new File("Miscomponentes.dat");
-            FileOutputStream fos = new FileOutputStream(archivo);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeInt(misComponentes.size());
-            for (Componente componente : misComponentes) {
-            	
-            	oos.writeObject(componente);
+		try {
+			File archivo = new File("Miscomponentes.dat");
+			FileOutputStream fos = new FileOutputStream(archivo);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeInt(misComponentes.size());
+			for (Componente componente : misComponentes) {
+
+				oos.writeObject(componente);
 			}
-            
-            
-            oos.close();
-            fos.close();
-            System.out.println("Se ha guardado el ArrayList misComponentes en el archivo " + archivo.getPath());
-        } catch (Exception e) {
-            System.out.println("Ha ocurrido un error al guardar el ArrayList misComponentes en el archivo: " + e.getMessage());
-        }
-    }
-	
-	
+
+			oos.close();
+			fos.close();
+			System.out.println("Se ha guardado el ArrayList misComponentes en el archivo " + archivo.getPath());
+		} catch (Exception e) {
+			System.out.println(
+					"Ha ocurrido un error al guardar el ArrayList misComponentes en el archivo: " + e.getMessage());
+		}
+	}
+
 	public void cargarComponentesDesdeArchivo() {
-	    try {
-	        File archivo = new File("Miscomponentes.dat");
-	        FileInputStream fis = new FileInputStream(archivo);
-	        ObjectInputStream ois = new ObjectInputStream(fis);
-	        int numComponentes = ois.readInt();
-	        for (int i = 0; i < numComponentes; i++) {
-	            Componente componente = (Componente) ois.readObject();
-	            misComponentes.add(componente);
-	        }
-	        ois.close();
-	        fis.close();
-	        System.out.println("Se han cargado " + numComponentes + " componentes desde el archivo " + archivo.getPath());
-	    } catch (Exception e) {
-	        System.out.println("Ha ocurrido un error al cargar los componentes desde el archivo: " + e.getMessage());
-	    }
+		try {
+			File archivo = new File("Miscomponentes.dat");
+			FileInputStream fis = new FileInputStream(archivo);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			int numComponentes = ois.readInt();
+			for (int i = 0; i < numComponentes; i++) {
+				Componente componente = (Componente) ois.readObject();
+				misComponentes.add(componente);
+			}
+			ois.close();
+			fis.close();
+			System.out
+					.println("Se han cargado " + numComponentes + " componentes desde el archivo " + archivo.getPath());
+		} catch (Exception e) {
+			System.out.println("Ha ocurrido un error al cargar los componentes desde el archivo: " + e.getMessage());
+		}
 	}
-	
-	
+
 	public void guardarCombosEnArchivo() {
-        try {
-            File archivo = new File("Miscombos.dat");
-            FileOutputStream fos = new FileOutputStream(archivo);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeInt(misCombos.size());
-            for (Combo combo : misCombos) {
-            	
-            	oos.writeObject(combo);
+		try {
+			File archivo = new File("Miscombos.dat");
+			FileOutputStream fos = new FileOutputStream(archivo);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeInt(misCombos.size());
+			for (Combo combo : misCombos) {
+
+				oos.writeObject(combo);
 			}
-            
-            oos.close();
-            fos.close();
-            System.out.println("Se ha guardado el ArrayList misCombos en el archivo " + archivo.getPath());
-        } catch (Exception e) {
-            System.out.println("Ha ocurrido un error al guardar el ArrayList misCombos en el archivo: " + e.getMessage());
-        }
-    }
-	
+
+			oos.close();
+			fos.close();
+			System.out.println("Se ha guardado el ArrayList misCombos en el archivo " + archivo.getPath());
+		} catch (Exception e) {
+			System.out
+					.println("Ha ocurrido un error al guardar el ArrayList misCombos en el archivo: " + e.getMessage());
+		}
+	}
+
 	public void cargarCombosDesdeArchivo() {
-	    try {
-	        File archivo = new File("Miscombos.dat");
-	        FileInputStream fis = new FileInputStream(archivo);
-	        ObjectInputStream ois = new ObjectInputStream(fis);
-	        int numCombos = ois.readInt();
-	        for (int i = 0; i < numCombos; i++) {
-	            Combo combo = (Combo) ois.readObject();
-	            misCombos.add(combo);
-	        }
-	        ois.close();
-	        fis.close();
-	        System.out.println("Se han cargado " + numCombos + " combos desde el archivo " + archivo.getPath());
-	    } catch (Exception e) {
-	        System.out.println("Ha ocurrido un error al cargar los combos desde el archivo: " + e.getMessage());
-	    }
+		try {
+			File archivo = new File("Miscombos.dat");
+			FileInputStream fis = new FileInputStream(archivo);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			int numCombos = ois.readInt();
+			for (int i = 0; i < numCombos; i++) {
+				Combo combo = (Combo) ois.readObject();
+				misCombos.add(combo);
+			}
+			ois.close();
+			fis.close();
+			System.out.println("Se han cargado " + numCombos + " combos desde el archivo " + archivo.getPath());
+		} catch (Exception e) {
+			System.out.println("Ha ocurrido un error al cargar los combos desde el archivo: " + e.getMessage());
+		}
 	}
-	
-	
+
 	public void guardarFacturasEnArchivo() {
-        try {
-            File archivo = new File("MisFacturas.dat");
-            FileOutputStream fos = new FileOutputStream(archivo);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeInt(misFacturas.size());
-            for (Factura factura : misFacturas) {
-            	
-            	oos.writeObject(factura);
+		try {
+			File archivo = new File("MisFacturas.dat");
+			FileOutputStream fos = new FileOutputStream(archivo);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeInt(misFacturas.size());
+			for (Factura factura : misFacturas) {
+
+				oos.writeObject(factura);
 			}
-            
-            oos.close();
-            fos.close();
-            System.out.println("Se ha guardado el ArrayList misFacturas en el archivo " + archivo.getPath());
-        } catch (Exception e) {
-            System.out.println("Ha ocurrido un error al guardar el ArrayList misFacturass en el archivo: " + e.getMessage());
-        }
-    }
-	
-	
+
+			oos.close();
+			fos.close();
+			System.out.println("Se ha guardado el ArrayList misFacturas en el archivo " + archivo.getPath());
+		} catch (Exception e) {
+			System.out.println(
+					"Ha ocurrido un error al guardar el ArrayList misFacturass en el archivo: " + e.getMessage());
+		}
+	}
+
 	public void cargarFacturasDesdeArchivo() {
-	    try {
-	        File archivo = new File("MisFacturas.dat");
-	        FileInputStream fis = new FileInputStream(archivo);
-	        ObjectInputStream ois = new ObjectInputStream(fis);
-	        int numFacturas = ois.readInt();
-	        for (int i = 0; i < numFacturas; i++) {
-	            Factura factura = (Factura) ois.readObject();
-	            misFacturas.add(factura);
-	        }
-	        ois.close();
-	        fis.close();
-	        System.out.println("Se han cargado " + numFacturas + " las facturas desde el archivo " + archivo.getPath());
-	    } catch (Exception e) {
-	        System.out.println("Ha ocurrido un error al cargar las facturas desde el archivo: " + e.getMessage());
-	    }
-	}
-	
-	
-	public void guardarClientesEnArchivo() {
-        try {
-            File archivo = new File("MisClientes.dat");
-            FileOutputStream fos = new FileOutputStream(archivo);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeInt(misFacturas.size());
-            for (Cliente cliente : misClientes) {
-            	
-            	oos.writeObject(cliente);
+		try {
+			File archivo = new File("MisFacturas.dat");
+			FileInputStream fis = new FileInputStream(archivo);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			int numFacturas = ois.readInt();
+			for (int i = 0; i < numFacturas; i++) {
+				Factura factura = (Factura) ois.readObject();
+				misFacturas.add(factura);
 			}
-            
-            oos.close();
-            fos.close();
-            System.out.println("Se ha guardado el ArrayList misClientes en el archivo " + archivo.getPath());
-        } catch (Exception e) {
-            System.out.println("Ha ocurrido un error al guardar el ArrayList misClientes en el archivo: " + e.getMessage());
-        }
-    }
-	
-	
-	public void cargarClientesDesdeArchivo() {
-	    try {
-	        File archivo = new File("MisClientes.dat");
-	        FileInputStream fis = new FileInputStream(archivo);
-	        ObjectInputStream ois = new ObjectInputStream(fis);
-	        int numClientes = ois.readInt();
-	        for (int i = 0; i < numClientes; i++) {
-	            Cliente cliente = (Cliente) ois.readObject();
-	            misClientes.add(cliente);
-	        }
-	        ois.close();
-	        fis.close();
-	        System.out.println("Se han cargado " + numClientes + " los Clientes desde el archivo " + archivo.getPath());
-	    } catch (Exception e) {
-	        System.out.println("Ha ocurrido un error al cargar los clientes desde el archivo: " + e.getMessage());
-	    }
+			ois.close();
+			fis.close();
+			System.out.println("Se han cargado " + numFacturas + " las facturas desde el archivo " + archivo.getPath());
+		} catch (Exception e) {
+			System.out.println("Ha ocurrido un error al cargar las facturas desde el archivo: " + e.getMessage());
+		}
 	}
-	
+
+	public void guardarClientesEnArchivo() {
+		try {
+			File archivo = new File("MisClientes.dat");
+			FileOutputStream fos = new FileOutputStream(archivo);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeInt(misFacturas.size());
+			for (Cliente cliente : misClientes) {
+
+				oos.writeObject(cliente);
+			}
+
+			oos.close();
+			fos.close();
+			System.out.println("Se ha guardado el ArrayList misClientes en el archivo " + archivo.getPath());
+		} catch (Exception e) {
+			System.out.println(
+					"Ha ocurrido un error al guardar el ArrayList misClientes en el archivo: " + e.getMessage());
+		}
+	}
+
+	public void cargarClientesDesdeArchivo() {
+		try {
+			File archivo = new File("MisClientes.dat");
+			FileInputStream fis = new FileInputStream(archivo);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			int numClientes = ois.readInt();
+			for (int i = 0; i < numClientes; i++) {
+				Cliente cliente = (Cliente) ois.readObject();
+				misClientes.add(cliente);
+			}
+			ois.close();
+			fis.close();
+			System.out.println("Se han cargado " + numClientes + " los Clientes desde el archivo " + archivo.getPath());
+		} catch (Exception e) {
+			System.out.println("Ha ocurrido un error al cargar los clientes desde el archivo: " + e.getMessage());
+		}
+	}
+
 	public float gananciaDiscoDuro() {
 		float total = 0;
 		for (Factura fact : misFacturas) {
@@ -477,7 +467,6 @@ public class Tienda implements Serializable{
 
 	}
 
-
 	public Cliente buscarClienteByCedula(String cedula) {
 		Cliente auxCliente = null;
 		for (Cliente cliente : misClientes) {
@@ -507,17 +496,17 @@ public class Tienda implements Serializable{
 		}
 		return aux;
 	}
-	
+
 	public Combo buscarComboByCodigo(String codigo) {
 		Combo aux = null;
-		for (Combo combo: misCombos) {
+		for (Combo combo : misCombos) {
 			if (combo.getCodigo().equalsIgnoreCase(codigo)) {
 				aux = combo;
 			}
 		}
 		return aux;
 	}
-	
+
 	public float totalFactura(JList<String> lista) {
 		int i = 0;
 
@@ -527,13 +516,9 @@ public class Tienda implements Serializable{
 			String str = lista.getModel().getElementAt(i);
 			String cod = str.substring(0, 4);
 			for (Componente componente : misComponentes) {
-				System.out.println(cod);
 				if (componente.getSerial().equalsIgnoreCase(cod)) {
 					total += componente.getPrecio() * componente.getCantidad();
-					System.out.println(componente.getSerial());
-					
 				}
-
 			}
 		}
 		return total;
@@ -550,13 +535,9 @@ public class Tienda implements Serializable{
 			String cod = str.substring(0, 4);
 
 			for (Combo combo : misCombos) {
-				System.out.println(cod);
 				if (combo.getCodigo().equalsIgnoreCase(cod)) {
-
 					total += combo.PrecioCombo();
-					System.out.println(total);
 				}
-
 			}
 		}
 		return total;
@@ -596,7 +577,5 @@ public class Tienda implements Serializable{
 	public void setMisUser(ArrayList<User> misUser) {
 		this.misUser = misUser;
 	}
-
-	
 
 }

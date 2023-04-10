@@ -138,7 +138,7 @@ public class ListadoFactura extends JDialog {
 
 			rows[0] = aux.getCodigo();
 			rows[1] = aux.getCliente().getNombre();
-			rows[2] = aux.getMisComponentes().size();
+			rows[2] = aux.getMisComponentes().size() + aux.getMisCombos().size();
 			rows[3] = aux.PrecioFactura() + aux.PrecioFacturaCombo();
 			model.addRow(rows);
 

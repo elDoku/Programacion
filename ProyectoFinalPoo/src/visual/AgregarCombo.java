@@ -97,7 +97,6 @@ public class AgregarCombo extends JDialog {
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 104, 486, 224);
@@ -152,7 +151,7 @@ public class AgregarCombo extends JDialog {
 			int cantidad = q.getCantidad();
 
 			if (q instanceof Ram) {
-				nombresComponentes.add(String.format("%s-%s  #(%d)", serial, marca,cantidad));
+				nombresComponentes.add(String.format("%s-%s  #(%d)", serial, marca, cantidad));
 
 				// nombresComponentes.add(q.getSerial() + "-Ram");
 				// es decir que a un string si se le puede agregar de otra clase
@@ -269,13 +268,12 @@ public class AgregarCombo extends JDialog {
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setBounds(311, 369, 46, 14);
 		contentPanel.add(lblTotal);
-		
+
 		spnTotal = new JSpinner();
 		spnTotal.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
 		spnTotal.setEnabled(false);
 		spnTotal.setBounds(349, 365, 110, 22);
 		contentPanel.add(spnTotal);
-
 
 		// ---------------------------------------------------------------------------------------
 		//
@@ -293,12 +291,11 @@ public class AgregarCombo extends JDialog {
 						Combo aux = null;
 						String nombre = txtNombre.getText();
 						aux = new Combo("CO-" + Tienda.getInstance().getMisCombos().size(), nombre, losComponentes(),
-								Tienda.getInstance().totalFactura(list_1)
-										+ Tienda.getInstance().totalFactura(list_1));
+								Tienda.getInstance().totalFactura(list_1));
 						Tienda.getInstance().insertarCombo(aux);
 						Tienda.getInstance().guardarCombosEnArchivo();
 						Tienda.getInstance().verificarDisponibles(losComponentes());
-						
+
 						JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 								JOptionPane.INFORMATION_MESSAGE);
 						clean();
