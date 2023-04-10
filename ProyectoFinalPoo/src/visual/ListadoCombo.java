@@ -39,10 +39,10 @@ public class ListadoCombo extends JDialog {
 	private static DefaultTableModel model;
 	private static Object rows[];
 	private Combo selected = null;
-
+	private JButton btnDelete;
+	private JButton btnCancelar;
 	private ArrayList<Cliente> misCliente;
 	private ArrayList<Combo> miscombos;
-	
 
 	/**
 	 * Launch the application.
@@ -78,7 +78,7 @@ public class ListadoCombo extends JDialog {
 				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
-					String[] headers = { "Serial", "Cliente", "Componentes", "Total" };
+					String[] headers = { "Serial", "Nombre", "Componentes", "Total" };
 					model = new DefaultTableModel();
 					model.setColumnIdentifiers(headers);
 					table = new JTable();
@@ -103,33 +103,49 @@ public class ListadoCombo extends JDialog {
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-
 			{
-				JButton btnCancelar = new JButton("Cancelar");
+				btnDelete = new JButton("Eliminar");
+				btnDelete.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+						if (selected != null) {
+							Tienda.getInstance().getMisCombos().remove(selected);
+							Tienda.getInstance().guardarCombosEnArchivo();
+							loadFactura(0);
+							btnDelete.setEnabled(false);
+
+						}
+					}
+				});
+				btnDelete.setEnabled(false);
+				buttonPane.add(btnDelete);
+			}
+			{
+				btnCancelar = new JButton("Cancelar");
 				btnCancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
-				{
-					JButton btnNewButton = new JButton("Detalles");
-					btnNewButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							
-							DetallesCombo detallescombo = new DetallesCombo(selected);
-							detallescombo.setModal(true);
-								detallescombo.setVisible(true);
-							
-							
-							
-							
-						}
-					});
-					buttonPane.add(btnNewButton);
-				}
-				btnCancelar.setActionCommand("Cancel");
-				buttonPane.add(btnCancelar);
+
+				btnDelete.setEnabled(false);
+				buttonPane.add(btnDelete);
 			}
+			{
+				JButton btnNewButton = new JButton("Detalles");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+
+						DetallesCombo detallescombo = new DetallesCombo(selected);
+						detallescombo.setModal(true);
+						detallescombo.setVisible(true);
+
+					}
+				});
+				buttonPane.add(btnNewButton);
+			}
+			btnCancelar.setActionCommand("Cancel");
+			buttonPane.add(btnCancelar);
 		}
 		loadFactura(0);
 	}

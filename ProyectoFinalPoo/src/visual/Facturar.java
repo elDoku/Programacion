@@ -218,7 +218,7 @@ public class Facturar extends JDialog {
 				// es decir que a un string si se le puede agregar de otra clase
 			}
 			if (q instanceof Micro) {
-				nombresComponentes.add(String.format("%s  %d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
 
 			}
 			if (q instanceof MotherBoard) {

@@ -146,23 +146,28 @@ public class AgregarCombo extends JDialog {
 		// Aqui creo un arreglo de strings para colocar los codigos y nombres de los
 		// quesos
 		for (Componente q : componentes2) {
+			String serial = q.getSerial();
+			int cantidad = q.getCantidad();
+
 			if (q instanceof Ram) {
-				nombresComponentes.add(q.getSerial() + "-Ram");
+				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+
+				// nombresComponentes.add(q.getSerial() + "-Ram");
 				// es decir que a un string si se le puede agregar de otra clase
 			}
 			if (q instanceof Micro) {
-				nombresComponentes.add(q.getSerial() + "-Micro");
+				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+
 			}
 			if (q instanceof MotherBoard) {
-				nombresComponentes.add(q.getSerial() + "-MotherBoard");
+				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+
 			}
-			
 			if (q instanceof DiscoDuro) {
-				nombresComponentes.add(q.getSerial() + "-DiscoDuro");
+				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+
 			}
-			
-			
-			
+
 		}
 		// Aqui se presentan los quesos
 		// Creo una lista modelo para presentar los los nombres de la lista anterior
