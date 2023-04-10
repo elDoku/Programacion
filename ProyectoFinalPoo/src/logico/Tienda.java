@@ -476,35 +476,6 @@ public class Tienda implements Serializable{
 
 	}
 
-	// ------------------------------------------------------------------
-	// public ArrayList<Componente> mayorEsferico() {
-	// ArrayList<> queso = new ArrayList<>();
-	//
-	// float volumen = 0;
-	// for (Factura factura : misfacturas) {
-	// for (Queso aux : factura.getMisQuesos()) {
-	// if (aux instanceof QuesoEsferico && aux.Volumen() > volumen) {
-	// volumen = aux.Volumen();
-	// queso.removeAll(queso);
-	// queso.add(aux);
-	// }
-	// if (aux instanceof QuesoEsferico && aux.Volumen() == volumen) {
-	// queso.add(aux);
-	// }
-	// }
-	// }
-	// return queso;
-	// }
-
-	// public int cantEsferico() {
-	// int cant = 0;
-	// for (Queso aux : misQuesos) {
-	// if (aux instanceof QuesoEsferico) {
-	// cant++;
-	// }
-	// }
-	// return cant;
-	// }
 
 	public Cliente buscarClienteByCedula(String cedula) {
 		Cliente auxCliente = null;
@@ -516,7 +487,7 @@ public class Tienda implements Serializable{
 		return auxCliente;
 	}
 
-	public Componente buscarQuesoByCodigo(String codigo) {
+	public Componente buscarComponenteByCodigo(String codigo) {
 		Componente aux = null;
 		for (Componente componente : misComponentes) {
 			if (componente.getSerial().equalsIgnoreCase(codigo)) {

@@ -128,8 +128,9 @@ public class ListadoCombo extends JDialog {
 					}
 				});
 
-				btnDelete.setEnabled(false);
-				buttonPane.add(btnDelete);
+				btnCancelar.setActionCommand("Cancel");
+				buttonPane.add(btnCancelar);
+
 			}
 			{
 				JButton btnNewButton = new JButton("Detalles");
@@ -142,10 +143,9 @@ public class ListadoCombo extends JDialog {
 
 					}
 				});
+				btnNewButton.setActionCommand("Detalles");
 				buttonPane.add(btnNewButton);
 			}
-			btnCancelar.setActionCommand("Cancel");
-			buttonPane.add(btnCancelar);
 		}
 		loadFactura(0);
 	}

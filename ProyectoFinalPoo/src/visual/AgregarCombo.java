@@ -25,7 +25,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
@@ -146,25 +145,27 @@ public class AgregarCombo extends JDialog {
 		// Aqui creo un arreglo de strings para colocar los codigos y nombres de los
 		// quesos
 		for (Componente q : componentes2) {
-			String serial = q.getSerial();
+			String marca = q.getMarca();
+			String modelo = q.getModelo();
+
 			int cantidad = q.getCantidad();
 
 			if (q instanceof Ram) {
-				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s-%s  (%d)", marca, modelo, cantidad));
 
 				// nombresComponentes.add(q.getSerial() + "-Ram");
 				// es decir que a un string si se le puede agregar de otra clase
 			}
 			if (q instanceof Micro) {
-				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s-%s  (%d)", marca, modelo, cantidad));
 
 			}
 			if (q instanceof MotherBoard) {
-				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s-%s  (%d)", marca, modelo, cantidad));
 
 			}
 			if (q instanceof DiscoDuro) {
-				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s-%s  (%d)", marca, modelo, cantidad));
 
 			}
 
@@ -212,10 +213,10 @@ public class AgregarCombo extends JDialog {
 					}
 					list.setModel(modelo);
 					list_1.setModel(modelo0);
-					
+
 					spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
-					//spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
-					
+					// spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
+
 					if (list_1.getModel().getSize() > 0) {
 						btnFacturar.setEnabled(true);
 					}
@@ -249,7 +250,7 @@ public class AgregarCombo extends JDialog {
 				list.setModel(modelo);
 				list_1.setModel(modelo0);
 				spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
-				//spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
+				// spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
 
 				if (list_1.getModel().getSize() > 0) {
 					btnFacturar.setEnabled(true);
@@ -263,10 +264,10 @@ public class AgregarCombo extends JDialog {
 		});
 		btnIzquierda.setBounds(200, 119, 89, 23);
 		panel_1.add(btnIzquierda);
-		
-				JLabel lblQuesosDisponibles = new JLabel("Componentes Disponibles");
-				lblQuesosDisponibles.setBounds(10, 9, 177, 14);
-				panel_1.add(lblQuesosDisponibles);
+
+		JLabel lblQuesosDisponibles = new JLabel("Componentes Disponibles");
+		lblQuesosDisponibles.setBounds(10, 9, 177, 14);
+		panel_1.add(lblQuesosDisponibles);
 
 		// ---------------------------------------------------------------------------------------
 		//
@@ -306,20 +307,20 @@ public class AgregarCombo extends JDialog {
 				btnFacturar = new JButton("Agregar");
 				btnFacturar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
-						Combo aux=null;
+
+						Combo aux = null;
 						String nombre = txtNombre.getText();
-						aux=new Combo("CO-" + Tienda.getInstance().getMisCombos().size(), nombre, losComponentes(), Tienda.getInstance().totalFactura(list_1));
+						aux = new Combo("CO-" + Tienda.getInstance().getMisCombos().size(), nombre, losComponentes(),
+								Tienda.getInstance().totalFactura(list_1));
 						ArrayList<String> nombresQ = new ArrayList<String>();
 						ListModel<String> misComponentes = list_1.getModel();
 						Tienda.getInstance().insertarCombo(aux);
-						
+
 						Tienda.getInstance().guardarCombosEnArchivo();
 						Tienda.getInstance().verificarDisponibles(losComponentes());
 
 //						
-						
-						
+
 						JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 								JOptionPane.INFORMATION_MESSAGE);
 						clean();
@@ -350,7 +351,7 @@ public class AgregarCombo extends JDialog {
 			String str = list_1.getModel().getElementAt(i);
 			String cod = str.substring(0, 4);
 			for (Componente componente : Tienda.getInstance().getMisComponentes()) {
-				
+
 				if (componente.getSerial().equalsIgnoreCase(cod)) {
 					array.add(componente);
 				}
@@ -360,17 +361,17 @@ public class AgregarCombo extends JDialog {
 	}
 
 	private void clean() {
-		
+
 		txtNombre.setText("");
-	
+
 		txtNombre.setEditable(false);
-		
+
 		btnDerecha.setEnabled(false);
 		btnIzquierda.setEnabled(false);
 
 		DefaultListModel<String> limpio = new DefaultListModel<String>();
 		spnTotal.setValue(new Float(0.0));
-		//spnDescuento.setValue(new Float(0.0));
+		// spnDescuento.setValue(new Float(0.0));
 		modelo0 = limpio;
 		list_1.setModel(limpio);
 

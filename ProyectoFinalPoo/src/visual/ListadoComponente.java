@@ -110,7 +110,7 @@ public class ListadoComponente extends JDialog {
 								btnDelete.setEnabled(true);
 								btnUpdate.setEnabled(true);
 								String codigo = table.getValueAt(index, 0).toString();
-								selected = Tienda.getInstance().buscarQuesoByCodigo(codigo);
+								selected = Tienda.getInstance().buscarComponenteByCodigo(codigo);
 							}
 						}
 					});

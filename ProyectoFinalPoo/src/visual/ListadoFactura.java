@@ -37,7 +37,7 @@ public class ListadoFactura extends JDialog {
 	private static DefaultTableModel model;
 	private static Object rows[];
 	private Componente selected = null;
-
+	private JButton btnDelete;
 	private ArrayList<Cliente> misCliente;
 	private ArrayList<Factura> misfacturas;
 
@@ -85,7 +85,7 @@ public class ListadoFactura extends JDialog {
 							int index = table.getSelectedRow();
 							if (index >= 0) {
 								String codigo = table.getValueAt(index, 0).toString();
-								selected = Tienda.getInstance().buscarQuesoByCodigo(codigo);
+								selected = Tienda.getInstance().buscarComponenteByCodigo(codigo);
 							}
 						}
 					});
@@ -100,7 +100,22 @@ public class ListadoFactura extends JDialog {
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				btnDelete = new JButton("Eliminar");
+				btnDelete.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (selected != null) {
+							Tienda.getInstance().getMisComponentes().remove(selected);
+							Tienda.getInstance().guardarComponentesEnArchivo();
+							loadFactura(0);
+							btnDelete.setEnabled(false);
 
+						}
+					}
+				});
+				btnDelete.setEnabled(false);
+				buttonPane.add(btnDelete);
+			}
 			{
 				JButton btnCancelar = new JButton("Cancelar");
 				btnCancelar.addActionListener(new ActionListener() {
@@ -119,7 +134,7 @@ public class ListadoFactura extends JDialog {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		for (Factura aux : Tienda.getInstance().getMisFacturas()) {
-			
+
 			rows[0] = aux.getCodigo();
 			rows[1] = aux.getCliente().getNombre();
 			rows[2] = aux.getMisComponentes().size();
