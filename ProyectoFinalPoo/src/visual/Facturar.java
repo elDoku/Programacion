@@ -423,6 +423,7 @@ public class Facturar extends JDialog {
 				if (combo.getCodigo().equalsIgnoreCase(cod)) {
 					array.add(combo);
 				}
+				
 			}
 		}
 		return array;
