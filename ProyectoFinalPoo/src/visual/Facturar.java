@@ -368,7 +368,6 @@ public class Facturar extends JDialog {
 								"CF-00" + Tienda.getInstance().getMisFacturas().size());
 						Tienda.getInstance().insertarCliente(aux);
 						Tienda.getInstance().insertarFactura(factura);
-
 						Tienda.getInstance().guardarClientesEnArchivo();
 						Tienda.getInstance().guardarFacturasEnArchivo();
 						Tienda.getInstance().verificarDisponibles(losComponentes());
