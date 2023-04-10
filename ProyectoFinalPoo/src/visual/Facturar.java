@@ -49,7 +49,6 @@ public class Facturar extends JDialog {
 	private JTextField txtDireccion;
 	private JScrollPane scrollPane;
 	private JList<String> list;
-	private JSpinner spnNCant;
 	private JList<String> list_1;
 	private JScrollPane scrollPane_1;
 	private JButton btnDerecha;
@@ -213,28 +212,31 @@ public class Facturar extends JDialog {
 			int cantidad = q.getCantidad();
 
 			if (q instanceof Ram) {
-				nombresComponentes.add(String.format("%s(%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
 
 				// nombresComponentes.add(q.getSerial() + "-Ram");
 				// es decir que a un string si se le puede agregar de otra clase
 			}
 			if (q instanceof Micro) {
-				nombresComponentes.add(String.format("%s(%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s  %d)", serial, cantidad));
 
 			}
 			if (q instanceof MotherBoard) {
-				nombresComponentes.add(String.format("%s(%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
 
 			}
 			if (q instanceof DiscoDuro) {
-				nombresComponentes.add(String.format("%s(%d)", serial, cantidad));
+				nombresComponentes.add(String.format("%s  (%d)", serial, cantidad));
 
 			}
 
 		}
 
 		for (Combo combo : misCombos) {
-			nombresComponentes.add(combo.getCodigo() + "-Combo  ");
+			//nombresComponentes.add(String.format("%s(%d)", serial));
+
+			nombresComponentes.add(combo.getCodigo() +"  "+combo.getNombre());
+		
 		}
 
 		// Aqui se presentan los quesos
@@ -268,39 +270,15 @@ public class Facturar extends JDialog {
 					// verifica que lo que se busca esta dentro de la lista
 					// seleccionado dentro de los quesos
 					// boolean encontrado = false;
-
-					int ncantidad = Integer.valueOf(spnNCant.getValue().toString());
-
 					modelo = modeloComponentes;
 					if (index >= 0 && index < modelo.getSize()) {
 
 						String codigo = (String) modelo.getElementAt(index);
 						// index++;
-						int cantidad = 0;
 
-						if (codigo.substring(4, 7).equalsIgnoreCase("(1)")) {
-							modelo0.addElement(codigo);
-							modelo.removeElementAt(index);
-						} else {
-							for (Componente cp : Tienda.getInstance().getMisComponentes()) {
-								cantidad = cp.getCantidad();
-								if (ncantidad <= cantidad) {
+						modelo0.addElement(codigo);
 
-									// cantidad = cp.getCantidad();
-									System.out.println(cantidad);
-									
-									cp.setCantidad(cantidad - ncantidad);
-									if (cantidad > 1) {
-										modelo0.addElement(String.format("%s(%d)", codigo, ncantidad));
-
-									}
-								}
-							}
-
-							String codigo2 = (String) modelo.getElementAt(index);
-							String codigoActualizado = String.format("%s(%d)", codigo2.substring(0, 4), cantidad);
-							modelo.setElementAt(codigoActualizado, index);
-						}
+						modelo.removeElementAt(index);
 
 					}
 					// aqui igualo modelo al modelo de la lista 1
@@ -335,32 +313,9 @@ public class Facturar extends JDialog {
 					// modelo0 = modelo;
 					String codigo = (String) modelo0.getElementAt(index);
 					// index++;
-					int cantidad = 0;
-					int ncantidad = Integer.valueOf(spnNCant.getValue().toString());
-
 					// System.out.println(codigo.substring(7, 10));
-					if (codigo.substring(4, 7).equalsIgnoreCase("(1)")) {
-						modelo.addElement(codigo);
-						modelo0.removeElementAt(index);
-					} else {
-						for (Componente cp : Tienda.getInstance().getMisComponentes()) {
-							cantidad = cp.getCantidad();
-
-							// System.out.println(cantidad);
-							++cantidad; // restar 1 a la cantidad actual
-							cp.setCantidad(cantidad);
-
-//							if (cantidad == 1) {
-//								modelo.addElement(String.format("%s(%d)", codigo, cantidad));
-//							
-//							}
-						}
-
-						String codigo2 = (String) modelo0.getElementAt(index);
-						String codigoActualizado = String.format("%s(%d)", codigo2.substring(0, 4), cantidad);
-						modelo.setElementAt(codigoActualizado, index);
-
-					}
+					modelo.addElement(codigo);
+					modelo0.removeElementAt(index);
 
 				}
 				list.setModel(modelo);
@@ -379,11 +334,6 @@ public class Facturar extends JDialog {
 		});
 		btnIzquierda.setBounds(199, 154, 88, 23);
 		panel_1.add(btnIzquierda);
-
-		spnNCant = new JSpinner();
-		spnNCant.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spnNCant.setBounds(209, 110, 64, 22);
-		panel_1.add(spnNCant);
 
 		// ---------------------------------------------------------------------------------------
 		//
@@ -413,12 +363,9 @@ public class Facturar extends JDialog {
 						String nombre = txtNombre.getText();
 						String telefono = txtTelefono.getText();
 						String direccion = txtDireccion.getText();
-						ArrayList<String> nombresQ = new ArrayList<String>();
-						ListModel<String> misComponentes = list_1.getModel();
 						aux = new Cliente(nombre, direccion, telefono, cedula);
-						factura = new Factura(null, losComponentes(), aux,
+						factura = new Factura(losCombos(), losComponentes(), aux,
 								"CF-00" + Tienda.getInstance().getMisFacturas().size());
-						// String codigo,ArrayList<Queso> misQuesos, Cliente cliente
 						Tienda.getInstance().insertarCliente(aux);
 						Tienda.getInstance().insertarFactura(factura);
 
@@ -459,6 +406,22 @@ public class Facturar extends JDialog {
 
 				if (componente.getSerial().equalsIgnoreCase(cod)) {
 					array.add(componente);
+				}
+			}
+		}
+		return array;
+	}
+	
+	private ArrayList<Combo> losCombos() {
+		ArrayList<Combo> array = new ArrayList<>();
+		int i = 0;
+		for (i = 0; i >= 0 && i < list_1.getModel().getSize(); i++) {
+			String str = list_1.getModel().getElementAt(i);
+			String cod = str.substring(0, 4);
+			for (Combo combo : Tienda.getInstance().getMisCombos()) {
+
+				if (combo.getCodigo().equalsIgnoreCase(cod)) {
+					array.add(combo);
 				}
 			}
 		}

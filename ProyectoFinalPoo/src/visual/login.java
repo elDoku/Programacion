@@ -38,6 +38,7 @@ public class login extends JFrame {
 				FileOutputStream empresa2;
 				ObjectInputStream empresaRead;
 				ObjectOutputStream empresaWrite;
+				
 				try {
 					empresa = new FileInputStream ("empresa.dat");
 					empresaRead = new ObjectInputStream(empresa);

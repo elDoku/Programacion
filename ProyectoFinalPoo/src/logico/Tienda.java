@@ -184,6 +184,7 @@ public class Tienda implements Serializable{
             	oos.writeObject(componente);
 			}
             
+            
             oos.close();
             fos.close();
             System.out.println("Se ha guardado el ArrayList misComponentes en el archivo " + archivo.getPath());
@@ -544,7 +545,7 @@ public class Tienda implements Serializable{
 			for (Componente componente : misComponentes) {
 
 				if (componente.getSerial().equalsIgnoreCase(cod)) {
-					total += componente.getPrecio();
+					total += componente.getPrecio() * componente.getCantidad();
 				}
 
 			}
