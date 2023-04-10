@@ -62,7 +62,7 @@ public class regUser extends JDialog {
 		textField.setColumns(10);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Administrador", "Comercial"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Administrador"}));
 		comboBox.setBounds(20, 113, 127, 20);
 		contentPanel.add(comboBox);
 		
