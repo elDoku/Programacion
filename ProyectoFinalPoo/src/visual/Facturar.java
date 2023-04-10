@@ -372,6 +372,7 @@ public class Facturar extends JDialog {
 						Tienda.getInstance().guardarClientesEnArchivo();
 						Tienda.getInstance().guardarFacturasEnArchivo();
 						Tienda.getInstance().verificarDisponibles(losComponentes());
+						Tienda.getInstance().verificarDisponiblesCombos(losCombos());
 						JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 								JOptionPane.INFORMATION_MESSAGE);
 						clean();

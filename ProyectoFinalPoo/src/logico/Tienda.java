@@ -163,13 +163,16 @@ public class Tienda implements Serializable{
 
 	// --------------------------------------------------------------------------
 	
-	
-	
-	
-	
-	
-	
-	
+	public void verificarDisponiblesCombos(ArrayList<Combo> losCombos) {
+		ArrayList<Combo> nuevos = new ArrayList<>();
+		nuevos.addAll(misCombos);
+		for (Combo combo : nuevos) {
+			if (losCombos.contains(combo)) {
+				misCombos.remove(combo);
+			}
+		}
+
+	}
 	
 	//////////////////////////////////////////////////////////
 
