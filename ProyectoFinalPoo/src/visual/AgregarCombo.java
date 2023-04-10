@@ -213,10 +213,9 @@ public class AgregarCombo extends JDialog {
 					}
 					list.setModel(modelo);
 					list_1.setModel(modelo0);
-
-					spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
-					// spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
-
+					spnTotal.setValue(
+							Tienda.getInstance().totalFactura(list_1) + Tienda.getInstance().totalFacturaCombo(list_1));
+					
 					if (list_1.getModel().getSize() > 0) {
 						btnFacturar.setEnabled(true);
 					}
@@ -249,9 +248,9 @@ public class AgregarCombo extends JDialog {
 				}
 				list.setModel(modelo);
 				list_1.setModel(modelo0);
-				spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
-				// spnDescuento.setValue(Tienda.getInstance().totalFactura(list_1));
-
+				spnTotal.setValue(
+						Tienda.getInstance().totalFactura(list_1) + Tienda.getInstance().totalFacturaCombo(list_1));
+				
 				if (list_1.getModel().getSize() > 0) {
 					btnFacturar.setEnabled(true);
 				}
@@ -280,23 +279,6 @@ public class AgregarCombo extends JDialog {
 		spnTotal.setEnabled(false);
 		spnTotal.setBounds(349, 365, 110, 22);
 		contentPanel.add(spnTotal);
-
-//		
-//		ArrayList<Queso> quesos3 = TiendaQueso.getInstance().getMisQuesos();
-////		
-//		for (Queso q : quesos3) {
-//			if (q instanceof QuesoEsferico) {
-//				modelo.addElement(q.getCodigo() + "-Esférico");
-//				// es decir que a un string si se le puede agregar de otra clase
-//			}
-//			if (q instanceof QuesoCilindrico && !(q instanceof QuesoCilindricoH)) {
-//				modelo.addElement(q.getCodigo() + "-Cilíndrico");
-//			}
-//			if (q instanceof QuesoCilindricoH) {
-//				modelo.addElement(q.getCodigo() + "-CilíndricoH");
-//			}
-//
-//		}
 
 		{
 			JPanel buttonPane = new JPanel();
