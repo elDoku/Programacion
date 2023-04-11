@@ -306,6 +306,10 @@ public class Facturar extends JDialog {
 		btnIzquierda.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				
+
+			
+				
 				int index = list_1.getSelectedIndex();
 				ListModel<String> componentes = list_1.getModel();
 				// quesos es un arreglo con los datos de la primera lista
@@ -355,7 +359,10 @@ public class Facturar extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnFacturar = new JButton("Facturar");
+				btnFacturar.setEnabled(false);
+				
 				btnFacturar.addActionListener(new ActionListener() {
+					
 					public void actionPerformed(ActionEvent e) {
 						Cliente aux = null;
 						Factura factura = null;

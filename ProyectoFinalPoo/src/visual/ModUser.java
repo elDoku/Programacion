@@ -19,7 +19,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class regUser extends JDialog {
+public class ModUser extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
@@ -33,7 +33,7 @@ public class regUser extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			regUser dialog = new regUser();
+			ModUser dialog = new ModUser(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -44,7 +44,7 @@ public class regUser extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public regUser() {
+	public ModUser(User aux) {
 		setBounds(100, 100, 450, 228);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -52,7 +52,7 @@ public class regUser extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel lblNombreUsuario = new JLabel("Nombre Usuario:");
+		JLabel lblNombreUsuario = new JLabel("New UserName:");
 		lblNombreUsuario.setBounds(20, 26, 97, 14);
 		contentPanel.add(lblNombreUsuario);
 		
@@ -92,11 +92,15 @@ public class regUser extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Aceptar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						User user = new User(comboBox.getSelectedItem().toString(),textField.getText(),textField_1.getText());
-					    Tienda.getInstance().regUser(user);
+						aux.setUserName(textField.getText());
+						aux.setPass(textField_1.getText());
+						aux.setTipo(comboBox.getSelectedItem().toString());
+						//User user = new User(comboBox.getSelectedItem().toString(),textField.getText(),textField_1.getText());
+					   // Tienda.getInstance().regUser(user);
+						Tienda.getInstance().guardarUserEnArchivo();
 					    JOptionPane.showMessageDialog(null, "Operacion Exitosa", "Informacion",
 								JOptionPane.INFORMATION_MESSAGE);
 					    dispose();

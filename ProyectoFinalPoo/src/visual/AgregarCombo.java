@@ -214,7 +214,7 @@ public class AgregarCombo extends JDialog {
 					list.setModel(modelo);
 					list_1.setModel(modelo0);
 					spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
-					if (list_1.getModel().getSize() > 0) {
+					if (list_1.getModel().getSize() > 1) {
 						btnFacturar.setEnabled(true);
 					}
 					if (list_1.getModel().getSize() < 1) {
@@ -248,7 +248,7 @@ public class AgregarCombo extends JDialog {
 				list_1.setModel(modelo0);
 				spnTotal.setValue(Tienda.getInstance().totalFactura(list_1));
 
-				if (list_1.getModel().getSize() > 0) {
+				if (list_1.getModel().getSize() > 1) {
 					btnFacturar.setEnabled(true);
 				}
 				if (list_1.getModel().getSize() < 1) {
@@ -285,6 +285,7 @@ public class AgregarCombo extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnFacturar = new JButton("Agregar");
+				btnFacturar.setEnabled(false);
 				btnFacturar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 

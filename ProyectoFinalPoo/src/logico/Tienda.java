@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 public class Tienda implements Serializable {
 	/**
@@ -321,6 +322,25 @@ public class Tienda implements Serializable {
 		}
 	}
 
+	public void guardarUserEnArchivo() {
+		try {
+			File archivo = new File("empresa.dat");
+			FileOutputStream fos = new FileOutputStream(archivo);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeInt(misUser.size());
+			for (User cliente : misUser) {
+
+				oos.writeObject(cliente);
+			}
+
+			oos.close();
+			fos.close();
+			System.out.println("Se ha guardado el ArrayList User en el archivo " + archivo.getPath());
+		} catch (Exception e) {
+			System.out.println(
+					"Ha ocurrido un error al guardar el ArrayList User en el archivo: " + e.getMessage());
+		}
+	}
 	public float gananciaDiscoDuro() {
 		float total = 0;
 		for (Factura fact : misFacturas) {
@@ -466,6 +486,16 @@ public class Tienda implements Serializable {
 		return cantidad;
 
 	}
+	
+	public User buscarUserByCedula(String cedula) {
+		User auxUser = null;
+		for (User user : misUser) {
+			if (user.getUserName().equalsIgnoreCase(cedula)) {
+				auxUser = user;
+			}
+		}
+		return auxUser;
+	}
 
 	public Cliente buscarClienteByCedula(String cedula) {
 		Cliente auxCliente = null;
@@ -559,6 +589,8 @@ public class Tienda implements Serializable {
 		return total;
 
 	}
+	
+	
 
 	public void modificarQueso(Componente componente) {
 		// TODO Auto-generated method stub

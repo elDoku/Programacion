@@ -49,7 +49,7 @@ public class Reporte extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Facturar dialog = new Facturar();
+			Reporte dialog = new Reporte();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {

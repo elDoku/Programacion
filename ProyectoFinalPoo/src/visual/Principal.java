@@ -192,11 +192,17 @@ public class Principal extends JFrame {
 		mnVentas.add(mntmFacturar);
 
 		JMenu mnAdmin = new JMenu("Administracion");
+		if(!Tienda.getLoginUser().getTipo().equalsIgnoreCase("Administrador")){
+			mnAdmin.setEnabled(false);
+		}
 		menuBar.add(mnAdmin);
 
 		JMenuItem mntmReporte = new JMenuItem("Reporte");
 		mntmReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/*if(!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")){
+					mnAdministracin.setEnabled(false);
+				}*/
 				Reporte reporte = new Reporte();
 				reporte.setModal(true);
 				reporte.setVisible(true);
@@ -214,6 +220,20 @@ public class Principal extends JFrame {
 			}
 		});
 		mnAdmin.add(mntmRegistarUser);
+		
+		JMenuItem mntmL = new JMenuItem("Listado User");
+		mntmL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
+				ListadoUser reg= new ListadoUser ();
+				reg.setModal(true);
+				reg.setVisible(true);
+				
+				
+			}
+		});
+		mnAdmin.add(mntmL);
 		mnAdmin.add(mntmReporte);
 		
 		JMenu mnNewMenu = new JMenu("Respaldo");
