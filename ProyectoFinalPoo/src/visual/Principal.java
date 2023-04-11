@@ -4,8 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Image;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -34,6 +38,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import java.awt.Font;
 
 public class Principal extends JFrame {
 
@@ -100,16 +105,21 @@ public class Principal extends JFrame {
 		setTitle("Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		
 		dim = getToolkit().getScreenSize();
 		setSize(dim.width, dim.height - 50);
 		setLocationRelativeTo(null);
+		
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
 		JMenu mnComponente = new JMenu("Componentes");
+		mnComponente.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		menuBar.add(mnComponente);
 
 		JMenuItem mntmFabricarComponente = new JMenuItem("Fabricar Componentes");
+		mntmFabricarComponente.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmFabricarComponente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegComponente regC = new RegComponente();
@@ -120,6 +130,7 @@ public class Principal extends JFrame {
 		mnComponente.add(mntmFabricarComponente);
 
 		JMenuItem mntmListadoDeComponentes = new JMenuItem("Listado de Componentes");
+		mntmListadoDeComponentes.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmListadoDeComponentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListadoComponente list = new ListadoComponente();
@@ -130,6 +141,7 @@ public class Principal extends JFrame {
 		mnComponente.add(mntmListadoDeComponentes);
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Agregar Combo");
+		mntmNewMenuItem.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -142,6 +154,7 @@ public class Principal extends JFrame {
 		mnComponente.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listado de Combos");
+		mntmNewMenuItem_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -156,9 +169,11 @@ public class Principal extends JFrame {
 		mnComponente.add(mntmNewMenuItem_1);
 
 		JMenu mnClientes = new JMenu("Clientes");
+		mnClientes.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		menuBar.add(mnClientes);
 
 		JMenuItem mntmListadoDeClientes = new JMenuItem("Listado de Clientes");
+		mntmListadoDeClientes.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmListadoDeClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListadoCliente list = new ListadoCliente();
@@ -169,9 +184,11 @@ public class Principal extends JFrame {
 		mnClientes.add(mntmListadoDeClientes);
 
 		JMenu mnVentas = new JMenu("Ventas");
+		mnVentas.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		menuBar.add(mnVentas);
 
 		JMenuItem mntmListaFactura = new JMenuItem("Lista de Facturas");
+		mntmListaFactura.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmListaFactura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListadoFactura list = new ListadoFactura();
@@ -182,6 +199,7 @@ public class Principal extends JFrame {
 		mnVentas.add(mntmListaFactura);
 
 		JMenuItem mntmFacturar = new JMenuItem("Facturar");
+		mntmFacturar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmFacturar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Facturar factura = new Facturar();
@@ -192,12 +210,14 @@ public class Principal extends JFrame {
 		mnVentas.add(mntmFacturar);
 
 		JMenu mnAdmin = new JMenu("Administracion");
+		mnAdmin.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		if(!Tienda.getLoginUser().getTipo().equalsIgnoreCase("Administrador")){
 			mnAdmin.setEnabled(false);
 		}
 		menuBar.add(mnAdmin);
 
 		JMenuItem mntmReporte = new JMenuItem("Reporte");
+		mntmReporte.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*if(!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")){
@@ -210,6 +230,7 @@ public class Principal extends JFrame {
 		});
 		
 		JMenuItem mntmRegistarUser = new JMenuItem("Registar User");
+		mntmRegistarUser.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmRegistarUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -222,6 +243,7 @@ public class Principal extends JFrame {
 		mnAdmin.add(mntmRegistarUser);
 		
 		JMenuItem mntmL = new JMenuItem("Listado User");
+		mntmL.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -237,9 +259,11 @@ public class Principal extends JFrame {
 		mnAdmin.add(mntmReporte);
 		
 		JMenu mnNewMenu = new JMenu("Respaldo");
+		mnNewMenu.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Respaldar");
+		mntmNewMenuItem_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -287,6 +311,18 @@ public class Principal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		
+		JLabel labelfondo = new JLabel("Fondo");
+		labelfondo.setSize(1920, 1080);
+		ImageIcon imagen=new ImageIcon("Imagenes/81042.jpg");
+		Icon imagenIcon=new ImageIcon(imagen.getImage().getScaledInstance(labelfondo.getWidth(), labelfondo.getHeight(), Image.SCALE_DEFAULT));
+		labelfondo.setIcon(imagenIcon);
+		
+		
+		
+		labelfondo.setBounds(-36, -79, 550, 434);
+		contentPane.add(labelfondo);
 	}
 
 }
